@@ -1,7 +1,7 @@
 import React from 'react'
 import CategoryDisplay from '../../components/display/CategoryDisplay'
 import SubCategory from '../../components/display/SubCategory'
-import { BedroomFurniture, Tiles, bathroomFixtures, livingRoomFurniture, officeFurniture, outdoorsFurniture } from '../../components/assets/assets'
+import { Tiles, bathroomFixtures } from '../../../assets/assets'
 
 
 const Bathroom = () => {

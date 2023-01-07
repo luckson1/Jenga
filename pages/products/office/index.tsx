@@ -1,6 +1,6 @@
 import React from 'react'
 import SubCategory from '../../components/display/SubCategory'
-import {  generalFixtures,  officeFurniture} from '../../components/assets/assets'
+import { generalFixtures, officeFurniture } from '../../../assets/assets'
 
 
 const Living  = () => {

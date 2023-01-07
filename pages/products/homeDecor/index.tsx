@@ -1,6 +1,6 @@
 import React from 'react'
 import SubCategory from '../../components/display/SubCategory'
-import {  decor, generalFixtures,  officeFurniture} from '../../components/assets/assets'
+import { decor } from '../../../assets/assets'
 
 
 const homeDecor  = () => {

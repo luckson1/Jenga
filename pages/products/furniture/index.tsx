@@ -1,7 +1,9 @@
 import React from 'react'
 import CategoryDisplay from '../../components/display/CategoryDisplay'
 import SubCategory from '../../components/display/SubCategory'
-import { BedroomFurniture, livingRoomFurniture, officeFurniture, outdoorsFurniture } from '../../components/assets/assets'
+import {  BedroomFurniture, livingRoomFurniture, officeFurniture, outdoorsFurniture } from '../../../assets/assets'
+
+
 
 
 const Furniture = () => {

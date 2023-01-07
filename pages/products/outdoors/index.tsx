@@ -1,6 +1,6 @@
 import React from 'react'
 import SubCategory from '../../components/display/SubCategory'
-import {  fencing, gardening, generalFixtures,  officeFurniture, outdoorsFurniture} from '../../components/assets/assets'
+import { fencing, gardening, outdoorsFurniture } from '../../../assets/assets'
 
 
 const Outdoors  = () => {

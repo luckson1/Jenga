@@ -1,7 +1,7 @@
 import React from 'react'
-import { productCategories } from '../components/assets/assets'
 import CategoryDisplay from '../components/display/CategoryDisplay'
 import { useRouter } from 'next/router'
+import { productCategories } from '../../assets/assets'
 
 const Products = () => {
   const router= useRouter()

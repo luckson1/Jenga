@@ -1,4 +1,5 @@
-import { BedroomFurniture, decor, flooring, generalFixtures } from "../../components/assets/assets"
+
+import { flooring } from "../../../assets/assets"
 import SubCategory from "../../components/display/SubCategory"
 
 const Bedroom = () => {
