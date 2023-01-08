@@ -1,11 +1,14 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { GiSofa } from "react-icons/gi";
 import {MdEngineering} from "react-icons/md";
 
 
 
 export default function Home() {
+  const router=useRouter()
   return (
     <>
       <Head>
@@ -47,16 +50,20 @@ export default function Home() {
             <div className="inline-block">
             <p className="text-lg mb-4">Shop:</p>
             <div className="flex flex-row gap-3 align-baseline flex-wrap">
-            <button className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
+            <button className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
+            onClick={()=> router.push("/products/furniture")}>
                 Furniture
               </button>
-              <button className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
+              <button className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
+              onClick={()=> router.push("/products/lighting")}>
                 Lighting
               </button>
-              <button className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
+              <button className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
+              onClick={()=> router.push("/products/kitchen")}>
                 Kitchen Fittings
               </button>
-              <button className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
+              <button className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
+              onClick={()=> router.push("/products")}>
                 See More
               </button>
             </div>
@@ -66,10 +73,11 @@ export default function Home() {
           
           </div>
           <div className="flex  flex-row justify-between mt-10 md:hidden ">
-            <button className="px-3 text-sm py-1 rounded-full w-[35%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
+            <button className="  text-sm py-2 rounded-full w-[40%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
+            onClick={()=> router.push("/products")}>
                Shop
               </button>
-              <button className="px-3 text-sm py-1 rounded-full w-[35%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
+              <button className=" text-sm py-2 rounded-full w-[40%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
                 Hire Pros
               </button>
 
@@ -98,10 +106,10 @@ export default function Home() {
       <div className="w-screen h-screen flex flex-col  ">
         <p className="text-2xl mt-10 text-center ">Things You can Do on Jenga</p>
         <div className=" w-full md:w-[90%] h-[35%] flex flex-row flex-wrap justify-around mt-5 mx-auto">
-          <div className="bg-slate-50 h-32 w-32  md:w-[40%] rounded-md flex  flex-col md:flex-row  items-center shadow-md gap-5 md:gap-7 px-3 md:px-5 cursor-pointer">
+          <Link href="/products"className="bg-slate-50 h-32 w-32  md:w-[40%] rounded-md flex  flex-col md:flex-row  items-center shadow-md gap-5 md:gap-7 px-3 md:px-5 cursor-pointer">
 <GiSofa className="text-[60px] md:text-[80px] text-sky-400"/>
 <p className="text-slate-600 hover:text-sky-400">Shop for Products</p>
-          </div>
+          </Link>
           <div className="bg-slate-50 h-32 w-32 md:w-[40%] rounded-md flex flex-col md:flex-row  items-center shadow-md gap-5 md:gap-7 px-3 md:px-5 cursor-pointer">
 <MdEngineering className="text-[60px] md:text-[80px] text-sky-400"/>
 <p className="text-slate-600 hover:text-sky-400">Browse Pros</p>
