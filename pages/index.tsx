@@ -97,23 +97,23 @@ export default function Home() {
       </div>
       <div className="w-screen h-screen flex flex-col  ">
         <p className="text-2xl mt-10 text-center ">Things You can Do on Jenga</p>
-        <div className="w-[90%] flex flex-row flex-wrap justify-around mt-5 mx-auto">
-          <div className="bg-slate-50 h-24 w-24 md:w-[40%] flex flex-row flex-wrap items-center shadow-md gap-5 md:gap-7 px-3 md:px-5 cursor-pointer">
-<GiSofa className="text-[80px] text-sky-400"/>
-<p className="text-slate-600 hover:text-sky-400">Shop for House Improvement Products</p>
+        <div className=" w-full md:w-[90%] h-[35%] flex flex-row flex-wrap justify-around mt-5 mx-auto">
+          <div className="bg-slate-50 h-32 w-32  md:w-[40%] rounded-md flex  flex-col md:flex-row  items-center shadow-md gap-5 md:gap-7 px-3 md:px-5 cursor-pointer">
+<GiSofa className="text-[60px] md:text-[80px] text-sky-400"/>
+<p className="text-slate-600 hover:text-sky-400">Shop for Products</p>
           </div>
-          <div className="bg-slate-50 h-24 w-24 md:w-[40%] flex flex-row flex-wrap items-center shadow-md gap-5 md:gap-7 px-3 md:px-5 cursor-pointer">
-<MdEngineering className="text-[80px] text-sky-400"/>
-<p className="text-slate-600 hover:text-sky-400">Connect with Pros to Implement Your Ideas</p>
+          <div className="bg-slate-50 h-32 w-32 md:w-[40%] rounded-md flex flex-col md:flex-row  items-center shadow-md gap-5 md:gap-7 px-3 md:px-5 cursor-pointer">
+<MdEngineering className="text-[60px] md:text-[80px] text-sky-400"/>
+<p className="text-slate-600 hover:text-sky-400">Browse Pros</p>
           </div>
 
         </div>
-        <div className=" w-full md:w-[90%] h-min-min md:h-[500px]  flex md:flex-row flex-col bg-[#1B2430] rounded-3xl gap-7 my-16 py-16 mx-auto" >
-<div className="flex flex-col justify-center items-center w-[60%]">
-  <p className="text-3xl tracking-widest text-slate-100 ml-5 md:ml-16">We will Go through House Construction or Improvement Journey With You </p>
-  <p className="text-white text-large tracking-wider text-start">Find inspiration, products and the pros to make it happen — all in one place</p>
+        <div className=" w-[90%] h-[60%]  flex md:flex-row flex-col bg-[#1B2430] rounded-3xl gap-7 my-16 py-16 mx-auto" >
+<div className="flex flex-col justify-center items-center w-full md:w-[60%]">
+  <p className="text-3xl tracking-widest text-slate-100 ml-4 md:ml-16">We will Go through House  Improvement Journey With You </p>
+  <p className="text-white text-large tracking-wider text-start ml-4 mt-4">Find inspiration, products and the pros to make it happen — all in one place</p>
 </div>
-<div className="flex flex-col justify-center items-center align-baseline w-[40%]">
+<div className="flex flex-col justify-center items-center align-baseline w-full md:w-[40%]">
 <p className="text-xl text-slate-100 mx-5  md:mx-15 my-7"> Become a Member</p>
 <button className="w-[60%] text-lg py-2 rounded-full hover:bg-sky-400 mt-5  font-light text-sky-700 outline outline-sky-700 hover:outline-none bg-sky-200 bg-opacity-70 hover:text-white">
             
