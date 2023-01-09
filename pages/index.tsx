@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { GiSofa } from "react-icons/gi";
 import {MdEngineering} from "react-icons/md";
+import Nav from "./components/navigation/Nav";
 
 
 
@@ -17,17 +18,23 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      
+  
+      <Nav />
       <div className="w-screen h-screen flex flex-col md:flex-row mt-16 ">
-        <div className=" w-full md:w-[60%] h-[40%] md:h-full bg-gradient-to-r from-purple-50 via-violet-50 to-white px-5 md:px-10 flex flex-col justify-around py-16">
-          <div className=" md:mx-6  flex flex-col gap-6 mr-0 mx-auto">
+        <div className=" w-full md:w-[60%] h-[50%] md:h-full bg-gradient-to-r from-purple-50 via-violet-50 to-white px-5 md:px-10 flex flex-col justify-around py-10">
+          <div className="   flex flex-col gap-2 md:gap-4 mx-auto md:mx-6 w-[90%] md:w-[60%]">
             <p className="text-3xl font-bold tracking-widest">
               Make Your Dream House Come True
             </p>
             <p className=" text-lg lg:text-xl tracking-wider">
               Jenga Helps You Discover Home Improvement Professionals and Products You Need to Build Your Dream Spaces.
             </p>
+            <button className=" w-full md:w-[60%] text-lg py-1.5 rounded-full hover:bg-sky-400 mt-5  font-light text-sky-700 outline outline-sky-700 hover:outline-none bg-sky-200 bg-opacity-70 hover:text-white">
+            
+            Sign Up
+          </button>
           </div>
+          
           <div className="md:flex flex-col items-start gap-3 mx-2 lg:mx-4 hidden">
             <div className="inline-block">
               <p className="text-lg mb-4">Hire Pros:</p>
@@ -73,31 +80,28 @@ export default function Home() {
           
           </div>
           <div className="flex  flex-row justify-between mt-10 md:hidden ">
-            <button className="  text-sm py-2 rounded-full w-[40%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
+            <button className="  text-sm py-1 rounded-full w-[40%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
             onClick={()=> router.push("/products")}>
                Shop
               </button>
-              <button className=" text-sm py-2 rounded-full w-[40%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
+              <button className=" text-sm py-1 rounded-full w-[40%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
                 Hire Pros
               </button>
 
             </div>
         </div>
      
-        <div className="w-full md:w-[40%] bg-white h-[60%] md:h-full flex flex-col  items-center justify-around relative text-violet-600">
+        <div className="w-full md:w-[40%] bg-white h-[50%] md:h-full flex flex-col  items-center justify-around relative text-violet-600 ">
         <Image fill src="/warmKitchen.jpeg" alt="Kitchen" className="opacity-50"/>
-          <div className="mx-4 md:mx-6  flex flex-col gap-6 z-10">
+          <div className="mx-4 md:mx-6  flex flex-col gap-3 md:gap-6 z-10">
             <p className="text-3xl font-bold tracking-widest">
               Join Thousands of Home Professionals for Free
             </p>
             <p className=" text-lg lg:text-xl font-bold text-black tracking-wider">
-              Get Access to Marketing and Project Management Tools
+              You will Win Better Clients and Offer Great Customer Experience with Our Marketing and Project Management Tools. 
             </p>
-            <button className="w-32 text-sm py-2 rounded-full hover:bg-sky-400 mt-5  font-light text-sky-700 outline outline-sky-700 hover:outline-none bg-sky-400 bg-opacity-30 hover:text-white">
             
-              Learn More
-            </button>
-            <button className="w-[60%] text-sm py-2 rounded-lg hover:bg-violet-400  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-300 bg-opacity-30 hover:text-white">
+            <button className="w-[60%] text-sm py-2 rounded-lg hover:bg-blue-400  font-light text-blue-700 outline outline-blue-700 hover:outline-none bg-blue-300 bg-opacity-30 hover:text-white">
               Join
             </button>
           </div>
@@ -125,7 +129,7 @@ export default function Home() {
 <p className="text-xl text-slate-100 mx-5  md:mx-15 my-7"> Become a Member</p>
 <button className="w-[60%] text-lg py-2 rounded-full hover:bg-sky-400 mt-5  font-light text-sky-700 outline outline-sky-700 hover:outline-none bg-sky-200 bg-opacity-70 hover:text-white">
             
-            Join
+            Sign Up
           </button>
 
 </div>

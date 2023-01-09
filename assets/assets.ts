@@ -127,3 +127,5 @@ export const generalFixtures= [
         {i:5, name: "Chicken Mesh", image: "/chickenMesh.webp"},
     ]
     
+
+    
