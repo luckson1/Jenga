@@ -1,9 +1,9 @@
 import React from "react";
 import type { ReactNode } from "react";
 import Nav from "../components/navigation/Nav";
-import Head from "next/head";
 
-const Layout = ({ children }: { children: ReactNode }) => {
+
+const layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
   
@@ -17,4 +17,4 @@ const Layout = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default Layout;
+export default layout;

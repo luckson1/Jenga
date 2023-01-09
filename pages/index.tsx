@@ -21,15 +21,15 @@ export default function Home() {
   
       <Nav />
       <div className="w-screen h-screen flex flex-col md:flex-row mt-16 ">
-        <div className=" w-full md:w-[60%] h-[50%] md:h-full bg-gradient-to-r from-purple-50 via-violet-50 to-white px-5 md:px-10 flex flex-col justify-around py-10">
-          <div className="   flex flex-col gap-2 md:gap-4 mx-auto md:mx-6 w-[90%] md:w-[60%]">
-            <p className="text-3xl font-bold tracking-widest">
+        <div className=" w-full md:w-[60%] h-[40%] md:h-full bg-gradient-to-r from-purple-50 via-violet-50 to-white px-5 md:px-10 flex flex-col justify-around py-10">
+          <div className="   flex flex-col gap-2 md:gap-4 mx-auto md:mx-6 w-[95%] md:w-[60%]">
+            <p className="text-3xl font-bold tracking-widest text-violet-600">
               Make Your Dream House Come True
             </p>
             <p className=" text-lg lg:text-xl tracking-wider">
-              Jenga Helps You Discover Home Improvement Professionals and Products You Need to Build Your Dream Spaces.
+              Jenga Helps You Discover Home Improvement Professionals and Products for Your Dream Spaces.
             </p>
-            <button className=" w-full md:w-[60%] text-lg py-1.5 rounded-full hover:bg-sky-400 mt-5  font-light text-sky-700 outline outline-sky-700 hover:outline-none bg-sky-200 bg-opacity-70 hover:text-white">
+            <button className=" w-full md:w-[60%] text-lg py-1.5 rounded-full hover:bg-violet-400 mt-5  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-200 bg-opacity-70 hover:text-white">
             
             Sign Up
           </button>
@@ -79,19 +79,10 @@ export default function Home() {
             </div>
           
           </div>
-          <div className="flex  flex-row justify-between mt-10 md:hidden ">
-            <button className="  text-sm py-1 rounded-full w-[40%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
-            onClick={()=> router.push("/products")}>
-               Shop
-              </button>
-              <button className=" text-sm py-1 rounded-full w-[40%] bg-violet-400 bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105">
-                Hire Pros
-              </button>
-
-            </div>
+         
         </div>
      
-        <div className="w-full md:w-[40%] bg-white h-[50%] md:h-full flex flex-col  items-center justify-around relative text-violet-600 ">
+        <div className="w-full md:w-[40%] bg-white h-[60%] md:h-full flex flex-col  items-center justify-around relative text-sky-600 ">
         <Image fill src="/warmKitchen.jpeg" alt="Kitchen" className="opacity-50"/>
           <div className="mx-4 md:mx-6  flex flex-col gap-3 md:gap-6 z-10">
             <p className="text-3xl font-bold tracking-widest">
