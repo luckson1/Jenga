@@ -18,7 +18,7 @@ function Nav() {
 <AiOutlineShoppingCart className='text-2xl  text-pink-300'/>
 <p className='hover:text-sky-500 text-sm md:text-lg'>Shop</p>
         </div>
-        <div className='flex  flex-col md:flex-row transition duration-300 ease-in-out transform hover:-translate-x-1 hover:scale-105 align-baseline gap-0.5 md:gap-2  hover:bg-slate-50 hover:shadow cursor-pointer py-0.5 px-1 md:p-2' onClick={()=> router.push("/pros")}>
+        <div className='flex  flex-col md:flex-row transition duration-300 ease-in-out transform hover:-translate-x-1 hover:scale-105 align-baseline gap-0.5 md:gap-2  hover:bg-slate-50 hover:shadow cursor-pointer py-0.5 px-1 md:p-2' >
 <MdEngineering className='text-2xl  text-sky-400'/>
 <p className='hover:text-sky-500 text-sm md:text-lg'>Find Pros</p>
         </div>
