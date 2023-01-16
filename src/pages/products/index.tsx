@@ -1,8 +1,8 @@
 import React from 'react'
-import CategoryDisplay from '../components/display/CategoryDisplay'
+import CategoryDisplay from '../../components/display/CategoryDisplay'
 import { useRouter } from 'next/router'
-import { productCategories } from '../components/assets/assets'
-import Nav from '../components/navigation/Nav'
+import { productCategories } from '../../components/assets/assets'
+import Nav from '../../components/navigation/Nav'
 
 const Products = () => {
   const router= useRouter()

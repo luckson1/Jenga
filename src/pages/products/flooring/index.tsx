@@ -1,9 +1,9 @@
 
 import { useState } from "react"
-import { flooring } from '../../components/assets/assets'
-import ComingSoonSVG from "../../components/comingsoon"
-import SubCategory from "../../components/display/SubCategory"
-import Nav from "../../components/navigation/Nav"
+import { flooring } from '../../../components/assets/assets'
+import ComingSoonSVG from "../../../components/comingsoon"
+import SubCategory from "../../../components/display/SubCategory"
+import Nav from "../../../components/navigation/Nav"
 
 const Bedroom = () => {
   const [item, setItem]=useState<string>()

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import SubCategory from '../../components/display/SubCategory'
-import { Tiles, bathroomFixtures } from '../../components/assets/assets'
-import Nav from '../../components/navigation/Nav'
-import ComingSoonSVG from '../../components/comingsoon'
+import SubCategory from '../../../components/display/SubCategory'
+import { Tiles, bathroomFixtures } from '../../../components/assets/assets'
+import Nav from '../../../components/navigation/Nav'
+import ComingSoonSVG from '../../../components/comingsoon'
 
 
 const Bathroom = () => {

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { GiSofa } from "react-icons/gi";
 import { MdEngineering } from "react-icons/md";
-import Nav from "./components/navigation/Nav";
+import Nav from "../components/navigation/Nav";
 
 export default function Home() {
   const router = useRouter();
