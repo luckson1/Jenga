@@ -1,25 +1,32 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 export interface Category {
-    image: string,
-    name: string,
-    i: number
+  image: string;
+  name: string;
+  i: number;
 }
 
-const SubCategory = ({category}: {category:Category}) => {
-   
+const SubCategory = ({ category }: { category: Category }) => {
   return (
-  <div className='h-36  w-36 md:h-44 md:w-44 lg:w-48 lg:h-48 rounded-md  bg-center flex flex-col justify-center items-start bg-white cursor-pointer shadow-md hover:shadow-xl pt-0 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105'>
-      <div className=" relative h-[80%]  w-[100%] md:h-[80%] md:w-[100%] lg:w-[100%] lg:h-[80%] rounded-md  bg-center flex flex-col justify-center gap-10  "  >
-   <Image alt= {`${category?.name}` } src={`${category?.image}`} fill className='rounded-t-md md mt-0'/>
-       
-
+    <div className="flex  h-36 w-36 transform cursor-pointer flex-col items-start  justify-center rounded-md bg-white bg-center pt-0 shadow-md transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl md:h-44 md:w-44 lg:h-48 lg:w-48">
+      <div className=" relative flex  h-[80%] w-[100%] flex-col justify-center gap-10 rounded-md  bg-center md:h-[80%] md:w-[100%] lg:h-[80%] lg:w-[100%]  ">
+        <Image
+          alt={`${category?.name}`}
+          src={`${category?.image}`}
+          sizes="(max-width: 288px) 288px,(max-height: 288px) 288px "
+          quality={50}
+    
+          fill
+          className="md mt-0 rounded-t-md"
+        />
+      </div>
+      <div className="h-[20%]">
+        <p className=" ml-2  text-xs text-blue-500 md:ml-5 md:text-sm">
+          {category?.name}
+        </p>
+      </div>
     </div>
-    <div className='h-[20%]'>
-    <p className=' text-blue-500  ml-2 md:ml-5 text-xs md:text-sm'>{category?.name}</p>
-    </div>
-  </div>
-  )
-}
+  );
+};
 
-export default SubCategory
+export default SubCategory;

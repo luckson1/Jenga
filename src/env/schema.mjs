@@ -23,6 +23,12 @@ export const serverSchema = z.object({
   CLIENT_SECRET: z.string(),
   APP_ID: z.string(),
   APP_SECRET: z.string(),
+  ACCESS_KEY: z.string(),
+  SECRET_KEY: z.string(),
+  BUCKET_NAME: z.string(),
+  REGION: z.string(),
+
+
 
 });
 
@@ -40,6 +46,10 @@ export const serverEnv = {
   CLIENT_SECRET: process.env.CLIENT_SECRET,
   APP_ID: process.env.APP_ID,
   APP_SECRET: process.env.APP_SECRET,
+  ACCESS_KEY: process.env.ACCESS_KEY,
+  SECRET_KEY: process.env.SECRET_KEY,
+  BUCKET_NAME: process.env.BUCKET_NAME,
+  REGION: process.env.REGION
 
 };
 

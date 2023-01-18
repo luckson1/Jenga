@@ -6,10 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
-
 
 // Necessary for Next auth
 model Account {
@@ -18,12 +17,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String?  @db.Text
-    access_token      String?  @db.Text
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String?  @db.Text
+    id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -38,6 +37,67 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+model Department {
+    id            String          @id @default(cuid())
+    name          String
+    createdAt     DateTime        @default(now())
+    updatedAt     DateTime        @updatedAt
+    subdepartment SubDepartment[]
+    deleted   Boolean @default(false)
+}
+
+model SubDepartment {
+    id         String       @id @default(cuid())
+    name       String
+    createdAt  DateTime     @default(now())
+    updatedAt  DateTime     @updatedAt
+    department Department[]
+    categories Category[]
+    deleted   Boolean @default(false)
+}
+
+model Product {
+    id             String   @id @default(cuid())
+    name           String
+    description    String
+    brand          String?
+    url            String?
+    price          Int
+    state          Boolean?
+    width          Int?
+    length         Int?
+    height         Int?
+    materials      String[]
+    colors         String[]
+    sizes          String[]
+    designs        String[]
+    configurations String[]
+    caterogy       Category @relation(fields: [categoryId], references: [id])
+
+    categoryId String
+    Image      Image[]
+    deleted   Boolean @default(false)
+}
+
+model Image {
+    id String @id @default(cuid())
+
+    Product   Product @relation(fields: [productId], references: [id])
+    user      User    @relation(fields: [userId], references: [id])
+    productId String
+    userId    String
+    deleted   Boolean @default(false)
+}
+
+model Category {
+    id            String          @id @default(cuid())
+    name          String
+    subdepartment SubDepartment[]
+
+    Product Product[]
+    deleted   Boolean @default(false)
+}
+
 model User {
     id            String    @id @default(cuid())
     name          String?
@@ -46,6 +106,8 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
+    Image         Image[]
+    deleted   Boolean @default(false)
 }
 
 model VerificationToken {

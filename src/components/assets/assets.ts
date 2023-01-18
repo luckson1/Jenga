@@ -77,7 +77,7 @@ export const flooring = [
     {i:1, name: "Floor Tiles", image: '/floorTiles.jpeg'},
     {i:2, name: "Floor Laminates", image: '/laminates.jpeg'},
     {i:3, name: "Floor Parquet", image: '/parquet.jpeg'},
-    {i:3, name: "Floor Vinyl", image: '/Vinyl.jpeg'},
+    {i:4, name: "Floor Vinyl", image: '/Vinyl.jpeg'},
 
 ]
 export const bathroomFixtures= [

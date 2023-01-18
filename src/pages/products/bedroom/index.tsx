@@ -9,7 +9,7 @@ const Bedroom = () => {
   const [item, setItem]=useState<string>()
     return (
       <>
-      <Nav/>
+     
       <div className=' mt-16 text-center w-screen bg-gradient-to-r from-white via-white to-violet-50'>
         <h1>Bedroom</h1>
 
