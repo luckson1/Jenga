@@ -8,7 +8,7 @@ const Productform = () => {
   return (
     <div className="mt-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:text-[16px]">
       <div className="flex w-screen flex-row justify-center">
-        <form className="my-8 mx-auto flex h-fit w-[350px] flex-col items-start gap-4 bg-white py-5 px-4 shadow-md md:w-[90%] md:px-10 rounded-md">
+        <form className="my-8 mx-auto flex h-fit w-[370px] flex-col items-start gap-4 bg-white py-5 px-4 shadow-md md:w-[90%] md:px-10 rounded-md">
           <section className="flex w-full flex-row flex-wrap justify-between md:gap-4">
             <DepartmentSelection />
             <SubDepartmentSelection />
@@ -138,7 +138,7 @@ const Productform = () => {
           </div>
 
           </div>
-          <button className="w-[300px] rounded bg-violet-500 bg-opacity-30 outline outline-1 outline-violet-500 text-violet-700 hover:bg-opacity-100 hover:bg-violet-500 hover:text-white p-2.5">
+          <button className="w-[340px] rounded bg-violet-500 bg-opacity-30 outline outline-1 outline-violet-500 text-violet-700 hover:bg-opacity-100 hover:bg-violet-500 hover:text-white p-2.5">
             Submit
           </button>
         </form>
