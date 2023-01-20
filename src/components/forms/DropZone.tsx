@@ -10,7 +10,7 @@ import { BsCloudUpload } from 'react-icons/bs';
 
 function Previews() {
   const [files, setFiles] = useState<((MediaData ) & { preview: string, })[]>([]);
-  const {getRootProps, getInputProps} = useDropzone({
+  const {getRootProps, getInputProps, isDragActive} = useDropzone({
     accept: {
       'image/*': []
     },
@@ -44,10 +44,12 @@ function Previews() {
 
   return (
     <section className=" w-full   h-fit bg-slate-100  rounded-md flex flex-col  item-center py-4 px-2 border-violet-300 border-2 border-dashed ">
-      <div {...getRootProps({className: 'dropzone w-11/12'})} className='cursor-pointer  '>
+      <div {...getRootProps({className: 'dropzone'})} className='cursor-pointer  '>
         <input {...getInputProps()} />
- <div className='flex flex-row gap-3 w-full'>
- <BsCloudUpload className='text-xl'/>  <p>Drag & drop images here, or click to select files</p>
+ <div className='flex flex-row gap-3 w-full justify-center items-center align-baseline'>
+ <BsCloudUpload className='text-xl'/> {isDragActive ? (
+          <p>Drop the files here ...</p>
+        ): (<p>Drag & drop images here, or click to select files</p>)}
  </div>
       </div>
       <aside className='flex flex-row flex-wrap mt-2 md:mt-6 w-full h-fit'>
