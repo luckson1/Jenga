@@ -1,14 +1,12 @@
 export const productCategories = [
-    {i:1, name: "Furniture", image: '/furniture.jpg', url: "/products/furniture"},
+    {i:1, name: "Living & Dining", image: "/livingRoom.jpeg", url: "/products/living"},
     {i:2, name: "Kitchen", image: '/kitchen.jpg' , url: "/products/kitchen"},
     {i:3, name: "Bathroom", image: '/bathroom.jpg' , url: "/products/bathroom"},
-    {i:4, name: "Lighting", image: "/lighting.jpg" , url: "/products/lighting"},
-    {i:5, name: "Home Decor", image: "/homeDecor.jpg" , url: "/products/homeDecor"},
-    {i:6, name: "Bedroom", image: "/bedroom.jpg" , url: "/products/bedroom"},
-    {i:7, name: "Office", image: "/officeFurniture.jpg" , url: "/products/office"},
-    {i:8, name: "Outdoors", image: "/outdoors.jpg" , url: "/products/outdoors"},
-    {i:9, name: "Flooring", image: "/flooring.jpg", url: "/products/flooring"},
-    {i:10, name: "Living & Dining", image: "/livingRoom.jpeg", url: "/products/living"},
+
+    {i:4, name: "Bedroom", image: "/bedroom.jpg" , url: "/products/bedroom"},
+    {i:5, name: "Office", image: "/officeFurniture.jpg" , url: "/products/office"},
+    {i:6, name: "Outdoors", image: "/outdoors.jpg" , url: "/products/outdoors"},
+
 ]
 
 
@@ -53,7 +51,7 @@ export const kitchenFixtures = [
     {i:2, name: "Faucets", image: '/faucets.png'},
     {i:3, name: "Counter Tops", image: '/counterTops.jpeg'},
     {i:4, name: "Cabinet Boards", image: "/mdf.jpeg"},
-    {i:5, name: "Locks, Handles & Hindges", image: "/drawerHandles.jpeg"},
+    {i:5, name: "Locks, Handles & Hinges", image: "/drawerHandles.jpeg"},
     {i:10, name: "Doors & Windows", image: "/doors.jpeg"},
 
 ]
@@ -89,7 +87,7 @@ export const bathroomFixtures= [
     {i:6, name: "Cabinet Boards", image: "/mdf.jpeg"},
     {i:7, name: "Mirrors", image: "/mirrors.png"},
     {i:8, name: "Holders & Accessories", image: "/holders.png"},
-    {i:9, name: "Locks, Handles & Hindges", image: "/drawerHandles.jpeg"},
+    {i:9, name: "Locks, Handles & Hinges", image: "/drawerHandles.jpeg"},
     {i:10, name: "Doors & Windows", image: "/doors.jpeg"},
 
 ]
@@ -97,7 +95,7 @@ export const generalFixtures= [
 
     {i:1, name: "Cabinet Boards", image: "/mdf.jpeg"},
     {i:2, name: "Mirrors", image: "/mirrors.png"},
-    {i:3, name: "Locks, Handles & Hindges", image: "/drawerHandles.jpeg"},
+    {i:3, name: "Locks, Handles & Hinges", image: "/drawerHandles.jpeg"},
     {i:4, name: "Doors & Windows", image: "/doors.jpeg"}, ]
 
     export const decor= [

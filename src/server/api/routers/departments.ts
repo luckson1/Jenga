@@ -20,6 +20,9 @@ export const departmentRouter = createTRPCRouter({
     return ctx.prisma.department.findMany({
       where: {
         deleted: false
+      },
+      include: {
+        SubDepartment: true
       }
     });
   }),
@@ -34,6 +37,13 @@ export const departmentRouter = createTRPCRouter({
           id,
           deleted: false
         },
+        include: {
+          SubDepartment: {
+            where: {
+              deleted: false
+            }
+          }
+        }
       });
     }),
   // update a departemnt
@@ -56,7 +66,7 @@ export const departmentRouter = createTRPCRouter({
  
   delete: publicProcedure
   .input(z.object({ id: z.string() }))
-  .query(({ input, ctx }) => {
+  .mutation(({ input, ctx }) => {
     const { id} = input;
     return ctx.prisma.department.update({
       where: {

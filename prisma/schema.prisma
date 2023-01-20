@@ -1,119 +1,115 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
-// Necessary for Next auth
 model Account {
-    id                String  @id @default(cuid())
-    userId            String
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String? @db.Text
-    access_token      String? @db.Text
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String? @db.Text
-    session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@unique([provider, providerAccountId])
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Department {
-    id            String          @id @default(cuid())
-    name          String
-    createdAt     DateTime        @default(now())
-    updatedAt     DateTime        @updatedAt
-    subdepartment SubDepartment[]
-    deleted   Boolean @default(false)
+  id            String          @id @default(cuid())
+  name          String          @unique
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  deleted       Boolean         @default(false)
+  SubDepartment SubDepartment[]
 }
 
 model SubDepartment {
-    id         String       @id @default(cuid())
-    name       String
-    createdAt  DateTime     @default(now())
-    updatedAt  DateTime     @updatedAt
-    department Department[]
-    categories Category[]
-    deleted   Boolean @default(false)
+  id           String     @id @default(cuid())
+  name         String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  deleted      Boolean    @default(false)
+  departmentId String
+  department   Department @relation(fields: [departmentId], references: [id])
+
+  Category Category[]
 }
 
 model Product {
-    id             String   @id @default(cuid())
-    name           String
-    description    String
-    brand          String?
-    url            String?
-    price          Int
-    state          Boolean?
-    width          Int?
-    length         Int?
-    height         Int?
-    materials      String[]
-    colors         String[]
-    sizes          String[]
-    designs        String[]
-    configurations String[]
-    caterogy       Category @relation(fields: [categoryId], references: [id])
-
-    categoryId String
-    Image      Image[]
-    deleted   Boolean @default(false)
+  id             String   @id @default(cuid())
+  name           String
+  description    String
+  brand          String?
+  url            String?
+  width          Int?
+  length         Int?
+  height         Int?
+  materials      String[]
+  colors         String[]
+  sizes          String[]
+  designs        String[]
+  configurations String[]
+  categoryId     String
+  price          Int
+  state          Boolean?
+  deleted        Boolean  @default(false)
+  Image          Image[]
+  caterogy       Category @relation(fields: [categoryId], references: [id])
 }
 
 model Image {
-    id String @id @default(cuid())
-
-    Product   Product @relation(fields: [productId], references: [id])
-    user      User    @relation(fields: [userId], references: [id])
-    productId String
-    userId    String
-    deleted   Boolean @default(false)
+  id        String  @id @default(cuid())
+  productId String
+  userId    String
+  deleted   Boolean @default(false)
+  Product   Product @relation(fields: [productId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
 }
 
 model Category {
-    id            String          @id @default(cuid())
-    name          String
-    subdepartment SubDepartment[]
-
-    Product Product[]
-    deleted   Boolean @default(false)
+  id              String        @id @default(cuid())
+  name            String
+  deleted         Boolean       @default(false)
+  Product         Product[]
+  subdepartment   SubDepartment @relation(fields: [subDepartmentId], references: [id])
+  subDepartmentId String
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    Image         Image[]
-    deleted   Boolean @default(false)
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  deleted       Boolean   @default(false)
+  accounts      Account[]
+  Image         Image[]
+  sessions      Session[]
 }
 
 model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
+  identifier String
+  token      String   @unique
+  expires    DateTime
 
-    @@unique([identifier, token])
+  @@unique([identifier, token])
 }

@@ -6,11 +6,11 @@ export const subDepartmentRouter = createTRPCRouter({
   // add a subDepartment
 
   add: publicProcedure
-    .input(z.object({ name: z.string() }))
+    .input(z.object({ name: z.string(),  departmentId: z.string() }))
     .mutation(({ input, ctx }) => {
-      const { name } = input;
+      const { name,  departmentId } = input;
       return ctx.prisma.subDepartment.create({
-        data: { name },
+        data: { name ,  departmentId},
       });
     }),
 
@@ -34,6 +34,9 @@ export const subDepartmentRouter = createTRPCRouter({
           id,
           deleted: false
         },
+        include:{
+          Category: true
+        }
       });
     }),
   // update a departemnt
@@ -56,7 +59,7 @@ export const subDepartmentRouter = createTRPCRouter({
  
   delete: publicProcedure
   .input(z.object({ id: z.string() }))
-  .query(({ input, ctx }) => {
+  .mutation(({ input, ctx }) => {
     const { id} = input;
     return ctx.prisma.subDepartment.update({
       where: {

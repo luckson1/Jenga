@@ -6,11 +6,11 @@ export const categoryRouter = createTRPCRouter({
   // add a category
 
   add: publicProcedure
-    .input(z.object({ name: z.string() }))
+    .input(z.object({ name: z.string(), subDepartmentId: z.string() }))
     .mutation(({ input, ctx }) => {
-      const { name } = input;
+      const { name , subDepartmentId} = input;
       return ctx.prisma.category.create({
-        data: { name },
+        data: { name, subDepartmentId },
       });
     }),
 
@@ -39,7 +39,7 @@ export const categoryRouter = createTRPCRouter({
   // update a departemnt
   update: publicProcedure
     .input(z.object({ id: z.string(), name: z.string() }))
-    .query(({ input, ctx }) => {
+    .mutation(({ input, ctx }) => {
       const { id, name } = input;
       return ctx.prisma.category.update({
         where: {
@@ -56,7 +56,7 @@ export const categoryRouter = createTRPCRouter({
  
   delete: publicProcedure
   .input(z.object({ id: z.string() }))
-  .query(({ input, ctx }) => {
+  .mutation(({ input, ctx }) => {
     const { id} = input;
     return ctx.prisma.category.update({
       where: {

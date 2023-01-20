@@ -21,7 +21,7 @@ const CategoryDisplay = ({category}: {category:Category}) => {
             quality={50}
             className="rounded-2xl"
         />
-        <button className='bg-violet-400 bg-opacity-70 text-violet-700 py-2 w-28 rounded-full outline outline-violet-700  hover:outline-none hover:bg-violet-700 hover:text-slate-100 z-10 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105' onClick={()=> router.push(category?.url)}>{category?.name}</button>
+        <button className='bg-violet-400 bg-opacity-70 text-violet-700 py-2 w-32 rounded-full outline outline-violet-700  hover:outline-none hover:bg-violet-700 hover:text-slate-100 z-10 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105' onClick={()=> router.push(category?.url)}>{category?.name}</button>
 
     </div>
   )
