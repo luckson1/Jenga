@@ -8,16 +8,20 @@ import { BsCloudUpload } from 'react-icons/bs';
 
 
 
-function Previews() {
+function Previews({handleChange, handleBlur}: {handleChange: (e:any)=> void, handleBlur: (e:any)=> void}) {
   const [files, setFiles] = useState<((MediaData ) & { preview: string, })[]>([]);
   const {getRootProps, getInputProps, isDragActive} = useDropzone({
     accept: {
       'image/*': []
     },
     onDrop: (acceptedFiles: MediaData[] ) => {
+      ()=>handleBlur("files");
+     handleChange(acceptedFiles);
+   
+   
       setFiles(acceptedFiles.map(file => Object.assign(file, {
         preview: URL.createObjectURL(file)
-       
+      
       })));
     }
   });

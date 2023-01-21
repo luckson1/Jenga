@@ -25,7 +25,7 @@ function Upload() {
   async function handleSubmit(values: any){
    
     const key = await uploadToS3(values);
-   console.log(key)
+ 
   }
   const formik= useFormik({
     initialValues: {

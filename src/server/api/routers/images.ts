@@ -12,16 +12,23 @@ const s3 = new S3({
 });
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import axios from "axios";
 
 export const imageRouter = createTRPCRouter({
 
   // create an image
   add: publicProcedure
   .input(z.object({
-    productId: z.string()
+    productId: z.string(),
+    file: z.object({
+      name: z.string().optional(),
+      lastModified: z.number().optional(),
+      size: z.number().optional(),
+
+    })
   }))
   .mutation(async ({ctx, input})=> {
-    const {productId}=input
+    const {productId, file}=input
     const userId=ctx.session?.user?.id
     // make entries to image table for the product images
  if (userId) {
@@ -29,6 +36,7 @@ export const imageRouter = createTRPCRouter({
     data: {
       userId,
       productId,
+    
     },
   });
 
@@ -42,7 +50,8 @@ export const imageRouter = createTRPCRouter({
     };
   
     const uploadUrl = await s3.getSignedUrlPromise("putObject", s3Params);
-    return {image, uploadUrl}
+    await axios.put(uploadUrl, file);
+    return {image, uploadUrl, }
  }
 
 

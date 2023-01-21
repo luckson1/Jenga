@@ -40,6 +40,7 @@ model Department {
   updatedAt     DateTime        @updatedAt
   deleted       Boolean         @default(false)
   SubDepartment SubDepartment[]
+  Product       Product[]
 }
 
 model SubDepartment {
@@ -52,28 +53,33 @@ model SubDepartment {
   department   Department @relation(fields: [departmentId], references: [id])
 
   Category Category[]
+  Product  Product[]
 }
 
 model Product {
-  id             String   @id @default(cuid())
-  name           String
-  description    String
-  brand          String?
-  url            String?
-  width          Int?
-  length         Int?
-  height         Int?
-  materials      String[]
-  colors         String[]
-  sizes          String[]
-  designs        String[]
-  configurations String[]
-  categoryId     String
-  price          Int
-  state          Boolean?
-  deleted        Boolean  @default(false)
-  Image          Image[]
-  caterogy       Category @relation(fields: [categoryId], references: [id])
+  id              String        @id @default(cuid())
+  name            String
+  description     String
+  brand           String?
+  url             String?
+  width           Int?
+  length          Int?
+  height          Int?
+  materials       String[]
+  colors          String[]
+  sizes           String[]
+  designs         String[]
+  configurations  String[]
+  categoryId      String
+  price           Int
+ secondHand        Boolean? @default(false)
+  deleted         Boolean       @default(false)
+  subDepartment   SubDepartment @relation(fields: [subDepartmentId], references: [id])
+  department      Department    @relation(fields: [departmentId], references: [id])
+  Image           Image[]
+  caterogy        Category      @relation(fields: [categoryId], references: [id])
+  subDepartmentId String
+  departmentId    String
 }
 
 model Image {

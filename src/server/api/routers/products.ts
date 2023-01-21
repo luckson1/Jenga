@@ -6,22 +6,24 @@ import { prisma } from "@prisma/client";
 export const productRouter = createTRPCRouter({
   // add a product
 
-  add: publicProcedure
+  add: protectedProcedure
     .input(
       z.object({
         name: z.string(),
         description: z.string(),
-        brand: z.string(),
-        url: z.string(),
+        brand: z.string().optional(),
         price: z.number(),
-        state: z.boolean(),
-        width: z.number(),
-        length: z.number(),
-        height: z.number(),
+        secondHand: z.boolean().optional(),
+        width: z.number().optional(),
+        length: z.number().optional(),
+        height: z.number().optional(),
+        departmentId: z.string(),
+        subDepartmentId: z.string(),
         categoryId: z.string(),
-        productMaterial: z.string(),
-        variantTypes: z.string(),
-        variants: z.string(),
+        productMaterials: z.string().optional(),
+        variantType: z.string().optional(),
+        variants: z.string().optional(),
+      
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -29,45 +31,48 @@ export const productRouter = createTRPCRouter({
         name,
         description,
         brand,
-        url,
+
         price,
-        state,
+        secondHand,
         width,
         length,
         height,
         categoryId,
-        variantTypes,
+        variantType,
         variants,
-        productMaterial,
+        productMaterials,
+        departmentId,
+        subDepartmentId,
       } = input;
 
       const colors =
-        variantTypes === "colors"
-          ? variants.trim().split(/\s*,\s*/)
+        variantType === "colors"
+          ? variants?.trim().split(/\s*,\s*/)
           : undefined;
       const sizes =
-        variantTypes === "sizes" ? variants.trim().split(/\s*,\s*/) : undefined;
+        variantType === "sizes" ? variants?.trim().split(/\s*,\s*/) : undefined;
       const designs =
-        variantTypes === "designs"
-          ? variants.trim().split(/\s*,\s*/)
+        variantType === "designs"
+          ? variants?.trim().split(/\s*,\s*/)
           : undefined;
       const configurations =
-        variantTypes === "configurations"
-          ? variants.trim().split(/\s*,\s*/)
+        variantType === "configurations"
+          ? variants?.trim().split(/\s*,\s*/)
           : undefined;
 
-      const materials = productMaterial.trim().split(/\s*,\s*/);
-      const userId = ctx.session?.user?.id ?? " ";
-
+      const materials = productMaterials?.trim().split(/\s*,\s*/);
+      const userId=ctx.session?.user?.id
+if (userId) {
+  
       // create product
       const product = await ctx.prisma.product.create({
         data: {
           name,
           description,
           brand,
-          url,
+
           price,
-          state,
+          secondHand,
           width,
           length,
           height,
@@ -77,14 +82,15 @@ export const productRouter = createTRPCRouter({
           sizes,
           configurations,
           materials,
+          subDepartmentId,
+          departmentId,
+          
         },
+      
       });
 
-    
-
-
-      
-      return product
+      return product;
+}
     }),
 
   // fetch all products
@@ -93,7 +99,7 @@ export const productRouter = createTRPCRouter({
     return ctx.prisma.product.findMany({
       where: {
         deleted: false,
-      }
+      },
     });
   }),
 
@@ -105,7 +111,7 @@ export const productRouter = createTRPCRouter({
       return ctx.prisma.product.findFirst({
         where: {
           id,
-          deleted:false
+          deleted: false,
         },
       });
     }),
@@ -135,8 +141,8 @@ export const productRouter = createTRPCRouter({
           id,
         },
         data: {
-          deleted: true
-        }
+          deleted: true,
+        },
       });
     }),
 });

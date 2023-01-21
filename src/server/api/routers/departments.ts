@@ -19,11 +19,23 @@ export const departmentRouter = createTRPCRouter({
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.department.findMany({
       where: {
-        deleted: false
+        deleted: false,
       },
       include: {
-        SubDepartment: true
-      }
+        SubDepartment: {
+          where: {
+            deleted: false,
+          },
+          include: {
+            Category: {
+              where: {
+                deleted: false,
+              },
+            },
+          },
+        },
+      },
+      
     });
   }),
 
@@ -35,15 +47,22 @@ export const departmentRouter = createTRPCRouter({
       return ctx.prisma.department.findFirst({
         where: {
           id,
-          deleted: false
+          deleted: false,
         },
         include: {
           SubDepartment: {
             where: {
-              deleted: false
-            }
-          }
-        }
+              deleted: false,
+            },
+            include: {
+              Category: {
+                where: {
+                  deleted: false,
+                },
+              },
+            },
+          },
+        },
       });
     }),
   // update a departemnt
@@ -56,25 +75,24 @@ export const departmentRouter = createTRPCRouter({
           id,
         },
         data: {
-            name
+          name,
         },
       });
     }),
 
+  //delete a department
 
-    //delete a department
- 
   delete: publicProcedure
-  .input(z.object({ id: z.string() }))
-  .mutation(({ input, ctx }) => {
-    const { id} = input;
-    return ctx.prisma.department.update({
-      where: {
-        id,
-      },
-     data: {
-      deleted: true
-     }
-    });
-  }),
+    .input(z.object({ id: z.string() }))
+    .mutation(({ input, ctx }) => {
+      const { id } = input;
+      return ctx.prisma.department.update({
+        where: {
+          id,
+        },
+        data: {
+          deleted: true,
+        },
+      });
+    }),
 });
