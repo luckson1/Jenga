@@ -25,8 +25,8 @@ context.subDepartments.getOne.invalidate()
           subDepartmentId,
         },
         validationSchema: CategorySchema,
-        onSubmit: (values) => {
-          add(values);
+        onSubmit: (values, {resetForm} ) => {
+          add(values);resetForm()
         },
       });
   return (
@@ -42,6 +42,7 @@ context.subDepartments.getOne.invalidate()
           className="w-60 rounded-md py-1 px-2 outline outline-1 outline-slate-600 mb-4"
           placeholder="Category Name"
           id="name"
+          value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
         />

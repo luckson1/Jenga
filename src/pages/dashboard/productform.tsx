@@ -1,10 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import * as Yup from "yup";
 import Previews from "../../components/forms/DropZone";
 import { useFormik } from "formik";
 import { api } from "../../utils/api";
 import Alerts from "../../components/display/errors/Alerts";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -32,16 +33,13 @@ const productSchema = Yup.object().shape({
   variants: Yup.string(),
 });
 
-
 export interface ProductParams {
-  
-
   name: string;
   departmentId: string;
   subDepartmentId: string;
   categoryId: string;
   description: string;
-  files?: FileList
+  files?: FileList;
   price: number;
   brand?: string;
   secondHand: boolean;
@@ -51,58 +49,53 @@ export interface ProductParams {
   productMaterials?: string;
   variantType?: string;
   variants?: string;
-
 }
-
 
 const Productform = () => {
-//TODO: create a product
-const {mutate:addProduct, data:product}=api.product.add.useMutation({
-  onSuccess : ()=> console.log("Product  created")
-})
+  //TODO: create a product hook
+  const { mutate: addProduct, data: product } = api.product.add.useMutation({
+    onSuccess: () => console.log("Product  created"),
+  });
 
-// create image
-const {mutate: addImage, data:image}=api.image.add.useMutation({
-  onSuccess : ()=> console.log("Image  created")
-})
-const uploadUrl=image?.uploadUrl ?? " "
-  // TODO: Upload to s3 bucket
+  // TODO: create image and Upload to s3 bucket
 
-async function uploadToS3(values:ProductParams, productId:string) {
-  const files = values.files
+  async function uploadToS3(values: ProductParams, productId?: string) {
+    const files = values.files;
 
-  if (!files) {
-    return null;
+    if (!files) {
+      return null;
+    }
+// loop through files and create an image then create signed url using image id
+    for (const file of files) {
+      const { data }: { data: { uploadUrl: string; key: string } } =
+      await axios.get(`/api/aws/upload?productId=${productId}`)
+        
+
+      const { uploadUrl} = data;
+
+      await axios.put(uploadUrl, file);
+    }
   }
 
+  //handle submission of form values
+  async function handleSubmit(values: ProductParams) {
+    addProduct(values);
+   
+  }
+  const productId = product?.id;
 
-for (const file of files) {
+  // check if productId is available after submitting and create images with it then navigate to dashboard
+  const router=useRouter()
+  useEffect(() => {
+   
 
+   
+    if(productId) {
+      uploadToS3(formik.values, productId)
+      router.push("/dashboard")
 
-// create image and upload files to s3 bucket
-
-
-  addImage({productId, file})
-
-
-
-}
-
-
-};
-
-//handle submission of form values
-async function handleSubmit(values: ProductParams){
-  addProduct(values)
-  const productId=product?.id
- 
-  if(productId) {uploadToS3(values,  productId)}
- 
-
-
-
-
-}
+    }
+  },[productId])
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -114,16 +107,13 @@ async function handleSubmit(values: ProductParams){
       files: undefined,
       price: 0,
 
-variantType: undefined,
+      variantType: undefined,
       secondHand: false,
-   
-
-      
     },
     validationSchema: productSchema,
     onSubmit: (values) => handleSubmit(values),
   });
-console.log(formik.errors)
+
   // fetch department data
   const { data: departments } = api.departments.getAll.useQuery();
 

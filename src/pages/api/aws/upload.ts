@@ -3,6 +3,11 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import S3 from "aws-sdk/clients/s3";
 import { randomUUID } from "crypto";
 import { env } from "../../../env/server.mjs";
+import { PrismaClient } from "@prisma/client";
+import { getSession } from "next-auth/react";
+import { unstable_getServerSession } from "next-auth";
+import { getServerAuthSession } from "../../../server/auth";
+const prisma = new PrismaClient()
 
 const s3 = new S3({
   apiVersion: "2006-03-01",
@@ -16,23 +21,39 @@ export default async function handler(
   res: NextApiResponse
 ) {
 
-
-
-  const Key = `${randomUUID()}`;
-
-  const s3Params = {
-    Bucket: env.BUCKET_NAME,
-    Key,
-    Expires: 60,
-
-  };
-
-  const uploadUrl = await s3.getSignedUrlPromise("putObject", s3Params);
-
-
-
-  res.status(200).json({
-    uploadUrl,
-    key: Key,
-  });
+try {
+  const session= await getServerAuthSession({req, res}) 
+  const userId= session?.user?.id
+  const productId= (req.query.productId as string)
+    // make entries to image table for the product images
+   
+  if (userId) {
+  const image = await prisma.image.create({
+    data: {
+      userId,
+      productId,
+    
+    },})
+  
+    const Key = image.id;
+  
+    const s3Params = {
+      Bucket: env.BUCKET_NAME,
+      Key,
+      Expires: 60,
+  
+    };
+  
+    const uploadUrl = await s3.getSignedUrlPromise("putObject", s3Params);
+  
+  
+  
+    res.status(200).json({
+      uploadUrl,
+      key: Key,
+    });
+  }
+} catch (error) {
+  console.log(error)
+}
 }

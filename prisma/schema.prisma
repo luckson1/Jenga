@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Account {
-  id                String  @id @default(cuid())
+  id                String  @id @default(uuid())
   userId            String
   type              String
   provider          String
@@ -26,7 +26,7 @@ model Account {
 }
 
 model Session {
-  id           String   @id @default(cuid())
+  id           String   @id @default(uuid())
   sessionToken String   @unique
   userId       String
   expires      DateTime
@@ -34,7 +34,7 @@ model Session {
 }
 
 model Department {
-  id            String          @id @default(cuid())
+  id            String          @id @default(uuid())
   name          String          @unique
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
@@ -44,7 +44,7 @@ model Department {
 }
 
 model SubDepartment {
-  id           String     @id @default(cuid())
+  id           String     @id @default(uuid())
   name         String
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
@@ -57,7 +57,7 @@ model SubDepartment {
 }
 
 model Product {
-  id              String        @id @default(cuid())
+  id              String        @id @default(uuid())
   name            String
   description     String
   brand           String?
@@ -83,7 +83,7 @@ model Product {
 }
 
 model Image {
-  id        String  @id @default(cuid())
+  id        String  @id @default(uuid())
   productId String
   userId    String
   deleted   Boolean @default(false)
@@ -92,7 +92,7 @@ model Image {
 }
 
 model Category {
-  id              String        @id @default(cuid())
+  id              String        @id @default(uuid())
   name            String
   deleted         Boolean       @default(false)
   Product         Product[]
@@ -101,7 +101,7 @@ model Category {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(uuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime?

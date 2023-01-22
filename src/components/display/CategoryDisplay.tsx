@@ -11,7 +11,7 @@ export interface Category {
 const CategoryDisplay = ({ category }: { category: Category }) => {
   const router = useRouter();
   return (
-    <div className="relative flex h-72 w-72  items-center justify-center rounded-md   bg-cover  bg-center md:h-64 md:w-64 lg:h-72 lg:w-72">
+    <div className="relative flex h-64 w-80  items-center justify-center rounded-md   bg-cover  bg-center md:w-64 lg:h-72 lg:w-72">
       <Image
         alt={category?.name}
         src={category?.image}

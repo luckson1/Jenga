@@ -20,15 +20,10 @@ export const imageRouter = createTRPCRouter({
   add: publicProcedure
   .input(z.object({
     productId: z.string(),
-    file: z.object({
-      name: z.string().optional(),
-      lastModified: z.number().optional(),
-      size: z.number().optional(),
-
-    })
+    
   }))
   .mutation(async ({ctx, input})=> {
-    const {productId, file}=input
+    const {productId}=input
     const userId=ctx.session?.user?.id
     // make entries to image table for the product images
  if (userId) {
@@ -50,7 +45,7 @@ export const imageRouter = createTRPCRouter({
     };
   
     const uploadUrl = await s3.getSignedUrlPromise("putObject", s3Params);
-    await axios.put(uploadUrl, file);
+    await axios.put(uploadUrl);
     return {image, uploadUrl, }
  }
 

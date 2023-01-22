@@ -11,6 +11,7 @@ export const productCategories = [
 
 
 
+
 export const livingRoomFurniture = [
     {i:1, name: "Sofas", image: '/sofas.jpeg'},
     {i:2, name: "Coffee tables", image: '/coffeeTable.jpeg'},
