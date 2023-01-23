@@ -19,7 +19,7 @@ const productSchema = Yup.object().shape({
     .required("Description is Required")
     .min(50, "Description Too Short"),
   files: Yup.array(Yup.string()).required("Please upload product Images"),
-  price: Yup.number().required("Price is Required"),
+  price: Yup.number().min(1, "Price is Required"),
 
   brand: Yup.string(),
 
@@ -65,13 +65,12 @@ const Productform = () => {
     if (!files) {
       return null;
     }
-// loop through files and create an image then create signed url using image id
+    // loop through files and create an image then create signed url using image id
     for (const file of files) {
       const { data }: { data: { uploadUrl: string; key: string } } =
-      await axios.get(`/api/aws/upload?productId=${productId}`)
-        
+        await axios.get(`/api/aws/upload?productId=${productId}`);
 
-      const { uploadUrl} = data;
+      const { uploadUrl } = data;
 
       await axios.put(uploadUrl, file);
     }
@@ -80,22 +79,20 @@ const Productform = () => {
   //handle submission of form values
   async function handleSubmit(values: ProductParams) {
     addProduct(values);
-   
   }
   const productId = product?.id;
 
   // check if productId is available after submitting and create images with it then navigate to dashboard
-  const router=useRouter()
+  const router = useRouter();
+  const context = api.useContext();
   useEffect(() => {
-   
-
-   
-    if(productId) {
-      uploadToS3(formik.values, productId)
-      router.push("/dashboard")
-
+    if (productId) {
+      uploadToS3(formik.values, productId).then(() => {
+        context.product.getAll.invalidate();
+        router.push("/dashboard");
+      });
     }
-  },[productId])
+  }, [productId]);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -113,7 +110,7 @@ const Productform = () => {
     validationSchema: productSchema,
     onSubmit: (values) => handleSubmit(values),
   });
-
+  console.log(formik.values.price)
   // fetch department data
   const { data: departments } = api.departments.getAll.useQuery();
 
@@ -290,9 +287,11 @@ const Productform = () => {
                   <input
                     type="number"
                     id="price"
-                    onChange={formik.handleChange("price")}
+                    onChange={e => {
+                      formik.setFieldValue("price", e.target.value);
+                    }}
                     onBlur={formik.handleBlur("price")}
-                    placeholder="0"
+                    placeholder="Ksh."
                     className="input-bordered input-primary input w-full max-w-xs"
                   />
                   <label className="label"></label>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import SubCategory from '../../../components/display/SubCategory'
+import SubCategory from '../../../components/display/Category'
 import { decor } from '../../../components/assets/assets'
 import Nav from '../../../components/navigation/Nav'
 import ComingSoonSVG from '../../../components/comingsoon'

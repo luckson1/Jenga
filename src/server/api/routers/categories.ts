@@ -20,7 +20,7 @@ export const categoryRouter = createTRPCRouter({
     return ctx.prisma.category.findMany({
       where: {
         deleted: false
-      }
+      },
     });
   }),
 
@@ -33,6 +33,21 @@ export const categoryRouter = createTRPCRouter({
         where: {
           id,
           deleted: false
+          
+        },
+        select: {
+          Product: {
+            where: {
+              deleted: false
+            },
+            include: {
+              Image: {
+                select: {
+                  id: true
+                }
+              }
+            }
+          }
         },
       });
     }),

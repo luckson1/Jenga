@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { flooring } from '../../../components/assets/assets'
 import ComingSoonSVG from "../../../components/comingsoon"
-import SubCategory from "../../../components/display/SubCategory"
+import SubCategory from "../../../components/display/Category"
 import Nav from "../../../components/navigation/Nav"
 
 const Bedroom = () => {

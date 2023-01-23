@@ -23,7 +23,6 @@ export const productRouter = createTRPCRouter({
         productMaterials: z.string().optional(),
         variantType: z.string().optional(),
         variants: z.string().optional(),
-      
       })
     )
     .mutation(async ({ input, ctx }) => {
@@ -61,45 +60,66 @@ export const productRouter = createTRPCRouter({
           : undefined;
 
       const materials = productMaterials?.trim().split(/\s*,\s*/);
-      const userId=ctx.session?.user?.id
-if (userId) {
-  
-      // create product
-      const product = await ctx.prisma.product.create({
-        data: {
-          name,
-          description,
-          brand,
+      const userId = ctx.session?.user?.id;
+      if (userId) {
+        // create product
+        const product = await ctx.prisma.product.create({
+          data: {
+            name,
+            description,
+            brand,
+            userId,
+            price,
+            secondHand,
+            width,
+            length,
+            height,
+            categoryId,
+            colors,
+            designs,
+            sizes,
+            configurations,
+            materials,
+            subDepartmentId,
+            departmentId,
+          },
+        });
 
-          price,
-          secondHand,
-          width,
-          length,
-          height,
-          categoryId,
-          colors,
-          designs,
-          sizes,
-          configurations,
-          materials,
-          subDepartmentId,
-          departmentId,
-          
-        },
-      
-      });
-
-      return product;
-}
+        return product;
+      }
     }),
 
   // fetch all products
 
   getAll: publicProcedure.query(({ ctx }) => {
+    const userId = ctx.session?.user?.id;
     return ctx.prisma.product.findMany({
       where: {
         deleted: false,
+        userId
       },
+      include: {
+        department: {
+         select: {
+          name: true
+         }
+        },
+        subDepartment: {
+          select: {
+            name: true
+           }
+        },
+        caterogy: {
+          select: {
+            name: true
+           }
+        },
+    Image: {
+      select: {
+        id: true
+      }
+    }
+      }
     });
   }),
 

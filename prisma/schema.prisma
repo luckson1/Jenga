@@ -39,21 +39,22 @@ model Department {
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   deleted       Boolean         @default(false)
-  SubDepartment SubDepartment[]
+  Url           String?
   Product       Product[]
+  SubDepartment SubDepartment[]
 }
 
 model SubDepartment {
   id           String     @id @default(uuid())
-  name         String
+  name         String     @unique
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   deleted      Boolean    @default(false)
   departmentId String
+  Url          String?
+  Category     Category[]
+  Product      Product[]
   department   Department @relation(fields: [departmentId], references: [id])
-
-  Category Category[]
-  Product  Product[]
 }
 
 model Product {
@@ -72,14 +73,17 @@ model Product {
   configurations  String[]
   categoryId      String
   price           Int
- secondHand        Boolean? @default(false)
+  secondHand      Boolean?      @default(false)
   deleted         Boolean       @default(false)
-  subDepartment   SubDepartment @relation(fields: [subDepartmentId], references: [id])
-  department      Department    @relation(fields: [departmentId], references: [id])
-  Image           Image[]
-  caterogy        Category      @relation(fields: [categoryId], references: [id])
   subDepartmentId String
   departmentId    String
+  Published       Boolean?      @default(true)
+  userId          String
+  Image           Image[]
+  caterogy        Category      @relation(fields: [categoryId], references: [id])
+  department      Department    @relation(fields: [departmentId], references: [id])
+  subDepartment   SubDepartment @relation(fields: [subDepartmentId], references: [id])
+  user            User          @relation(fields: [userId], references: [id])
 }
 
 model Image {
@@ -95,9 +99,10 @@ model Category {
   id              String        @id @default(uuid())
   name            String
   deleted         Boolean       @default(false)
-  Product         Product[]
-  subdepartment   SubDepartment @relation(fields: [subDepartmentId], references: [id])
   subDepartmentId String
+  Url             String?
+  subdepartment   SubDepartment @relation(fields: [subDepartmentId], references: [id])
+  Product         Product[]
 }
 
 model User {
@@ -109,6 +114,7 @@ model User {
   deleted       Boolean   @default(false)
   accounts      Account[]
   Image         Image[]
+  Product       Product[]
   sessions      Session[]
 }
 

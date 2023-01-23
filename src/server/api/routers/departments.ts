@@ -38,6 +38,7 @@ export const departmentRouter = createTRPCRouter({
       
     });
   }),
+// departments where user has created products
 
   // fetch one departemnt
   getOne: publicProcedure
@@ -59,6 +60,11 @@ export const departmentRouter = createTRPCRouter({
                 where: {
                   deleted: false,
                 },
+                select: {
+                  name:true,
+                  id:true,
+                  Url:true
+                }
               },
             },
           },
