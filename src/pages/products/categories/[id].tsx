@@ -22,8 +22,8 @@ const Category = () => {
    <GetImage id={image.id}/>
      <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
         {/* provide logic of displaying the carousel images */}
-       <a href={`${product.Image.indexOf(image)===0 ? `#${product?.Image[product.Image?.length-1]?.id}`: `#${product.Image[product.Image.indexOf(image)-1]?.id}`}`} className="btn btn-circle">❮</a> 
-       <a href={`${product?.Image?.indexOf(image)===product?.Image.length-1 ? `#${product.Image[0]?.id}`: `#${product.Image[product.Image.indexOf(image)+1]?.id}`}`} className="btn btn-circle">❯</a>
+       <a href={`${product.Image.indexOf(image)===0 ? `#${product?.Image[product.Image?.length-1]?.id}`: `#${product.Image[product.Image.indexOf(image)-1]?.id}`}`} className="btn btn-circle bg-white text-xl text-slate-900 bg-opacity-30">❮</a> 
+       <a href={`${product?.Image?.indexOf(image)===product?.Image.length-1 ? `#${product.Image[0]?.id}`: `#${product.Image[product.Image.indexOf(image)+1]?.id}`}`} className="btn btn-circle bg-white text-xl text-slate-900 bg-opacity-30">❯</a>
      </div>
    </div>  
 ))}
