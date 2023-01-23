@@ -11,11 +11,11 @@ const Category = () => {
   const products = category?.Product;
   console.log(products);
   return (
-    <div className="mt-16 flex h-fit w-screen flex-row justify-around rounded-lg flex-wrap snap-x snap-mandatory">
+    <div className="mt-16 flex h-fit w-screen flex-row gap-3 md:gap-10 justify-center rounded-lg flex-wrap ">
       {products?.map((product) => (
         <div key={product.id} className="h-80 w-80 bg-slate-100">
             
-            <div className="carousel w-full">
+            <div className="carousel w-full snap-x snap-mandatory">
 {product?.Image?.map(image=> (
 // set id of the carousel to the id of image for scrolling
      <div id={`${image.id}`} className="carousel-item relative w-full h-full " key={image.id}>
