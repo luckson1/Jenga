@@ -2,7 +2,7 @@ import Image from "next/image";
 import {SlOptionsVertical} from "react-icons/sl"
 import { useRouter } from "next/router";
 import { api } from "../../utils/api";
-import GetImage from "../../components/images/GetImage";
+import GetThumbNail from "../../components/images/GetThumbNail";
 
 const Index = () => {
   const router = useRouter();
@@ -79,7 +79,7 @@ const Index = () => {
                     <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                       <div className="flex items-center">
                         <div className="h-10 w-10 flex-shrink-0">
-                          <GetImage id={p.Image?.at(0)?.id} />
+                          <GetThumbNail id={p.Image?.at(0)?.id} />
                         </div>
                         <div className="ml-3">
                           <p className="whitespace-no-wrap text-gray-900">

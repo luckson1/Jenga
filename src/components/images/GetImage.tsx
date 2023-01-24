@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-function GetThumbNail({url}: {url?: string}) {
+function GetImage({url}: {url?: string}) {
 
    if(url){
 
@@ -34,5 +34,5 @@ function GetThumbNail({url}: {url?: string}) {
 }
 
 
-export default GetThumbNail
+export default GetImage
 
