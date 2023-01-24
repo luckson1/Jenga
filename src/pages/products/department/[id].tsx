@@ -10,6 +10,7 @@ import { api } from '../../../utils/api'
 import { useRouter } from 'next/router'
 import { GetStaticProps } from 'next'
 import { Department, SubDepartment } from '@prisma/client'
+import Loading from '../../../components/display/LoadingSmall'
 // export async function getStaticPaths() {
 //     return {
 //       paths: [
@@ -63,7 +64,7 @@ const DepartmentId  = ()=> {
 
     const router=useRouter()
     const id= router.query.id as string
-    const {data: department}=api.departments.getOne.useQuery({id})
+    const {data: department, isLoading}=api.departments.getOne.useQuery({id})
 const subDepartments=department?.SubDepartment
 
   return (
@@ -73,7 +74,7 @@ const subDepartments=department?.SubDepartment
       <h1>
 {     department?.name}
       </h1>
-{subDepartments?.map(subDepartment=> (
+{isLoading? <div className="w-96 h-96 m-auto"> <Loading /> </div> :subDepartments?.map(subDepartment=> (
   <section className='h-fit w-screen flex flex-col' key={subDepartment.id}>
   <p className='text-center text-xl mx-2 text-black'> {subDepartment.name}</p>
 <div className='h-fit w-screen justify-center md:justify-start md:px-7 py-5 md:py-10 flex flex-row  flex-wrap mx-3 md:x-7 gap-5 md:gap-10 '>

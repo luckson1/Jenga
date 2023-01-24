@@ -11,7 +11,7 @@ export const productRouter = createTRPCRouter({
       z.object({
         name: z.string(),
         description: z.string(),
-        brand: z.string().optional(),
+        location: z.string(),
         price: z.number(),
         secondHand: z.boolean().optional(),
         width: z.number().optional(),
@@ -29,7 +29,7 @@ export const productRouter = createTRPCRouter({
       const {
         name,
         description,
-        brand,
+        location,
 
         price,
         secondHand,
@@ -67,7 +67,7 @@ export const productRouter = createTRPCRouter({
           data: {
             name,
             description,
-            brand,
+            location,
             userId,
             price,
             secondHand,
@@ -89,9 +89,9 @@ export const productRouter = createTRPCRouter({
       }
     }),
 
-  // fetch all products
+  // fetch all products products created by a user
 
-  getAll: publicProcedure.query(({ ctx }) => {
+  getUserProducts: publicProcedure.query(({ ctx }) => {
     const userId = ctx.session?.user?.id;
     return ctx.prisma.product.findMany({
       where: {

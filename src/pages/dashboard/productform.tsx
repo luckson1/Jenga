@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import * as Yup from "yup";
 import Previews from "../../components/forms/DropZone";
 import { useFormik } from "formik";
@@ -6,6 +6,7 @@ import { api } from "../../utils/api";
 import Alerts from "../../components/display/errors/Alerts";
 import axios from "axios";
 import { useRouter } from "next/router";
+import LoadingButton from "../../components/display/LoadingButton";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,7 +22,7 @@ const productSchema = Yup.object().shape({
   files: Yup.array(Yup.string()).required("Please upload product Images"),
   price: Yup.number().min(1, "Price is Required"),
 
-  brand: Yup.string(),
+  location: Yup.string().required(),
 
   secondHand: Yup.boolean(),
   width: Yup.number().nullable(),
@@ -41,7 +42,7 @@ export interface ProductParams {
   description: string;
   files?: FileList;
   price: number;
-  brand?: string;
+  location: string;
   secondHand: boolean;
   width?: number;
   length?: number;
@@ -56,7 +57,7 @@ const Productform = () => {
   const { mutate: addProduct, data: product } = api.product.add.useMutation({
     onSuccess: () => console.log("Product  created"),
   });
-
+const [isLoading, setIsloading]=useState(false)
   // TODO: create image and Upload to s3 bucket
 
   async function uploadToS3(values: ProductParams, productId?: string) {
@@ -87,8 +88,10 @@ const Productform = () => {
   const context = api.useContext();
   useEffect(() => {
     if (productId) {
+      setIsloading(true)
       uploadToS3(formik.values, productId).then(() => {
-        context.product.getAll.invalidate();
+        setIsloading(false)
+        context.product.getUserProducts.invalidate();
         router.push("/dashboard");
       });
     }
@@ -103,6 +106,7 @@ const Productform = () => {
       description: "",
       files: undefined,
       price: 0,
+      location: "",
 
       variantType: undefined,
       secondHand: false,
@@ -267,14 +271,14 @@ const Productform = () => {
               <div className="flex w-full flex-row flex-wrap justify-between ">
                 <div className="form-control w-full max-w-xs">
                   <label className="label">
-                    <span className="label-text">Brand (Optional)</span>
+                    <span className="label-text">Location</span>
                   </label>
                   <input
                     type="text"
-                    id="brand"
-                    onChange={formik.handleChange("brand")}
-                    onBlur={formik.handleBlur("brand")}
-                    placeholder="brand of Product"
+                    id="location"
+                    onChange={formik.handleChange("location")}
+                    onBlur={formik.handleBlur("location")}
+                    placeholder="location of Product"
                     className="input-bordered input-primary input w-full max-w-xs"
                   />
                   <label className="label"></label>
@@ -288,7 +292,7 @@ const Productform = () => {
                     type="number"
                     id="price"
                     onChange={e => {
-                      formik.setFieldValue("price", e.target.value);
+                      formik.setFieldValue("price", parseInt(e.target.value));
                     }}
                     onBlur={formik.handleBlur("price")}
                     placeholder="Ksh."
@@ -488,12 +492,14 @@ const Productform = () => {
               </div>
             </div>
           </section>
-          <button
+          {isLoading ? <div className="w-[322px]">
+          <LoadingButton />
+        </div>:   <button
             className="w-[322px] rounded bg-violet-600 bg-opacity-30 p-3 text-violet-700 outline outline-1 outline-violet-600 hover:bg-violet-600 hover:bg-opacity-100 hover:text-white"
             type="submit"
           >
             Submit
-          </button>
+          </button>}
         </form>
       </div>
     </div>

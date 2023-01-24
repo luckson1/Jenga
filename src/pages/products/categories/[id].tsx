@@ -16,7 +16,9 @@ const Category = () => {
  
   return (
     <div className="my-20 flex h-fit w-screen flex-row flex-wrap justify-center gap-6 rounded-lg md:gap-10 ">
-      {isLoading? <Loading/>: !products?.length? <Comingsoon /> : products?.map((product) => (
+      {isLoading? <div className="w-96 h-96">
+      <Loading />
+      </div>: !products?.length? <Comingsoon /> : products?.map((product) => (
         <div key={product.id} className="flex h-80 w-80 flex-col bg-white">
           <Product id={product.id} />
           <div className="flex flex-row justify-start gap-12 my-2">

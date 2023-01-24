@@ -6,7 +6,7 @@ import GetThumbNail from "../../components/images/GetThumbNail";
 
 const Index = () => {
   const router = useRouter();
-  const { data: userProducts } = api.product.getAll.useQuery();
+  const { data: userProducts } = api.product.getUserProducts.useQuery();
 
   return (
     <div className="mt-16 w-full rounded-md bg-white p-8">
@@ -74,7 +74,9 @@ const Index = () => {
                 </tr>
               </thead>
               <tbody>
-                {userProducts?.map((p) => (
+                {!userProducts?.length? <p className="text-lg text-center">
+                  You have Not Listed Any Product. Please Create One
+                </p>: userProducts?.map((p) => (
                   <tr key={p.id}>
                     <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                       <div className="flex items-center">

@@ -12,7 +12,7 @@ const Product = ({id}: {id:string}) => {
     
     <div className="carousel w-full snap-x snap-mandatory">
 
-    {isLoading? <Loading /> : images?.map(image=> (
+    {isLoading? <div className='w-48 h-48'> <Loading />  </div>: images?.map(image=> (
     // set id of the carousel to the id of image for scrolling
          <div id={`${image.id}`} className="carousel-item relative w-full h-full shadow" key={image.id}>
        <GetImage url={image.url}/>
