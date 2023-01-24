@@ -23,8 +23,8 @@ const Category = () => {
         <div key={product.id} className="flex h-80 w-80 flex-col bg-white">
           <Product id={product.id} />
           <div className="flex flex-row justify-start gap-12 my-2">
-            <p className="text-sm"> < RiProductHuntLine className="text-violet-400 text-lg "/> {product.name}</p>
-            <p className="font-bold text-sm gap-1">  <RiMoneyDollarBoxLine  className="text-violet-400 text-lg"/> Ksh. {product.price}</p>
+            <p className="text-sm flex gap-1"> < RiProductHuntLine className="text-violet-400 text-lg "/> {product.name}</p>
+            <p className="font-bold text-sm flex gap-1">  <RiMoneyDollarBoxLine  className="text-violet-400 text-lg"/> Ksh. {product.price}</p>
           </div>
           <div className="flex flex-row justify-start gap-12 mt-2">
             <p className="text-sm flex gap-1"><AiOutlineShop className="text-violet-400 text-lg" /> {product.user.name}</p>
