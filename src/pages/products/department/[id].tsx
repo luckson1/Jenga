@@ -70,7 +70,7 @@ const subDepartments=department?.SubDepartment
   return (
     <>
 
-    <div className=' mt-16 text-center w-screen bg-gradient-to-r from-white via-white to-violet-50'>
+    <div className=' mt-0 md:mt-16 text-center w-screen bg-gradient-to-r from-white via-white to-violet-50'>
       <h1>
 {     department?.name}
       </h1>

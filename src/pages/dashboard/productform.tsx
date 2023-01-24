@@ -148,7 +148,7 @@ const [isLoading, setIsloading]=useState(false)
   const designs = formik.values.variantType === "designs";
 
   return (
-    <div className="mt-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:text-[16px]">
+    <div className="mt-0 md:mt-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:text-[16px]">
       <div className="flex w-screen flex-row justify-center">
         <form
           className="my-8 mx-auto flex h-fit w-[370px] flex-col items-start gap-4 rounded-md bg-white py-5 px-4 shadow-md md:w-[60%] md:px-10"

@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
 
       
-      <div className="w-screen h-screen flex flex-col md:flex-row mt-16 ">
+      <div className="w-screen h-screen flex flex-col md:flex-row mt-0 md:mt-16 ">
         <div className=" w-full md:w-[60%] h-[40%] md:h-full bg-gradient-to-r from-purple-50 via-violet-50 to-white px-5 md:px-10 flex flex-col justify-around py-10">
           <div className="   flex flex-col gap-2 md:gap-4 mx-auto md:mx-6 w-[95%] md:w-[60%]">
             <p className="text-3xl font-bold tracking-widest bg-clip-text text-transparent bg-gradient-to-r from-violet-500 via-teal-500 to-pink-400">

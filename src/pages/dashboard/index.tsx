@@ -9,7 +9,7 @@ const Index = () => {
   const { data: userProducts } = api.product.getUserProducts.useQuery();
 
   return (
-    <div className="mt-16 w-full rounded-md bg-white p-8">
+    <div className="mt-0 md:mt-16 w-full rounded-md bg-white p-8">
       <div className=" flex items-center justify-between pb-6">
         <div>
           <h2 className="font-semibold text-gray-600">Products</h2>

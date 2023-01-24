@@ -18,9 +18,10 @@ function Nav() {
     signOut();
   };
   return (
-    <nav className=" fixed top-0 z-30 mx-0  flex h-16  w-screen flex-row justify-between  bg-white px-3 ">
-      <div className='h-12 flex items-baseline my-auto mx-3 md:mx-5 w-[20%]'>
-      <FaHouseUser className='h-6 w-6 text-violet-700 cursor-pointer' onClick={()=> router.push("/")}/>
+    <nav className=" fixed bottom-0 md:top-0 z-30 mx-0  flex h-16  w-screen flex-row justify-between  bg-white px-3 ">
+      <div className='h-12 flex flex-col md:flex-row  gap-0.5 md:gap-2 alight-baseline my-auto md:mt-4 mx-3 md:mx-5 w-[20%]'>
+      <FaHouseUser className='h-6 w-6 text-violet-400 cursor-pointer' onClick={()=> router.push("/")}/>
+      <p>Home</p>
       </div>
       <div className='flex my-auto flex-row px-4 justify-start md:justify-center lg:justify-end md:px-8 gap-6 md:gap-16  w-[60%]'>
         <div className='flex  flex-col md:flex-row transition duration-300 ease-in-out transform hover:-translate-x-1 hover:scale-105 align-baseline gap-0.5 md:gap-2  hover:bg-slate-50 hover:shadow cursor-pointer py-0.5 px-1 md:p-2' onClick={()=> router.push("/products")}>

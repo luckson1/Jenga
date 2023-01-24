@@ -14,7 +14,7 @@ const Index = () => {
 //navigation
 const router=useRouter()
   return (
-    <div className="mt-16 flex h-screen w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50">
+    <div className="mt-0 md:mt-16 flex h-screen w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50">
       <div className="flex h-16 w-full  flex-row items-center justify-around ">
         <div className="w-[60%]">.</div>
         <button

@@ -13,7 +13,7 @@ const Products = () => {
   return (
     <>
 
-    <div className='bg-white mt-16 text-center'>
+    <div className='bg-white mt-0 md:mt-16 text-center'>
       <h1> Products</h1>
       <div className='h-fit w-screen px-3 md:px-7 py-5 md:py-10 flex flex-row  flex-wrap justify-center gap-7 md:gap-10 '>
         {isLoading? <div className='w-96 h-96'> <Loading /></div> : departments?.map(d=> (
