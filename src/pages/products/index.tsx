@@ -4,10 +4,12 @@ import { useRouter } from 'next/router'
 import { productCategories } from '../../components/assets/assets'
 import Nav from '../../components/navigation/Nav'
 import { api } from '../../utils/api'
+import Loading from '../../components/display/LoadingSmall'
 
 const Products = () => {
   const router= useRouter()
-  const {data: departments}=api.departments.getAll.useQuery()
+  const {data: departments, isLoading}=api.departments.getAll.useQuery()
+  console.log(isLoading)
   return (
     <>
 
@@ -17,7 +19,7 @@ const Products = () => {
         {departments?.map(d=> (
 <div key={d.id} >
 
-<CategoryDisplay department={d}/>
+{isLoading?  <Loading />: <CategoryDisplay department={d}/>}
 </div>
         
         ))}
