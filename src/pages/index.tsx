@@ -1,3 +1,4 @@
+import { signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +8,11 @@ import { MdEngineering } from "react-icons/md";
 
 export default function Home() {
   const router = useRouter();
+  const { status, data } = useSession();
+  const userImage=data?.user?.image ?? " /kitche.jpg"
+  const userName=data?.user?.name ?? "Profile Pic"
+  const authenticated = status === "authenticated";
+
   return (
     <>
       <Head>
@@ -28,9 +34,10 @@ export default function Home() {
               Products for Your Dream Spaces.
             </p>
 
-            <button className=" w-full text-lg py-1.5 rounded-full hover:bg-violet-400 mt-5  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-200 bg-opacity-70 hover:text-white">
+          { !authenticated && <button className=" w-full text-lg py-1.5 rounded-full hover:bg-violet-400 mt-5  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-200 bg-opacity-70 hover:text-white"
+            onClick={()=> router.push("/auth")}>
               Sign Up
-            </button>
+            </button>}
           </div>
 
           <div className="md:flex flex-col items-start gap-3 mx-2 lg:mx-4 hidden">
@@ -100,9 +107,10 @@ export default function Home() {
               with Our Marketing and Project Management Tools.
             </p>
 
-            <button className="w-[60%] text-sm py-2 rounded-lg hover:bg-blue-400  font-light text-blue-700 outline outline-blue-700 hover:outline-none bg-blue-300 bg-opacity-30 hover:text-white">
+           {!authenticated && <button className="w-[60%] text-sm py-2 rounded-lg hover:bg-blue-400  font-light text-blue-700 outline outline-blue-700 hover:outline-none bg-blue-300 bg-opacity-30 hover:text-white"
+           onClick={()=> router.push("/auth")}>
               Join
-            </button>
+            </button>}
           </div>
         </div>
       </div>
@@ -140,9 +148,10 @@ export default function Home() {
               {" "}
               Become a Member
             </p>
-            <button className="w-[60%] text-lg py-2 rounded-full hover:bg-sky-400 mt-5  font-light text-sky-700 outline outline-sky-700 hover:outline-none bg-sky-200 bg-opacity-70 hover:text-white">
+           {!authenticated && <button className="w-[50%] md:w-[60%] text-lg py-2 rounded-full hover:bg-sky-400 mt-5  font-light text-sky-700 outline outline-sky-700 hover:outline-none bg-sky-200 bg-opacity-70 hover:text-white"
+            onClick={()=> router.push("/auth")}>
               Sign Up
-            </button>
+            </button>}
           </div>
         </div>
       </div>

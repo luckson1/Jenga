@@ -4,6 +4,7 @@ import { api } from "../../../utils/api";
 import GetImage from "../../../components/images/GetImage";
 import Product from "../../../components/display/Product";
 import { MdOutlineLocationOn } from "react-icons/md";
+import {RiMoneyDollarBoxLine, RiProductHuntLine} from "react-icons/ri"
 import { AiOutlineShop } from "react-icons/ai";
 import Loading from "../../../components/display/LoadingSmall";
 import Comingsoon from "../../../components/comingsoon";
@@ -22,8 +23,8 @@ const Category = () => {
         <div key={product.id} className="flex h-80 w-80 flex-col bg-white">
           <Product id={product.id} />
           <div className="flex flex-row justify-start gap-12 my-2">
-            <p className="text-sm">{product.name}</p>
-            <p className="font-bold"> Ksh. {product.price}</p>
+            <p className="text-sm"> < RiProductHuntLine className="text-violet-400 text-lg "/> {product.name}</p>
+            <p className="font-bold text-sm gap-1">  <RiMoneyDollarBoxLine  className="text-violet-400 text-lg"/> Ksh. {product.price}</p>
           </div>
           <div className="flex flex-row justify-start gap-12 mt-2">
             <p className="text-sm flex gap-1"><AiOutlineShop className="text-violet-400 text-lg" /> {product.user.name}</p>
