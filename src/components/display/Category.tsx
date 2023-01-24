@@ -14,6 +14,8 @@ const SubCategory = ({ category }: { category: {
 } }) => {
 
   const router=useRouter()
+
+  
   return (
     <div className="flex  h-36 w-36 transform cursor-pointer flex-col items-start  justify-center rounded-md bg-white bg-center pt-0 shadow-md transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl md:h-44 md:w-44 lg:h-48 lg:w-48"
     onClick={()=> router.push(`/products/categories/${category.id}`)}>

@@ -63,6 +63,7 @@ model Product {
   description     String
   brand           String?
   url             String?
+  location String @default("Nairobi")
   width           Int?
   length          Int?
   height          Int?

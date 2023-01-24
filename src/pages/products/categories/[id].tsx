@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { api } from "../../../utils/api";
 import GetImage from "../../../components/images/GetImage";
-
+import Product from "../../../components/display/Product";
 
 const Category = () => {
   const router = useRouter();
@@ -11,26 +11,18 @@ const Category = () => {
   const products = category?.Product;
   console.log(products);
   return (
-    <div className="mt-16 flex h-fit w-screen flex-row gap-3 md:gap-10 justify-center rounded-lg flex-wrap ">
+    <div className="mt-16 flex h-fit w-screen flex-row flex-wrap justify-center gap-3 rounded-lg md:gap-10 ">
       {products?.map((product) => (
-        <div key={product.id} className="h-80 w-80 bg-slate-100">
-            
-            <div className="carousel w-full snap-x snap-mandatory">
-{product?.Image?.map(image=> (
-// set id of the carousel to the id of image for scrolling
-     <div id={`${image.id}`} className="carousel-item relative w-full h-full " key={image.id}>
-   <GetImage id={image.id}/>
-     <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-        {/* provide logic of displaying the carousel images */}
-       <a href={`${product.Image.indexOf(image)===0 ? `#${product?.Image[product.Image?.length-1]?.id}`: `#${product.Image[product.Image.indexOf(image)-1]?.id}`}`} className="btn btn-circle bg-white text-xl text-slate-900 bg-opacity-30">❮</a> 
-       <a href={`${product?.Image?.indexOf(image)===product?.Image.length-1 ? `#${product.Image[0]?.id}`: `#${product.Image[product.Image.indexOf(image)+1]?.id}`}`} className="btn btn-circle bg-white text-xl text-slate-900 bg-opacity-30">❯</a>
-     </div>
-   </div>  
-))}
-  </div>
-
-
-
+        <div key={product.id} className="flex h-80 w-80 flex-col bg-white">
+          <Product id={product.id} />
+          <div className="flex flex-row justify-start gap-24 mt-2">
+            <p className="text-sm">{product.name}</p>
+            <p className="font-bold"> Ksh. {product.price}</p>
+          </div>
+          <div className="flex flex-row justify-start gap-16">
+            <p className="text-sm">By: {product.user.name}</p>
+            <p className="text-sm">{product.location}</p>
+          </div>
         </div>
       ))}
     </div>

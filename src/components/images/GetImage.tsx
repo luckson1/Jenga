@@ -1,20 +1,20 @@
 import React from 'react'
-import { api } from '../../utils/api'
 import Image from 'next/image'
 
-function GetThumbNail({id}: {id?: string}) {
-   if(id){
-    const {data:image}=api.image.getOne.useQuery({id}) 
-    const imageUrl=image?.url ?? "/furniture.jpg"
+function GetThumbNail({url}: {url?: string}) {
+
+   if(url){
+
+    const imageUrl=url ?? "/furniture.jpg"
 
   
 
   return (
    <>
    <Image
-							className="w-md h-full rounded-md"
+							className="w-md h-full rounded-lg "
 							width={320}
-							height={320}
+							height={256}
 							src={imageUrl}
 							alt="Product Image"
 						  />
@@ -22,9 +22,9 @@ function GetThumbNail({id}: {id?: string}) {
   )} return (
     <>
    <Image
-							className="w-md h-full rounded-md"
+							className="w-md h-full rounded-lg"
 							width={320}
-							height={320}
+							height={256}
 							src= "/furniture.jpg"
 							alt="Product Image"
 						  />

@@ -44,6 +44,12 @@ export const categoryRouter = createTRPCRouter({
               Image: {
                 select: {
                   id: true
+                },
+                
+              },
+              user: {
+                select: {
+                  name: true
                 }
               }
             }
