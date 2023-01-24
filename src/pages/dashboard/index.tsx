@@ -48,7 +48,9 @@ const Index = () => {
       <div>
         <div className="-mx-4 overflow-x-auto px-4 py-4 sm:-mx-8 sm:px-8">
           <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
-            <table className="min-w-full leading-normal">
+            { !userProducts?.length? <p className="text-lg text-center">
+                  You have Not Listed Any Product. Please Create One
+                </p>:<table className="min-w-full leading-normal">
               <thead>
                 <tr>
                   <th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
@@ -74,9 +76,7 @@ const Index = () => {
                 </tr>
               </thead>
               <tbody>
-                {!userProducts?.length? <p className="text-lg text-center">
-                  You have Not Listed Any Product. Please Create One
-                </p>: userProducts?.map((p) => (
+                { userProducts?.map((p) => (
                   <tr key={p.id}>
                     <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
                       <div className="flex items-center">
@@ -123,7 +123,7 @@ const Index = () => {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </table>}
             <div className="xs:flex-row xs:justify-between flex flex-col items-center border-t bg-white px-5 py-5          ">
               <span className="xs:text-sm text-xs text-gray-900">
                 Showing 1 to 4 of 50 Entries
