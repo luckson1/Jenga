@@ -16,7 +16,7 @@ const ProductId = () => {
     
   return (
 <div className='my-3 md:my-16 flex flex-col'>
-<div className='flex flex-col my-5 md:my-16 h-screen w-screen'>
+<div className='flex flex-col mb-16 md:mb-5 md:my-16 h-screen w-screen'>
      <div className=" flex h-full  md:h-[90%] w-full flex-col md:flex-row  justify-center  ">
         <div className='w-full md:w-[50%] h-[50%] md:h-full flex flex-col-reverse md:flex-row justify-around items-start'>
             <div className='w-screen h-fit md:w-fit md:h-screen p-1 flex flex-row md:flex-col mx-5 md:ml-8 gap-2 relative'>
@@ -38,17 +38,18 @@ const ProductId = () => {
 
         </div>
         <div className='w-full md:w-[50%] h-[50%] md:h-full flex justify-center items-center mx-auto '>
-            <div className='md:w-[60%] md:h-[60%] w-[95%] h-[80%] shadow-lg rounded-lg shadow-violet-500/50 p-5 md:p-10 flex flex-col justify-between'>
+            <div className='md:w-[60%] md:h-[60%] w-[95%] h-[80%] shadow-lg rounded-lg shadow-violet-500/50 p-5 md:p-10 flex flex-col justify-center items-center bg-violet-50'>
             <p className='text-2xl tracking-widest text-blue-700'>{product?.name}</p>
             <p className='text-xl tracking-widest font-bold'>Ksh. {product?.price}</p>
             <p className='text-xl tracking-widest '>Condition: {product?.secondHand? "Second Hand": "New"}</p>
             <div className='flex flex-row w-full h-20 justify-start gap-24 md:gap-36 items-center text-5xl'>
             <BsWhatsapp className='text-green-500 cursor-pointer shadow-green-500/50 ' /> <AiOutlinePhone className='text-sky-500 cursor-pointer '/> <AiOutlineMail className='text-violet-500 cursor-pointer' />
 </div>
+             <p className='text-xl tracking-widest '>Location: {product?.location}</p>
+          
             <p className='text-xl tracking-widest'>By: {user?.name}</p>
   
-            <p className='text-xl tracking-widest '>Location: {product?.location}</p>
-          
+           
 
             </div>
 
