@@ -55,7 +55,7 @@ const ProductId = () => {
 </div>
        
         </div>
-        <div className='flex flex-col md:flex-row w-[95%] h-fit items-center justify-center mx-auto gap-5  md:justify-start'>
+        <div className='flex flex-col md:flex-row w-[95%] h-screen items-center justify-center mx-auto gap-5  md:justify-start'>
         <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box shadow shadow-violet-500/50">
   <div className="collapse-title text-xl font-medium">
 Product Details
