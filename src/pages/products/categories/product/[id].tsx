@@ -4,6 +4,7 @@ import { api } from '../../../../utils/api';
 import Image from 'next/image';
 import { BsWhatsapp } from 'react-icons/bs';
 import { AiOutlineMail, AiOutlinePhone } from 'react-icons/ai';
+import Loading from '../../../../components/display/LoadingSmall';
 
 const ProductId = () => {
     const router=useRouter()
@@ -16,11 +17,11 @@ const ProductId = () => {
     
   return (
 <div className='my-3 md:my-16 flex flex-col'>
-<div className='flex flex-col mb-16 md:mb-5 md:my-16 h-screen w-screen'>
+<div className='flex flex-col mb-16 md:my-16 h-screen w-screen'>
      <div className=" flex h-full  md:h-[90%] w-full flex-col md:flex-row  justify-center  ">
         <div className='w-full md:w-[50%] h-[50%] md:h-full flex flex-col-reverse md:flex-row justify-around items-start'>
             <div className='w-screen h-fit md:w-fit md:h-screen p-1 flex flex-row md:flex-col mx-5 md:ml-8 gap-2 relative'>
-                {images?.map(image=> (
+                {isLoading? <div className='w-[300px] h-[300px]'><Loading /></div>: images?.map(image=> (
              <div key={image.id} className='relative h-12 w-12 md:w-16 md:h-16 overflow-scroll rounded-lg cursor-pointer flex items-center justify-center' onClick={()=> setCurrentImage(image.url)}>
                        <Image key={image.id} src={image.url} alt={image.Product.name} fill sizes="(max-width: 768px) 40px,
               (max-width: 1200px) 50px,
