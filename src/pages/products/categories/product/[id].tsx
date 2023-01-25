@@ -15,8 +15,8 @@ const ProductId = () => {
     console.log(product?.materials)
     
   return (
-<div className='w-screen h-screen'>
-<div className='flex flex-col my-5 md:my-16 h-full w-full'>
+<div className='my-3 md:my-16 flex flex-col'>
+<div className='flex flex-col my-5 md:my-16 h-screen w-screen'>
      <div className=" flex h-full  md:h-[90%] w-full flex-col md:flex-row  justify-center  ">
         <div className='w-full md:w-[50%] h-[50%] md:h-full flex flex-col-reverse md:flex-row justify-around items-start'>
             <div className='w-screen h-fit md:w-fit md:h-screen p-1 flex flex-row md:flex-col mx-5 md:ml-8 gap-2 relative'>
@@ -42,8 +42,8 @@ const ProductId = () => {
             <p className='text-2xl tracking-widest text-blue-700'>{product?.name}</p>
             <p className='text-xl tracking-widest font-bold'>Ksh. {product?.price}</p>
             <p className='text-xl tracking-widest '>Condition: {product?.secondHand? "Second Hand": "New"}</p>
-            <div className='flex flex-row w-full h-20 justify-around items-center text-4xl'>
-            <BsWhatsapp className='text-green-500 cursor-pointer shadow-green-500/50' /> <AiOutlinePhone className='text-sky-500 cursor-pointer '/> <AiOutlineMail className='text-violet-500 cursor-pointer' />
+            <div className='flex flex-row w-full h-20 justify-start gap-24 md:gap-36 items-center text-5xl'>
+            <BsWhatsapp className='text-green-500 cursor-pointer shadow-green-500/50 ' /> <AiOutlinePhone className='text-sky-500 cursor-pointer '/> <AiOutlineMail className='text-violet-500 cursor-pointer' />
 </div>
             <p className='text-xl tracking-widest'>By: {user?.name}</p>
   
@@ -55,7 +55,9 @@ const ProductId = () => {
 </div>
        
         </div>
-        <div className='flex flex-col md:flex-row w-[95%] h-screen items-center justify-center mx-auto gap-5  md:justify-start'>
+      
+   </div>
+   <div className='flex flex-col md:flex-row w-[95%] h-fit mb-20 items-center  mx-auto gap-5  justify-start'>
         <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box shadow shadow-violet-500/50">
   <div className="collapse-title text-xl font-medium">
 Product Details
@@ -137,7 +139,6 @@ Product Details
 
 
         </div>
-   </div>
 
 </div>
   )
