@@ -52,7 +52,7 @@ export const imageRouter = createTRPCRouter({
 
   
   }),
-  // fetch all images
+  // fetch all images beloging to a given product
 
   getAll: publicProcedure
     .input(z.object({ productId: z.string() }))
@@ -78,6 +78,35 @@ const extendedImages= await Promise.all(images.map(async(image)=> {
 return extendedImages
     }),
 
+
+    //fetch all images belonging to a product and include user data
+    imagesAndUsers: publicProcedure
+    .input(z.object({ productId: z.string() }))
+    .query(async ({ ctx , input}) => {
+      const { productId } = input;
+      const images = await ctx.prisma.image.findMany({
+        where: {
+          productId,
+          deleted: false
+        },
+        include: {
+          user: true,
+          Product: true
+        }
+      });
+
+      // loop through images to get  metadata from s3 bucket and add the metada to images
+const extendedImages= await Promise.all(images.map(async(image)=> {
+    return {
+        ...image,
+        url: await s3.getSignedUrlPromise("getObject", {
+            Bucket: env.BUCKET_NAME,
+            Key: `${image.id}`
+        })
+    }
+}));
+return extendedImages
+    }),
   // fetch one image
   getOne: publicProcedure
     .input(z.object({ id: z.string() }))

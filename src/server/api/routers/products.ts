@@ -133,6 +133,9 @@ export const productRouter = createTRPCRouter({
           id,
           deleted: false,
         },
+        include: {
+          user: true
+        }
       });
     }),
   // update a departemnt

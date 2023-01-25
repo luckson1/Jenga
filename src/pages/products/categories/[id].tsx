@@ -8,6 +8,7 @@ import {RiMoneyDollarBoxLine, RiProductHuntLine} from "react-icons/ri"
 import { AiOutlineShop } from "react-icons/ai";
 import Loading from "../../../components/display/LoadingSmall";
 import Comingsoon from "../../../components/comingsoon";
+import Link from "next/link";
 
 const Category = () => {
   const router = useRouter();
@@ -16,11 +17,11 @@ const Category = () => {
   const products = category?.Product;
  
   return (
-    <div className="my-20 flex h-fit w-screen flex-row flex-wrap justify-center gap-6 rounded-lg md:gap-10 ">
+    <div className="my-5 md:my-20  flex h-fit w-screen flex-row flex-wrap justify-center gap-6 rounded-lg md:gap-10 ">
       {isLoading? <div className="w-96 h-96">
       <Loading />
       </div>: !products?.length? <Comingsoon /> : products?.map((product) => (
-        <div key={product.id} className="flex h-80 w-80 flex-col bg-white">
+        <Link key={product.id} className="flex h-80 w-80 flex-col bg-white" href={{pathname: `product/${product.id}`}} >
           <Product id={product.id} />
           <div className="flex flex-row justify-start gap-12 my-2">
             <p className="text-sm flex gap-1"> < RiProductHuntLine className="text-violet-400 text-lg "/> {product.name}</p>
@@ -30,7 +31,7 @@ const Category = () => {
             <p className="text-sm flex gap-1"><AiOutlineShop className="text-violet-400 text-lg" /> {product.user.name}</p>
             <p className="text-sm flex gap-1 " > <MdOutlineLocationOn className="text-violet-400 text-lg"/>  {product.location}</p>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
