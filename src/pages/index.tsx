@@ -63,21 +63,21 @@ export default function Home() {
               <div className="flex flex-row gap-3 align-baseline flex-wrap">
                 <button
                   className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
-                  onClick={() => router.push("/products/furniture")}
+                  onClick={() => router.push("/products/department/ea687f54-484a-494a-a297-e71932bd1b9d")}
                 >
-                  Furniture
+                  Living & Dining Room
                 </button>
                 <button
                   className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
-                  onClick={() => router.push("/products/lighting")}
+                  onClick={() => router.push("/products/department/2dc58cdc-58a2-4544-a063-9f4cf591e329")}
                 >
-                  Lighting
+                 Kitchen
                 </button>
                 <button
                   className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
-                  onClick={() => router.push("/products/kitchen")}
+                  onClick={() => router.push("/products/department/d7ff4ac1-e48a-40a5-9dff-6889be0e7ef4")}
                 >
-                  Kitchen Fittings
+                 Home Office
                 </button>
                 <button
                   className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
