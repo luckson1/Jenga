@@ -1,10 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import * as Yup from "yup";
-import Previews from "../../../components/forms/DropZone";
 import { useFormik } from "formik";
 import { api } from "../../../utils/api";
 import Alerts from "../../../components/display/errors/Alerts";
-import axios from "axios";
 import { useRouter } from "next/router";
 import LoadingButton from "../../../components/display/LoadingButton";
 import { ProductParams } from "../productform";
@@ -34,58 +32,99 @@ const productSchema = Yup.object().shape({
   variants: Yup.string(),
 });
 
-
 const EditProductform = () => {
+  // get id from params and fetch the product
+  const router = useRouter();
+  const id = router.query.id as string;
 
-// get id from params and fetch the product
-const router = useRouter();
-const id = router.query.id as string;
+  // fetch data of the product whose id is in params
 
-const {data: product, isLoading}= api.product.getOne.useQuery({id})
+  const { data:product, isLoading } = api.product.getOne.useQuery({ id });
 
-  //TODO: edit a product hook
-  const { mutate: editProduct, error} = api.product.update.useMutation({
-    onSuccess: () => router.push("/dashboard")
-  });
+  // track changes of data
+
+  const initialValues = {
+    name: "",
+
+    departmentId: "",
+    subDepartmentId: "",
+    categoryId: "",
+    description: "",
+
+    price: 0,
+    location: "",
+
+    variants: "",
+
+    variantType: "",
+    secondHand: false,
+    width: 0,
+    length: 0,
+    height: 0,
+    productMaterials: "",
+  };
+
 
   
-console.log(error)
+  // define types of product variants
+  const sizes = !!product?.sizes?.length;
+  const colors = !!product?.colors?.length;
+  const designs = !!product?.designs?.length;
+
+  //TODO: edit a product hook
+  const { mutate: editProduct, error } = api.product.update.useMutation({
+    onSuccess: () => router.push("/dashboard"),
+  });
+
   //handle submission of form values
-  async function handleSubmit(values: Omit<ProductParams, "files">) {
-    editProduct({id, ...values});
-  }
-  const productId = product?.id;
-
-
- // define types of product variants
- const sizes = !!product?.sizes?.length 
- const colors =!!product?.colors?.length
- const designs =!!product?.designs?.length
-  console.log(sizes, colors, designs)
-  const formik = useFormik({
-    initialValues: {
-      name: product?.name?? "",
-
-      departmentId: product?.departmentId?? "",
-      subDepartmentId: product?.subDepartmentId?? "",
-      categoryId: product?.categoryId?? "",
-      description: product?.description?? "",
-
-      price: product?.price?? 0,
-      location: product?.location?? "",
-     
-      variants:  colors? product?.colors?.toString() : sizes ? product?.sizes?.toString() : designs? product?.designs?.toString() : "",
-
-      variantType: sizes? "sizes": colors? "colors": designs? "designs" : "",
-      secondHand: product?.secondHand?? false,
-      width :   product?.width?? 0,    
-      length:    product?.length?? 0,      
-      height  :    product?.height?? 0,    
-      productMaterials :   product?.materials.toString()?? "",  
+  const handleSubmit = useCallback(
+    (values: Omit<ProductParams, "files">) => {
+      editProduct({ id, ...values });
     },
+    [id]
+  );
+
+  const formik = useFormik({
+    initialValues,
     validationSchema: productSchema,
     onSubmit: (values) => handleSubmit(values),
   });
+  useEffect(()=> {
+    if (product) {
+    
+      formik.setFieldValue("name", product?.name);
+  
+  
+        formik.setFieldValue("departmentId", product?.departmentId);
+      formik.setFieldValue("subDepartmentId", product?.subDepartmentId);
+      formik.setFieldValue("categoryId", product?.categoryId);
+      formik.setFieldValue("description", product?.description);
+  
+      formik.setFieldValue("price", product?.price);
+      formik.setFieldValue("location", product?.location);
+  
+      formik.setFieldValue(
+        "variants",
+        colors
+          ? product?.colors?.toString()
+          : sizes
+          ? product?.sizes?.toString()
+          : product?.designs?.toString()
+      );
+  
+      formik.setFieldValue(
+        "variantType",
+        sizes ? "sizes" : colors ? "colors" : designs ? "designs" : ""
+      );
+      formik.setFieldValue("secondHand", product?.secondHand ?? false);
+      formik.setFieldValue("width", product?.width ?? 0);
+      formik.setFieldValue("length", product?.length ?? 0);
+      formik.setFieldValue("height", product?.height ?? 0);
+      formik.setFieldValue("productMaterials", product?.materials.toString());
+    }
+  }, [product?.id]
+  )
+
 
   // fetch department data
   const { data: departments } = api.departments.getAll.useQuery();
@@ -111,92 +150,84 @@ console.log(error)
 
   const categories = selectedSubDepartment?.Category;
 
-  const handleFilesChange = (files: FileList | null) =>
-    formik.setFieldValue("files", files);
-
-if( !product) {
-  return <p>Loading....</p>
-}
+  if (!product) return <div>Loading.....</div>;
 
   return (
-    <div className="mt-0 md:mt-16 mb-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:text-[16px]">
+    <div className="mt-0 mb-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:mt-16 md:text-[16px]">
       <div className="flex w-screen flex-row justify-center">
         <form
           className="my-8 mx-auto flex h-fit w-[370px] flex-col items-start gap-4 rounded-md bg-white py-5 px-4 shadow-md md:w-[60%] md:px-10"
           onSubmit={formik.handleSubmit}
         >
           <section className="flex w-full flex-col gap-3">
-            <p className="text-center text-xl">Product Details</p>
+            <p className="text-center text-xl"> Product Details</p>
             <div className="flex w-full flex-row flex-wrap justify-between md:gap-4">
-         
-                <div className="form-control w-full max-w-xs">
-                  <label className="label">
-                    <span className="label-text">Pick a Department</span>
-                  </label>
-                  <select
-                    className="select-bordered select-primary select"
-                    onChange={formik.handleChange("departmentId")}
-                    onBlur={formik.handleBlur("departmentId")}
-                    value={formik.values.departmentId}
-                  >
-                    <option value="">Pick a Department</option>
-                    {departments?.map((d) => (
-                      <option key={d.id} value={d.id}>
-                        {d.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-          
-          
-                <div className="form-control w-full max-w-xs transition">
-                  <label className="label">
-                    <span className="label-text">Pick a sub-department</span>
-                  </label>
-                  <select
-                    className="select-bordered select-primary select bg-white"
-                    onChange={formik.handleChange("subDepartmentId")}
-                    onBlur={formik.handleBlur("subDepartmentId")}
-                    value={formik.values.subDepartmentId}
-                  >
-                    <option value="">Choose Sub-department</option>
-                    {subDepartments?.map((d) => (
-                      <option key={d.id} value={d.id}>
-                        {d.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-           
-          
-                <div className="form-control w-full max-w-xs">
-                  <label className="label flex flex-row ">
-                    <span className="label-text">Pick a Category</span>
-                    {formik.values.categoryId && (
-                      <button
-                        className="btn-error btn-xs btn "
-                        onClick={() => formik.resetForm()}
-                      >
-                        {" "}
-                        x Clear
-                      </button>
-                    )}
-                  </label>
-                  <select
-                    className="select-bordered select-primary select"
-                    onChange={formik.handleChange("categoryId")}
-                    onBlur={formik.handleBlur("categoryId")}
-                    value={formik.values.categoryId}
-                  >
-                    <option value="">Choose Category</option>
-                    {categories?.map((d) => (
-                      <option key={d.id} value={d.id}>
-                        {d.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-           
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Pick a Department</span>
+                </label>
+                <select
+                  className="select-bordered select-primary select"
+                  onChange={formik.handleChange("departmentId")}
+                  onBlur={formik.handleBlur("departmentId")}
+                  value={formik.values.departmentId}
+                >
+                  <option value="">Pick a Department</option>
+                  {departments?.map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {d.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-control w-full max-w-xs transition">
+                <label className="label">
+                  <span className="label-text">Pick a sub-department</span>
+                </label>
+                <select
+                  className="select-bordered select-primary select bg-white"
+                  onChange={formik.handleChange("subDepartmentId")}
+                  onBlur={formik.handleBlur("subDepartmentId")}
+                  value={formik.values.subDepartmentId}
+                >
+                  <option value="">Choose Sub-department</option>
+                  {subDepartments?.map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {d.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-control w-full max-w-xs">
+                <label className="label flex flex-row ">
+                  <span className="label-text">Pick a Category</span>
+                  {formik.values.categoryId && (
+                    <button
+                      className="btn-error btn-xs btn "
+                      onClick={() => formik.resetForm()}
+                    >
+                      {" "}
+                      x Clear
+                    </button>
+                  )}
+                </label>
+                <select
+                  className="select-bordered select-primary select"
+                  onChange={formik.handleChange("categoryId")}
+                  onBlur={formik.handleBlur("categoryId")}
+                  value={formik.values.categoryId}
+                >
+                  <option value="">Choose Category</option>
+                  {categories?.map((d) => (
+                    <option key={d.id} value={d.id}>
+                      {d.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div className="my-1 flex flex-col gap-2">
                 <Alerts>
                   {formik.touched.departmentId && formik.errors.departmentId}
@@ -227,7 +258,7 @@ if( !product) {
               <Alerts>{formik.touched.name && formik.errors.name}</Alerts>
             </div>
           </section>
-       
+
           <section className="flex w-full flex-col gap-3">
             <div className="flex w-full flex-row flex-wrap justify-between md:gap-4">
               <div className="flex w-full flex-row flex-wrap justify-between ">
@@ -255,7 +286,7 @@ if( !product) {
                     type="number"
                     id="price"
                     value={formik.values.price}
-                    onChange={e => {
+                    onChange={(e) => {
                       formik.setFieldValue("price", parseInt(e.target.value));
                     }}
                     onBlur={formik.handleBlur("price")}
@@ -337,7 +368,7 @@ if( !product) {
                         <input
                           type="radio"
                           id="colors"
-                          checked={formik.values.variantType==="colors"}
+                          checked={formik.values.variantType === "colors"}
                           onBlur={formik.handleBlur("variantType")}
                           onChange={() =>
                             formik.setFieldValue("variantType", "colors")
@@ -353,8 +384,7 @@ if( !product) {
                         <input
                           type="radio"
                           id="sizes"
-                          
-                          checked={formik.values.variantType==="sizes"}
+                          checked={formik.values.variantType === "sizes"}
                           onBlur={formik.handleBlur("variantType")}
                           onChange={() =>
                             formik.setFieldValue("variantType", "sizes")
@@ -372,7 +402,7 @@ if( !product) {
                         <input
                           type="radio"
                           id="desings"
-                          checked={formik.values.variantType==="designs"}
+                          checked={formik.values.variantType === "designs"}
                           onBlur={formik.handleBlur("variantType")}
                           onChange={() =>
                             formik.setFieldValue("variantType", "designs")
@@ -464,14 +494,18 @@ if( !product) {
               </div>
             </div>
           </section>
-          {isLoading ? <div className="w-[322px]">
-          <LoadingButton />
-        </div>:   <button
-            className="w-[322px] rounded bg-violet-600 bg-opacity-30 p-3 text-violet-700 outline outline-1 outline-violet-600 hover:bg-violet-600 hover:bg-opacity-100 hover:text-white"
-            type="submit"
-          >
-            Submit
-          </button>}
+          {isLoading ? (
+            <div className="w-[322px]">
+              <LoadingButton />
+            </div>
+          ) : (
+            <button
+              className="w-[322px] rounded bg-violet-600 bg-opacity-30 p-3 text-violet-700 outline outline-1 outline-violet-600 hover:bg-violet-600 hover:bg-opacity-100 hover:text-white"
+              type="submit"
+            >
+              Submit
+            </button>
+          )}
         </form>
       </div>
     </div>
