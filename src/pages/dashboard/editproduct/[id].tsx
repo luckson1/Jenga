@@ -90,6 +90,9 @@ const EditProductform = () => {
     validationSchema: productSchema,
     onSubmit: (values) => handleSubmit(values),
   });
+
+
+  // populate form after loading product data
   useEffect(()=> {
     if (product) {
     
