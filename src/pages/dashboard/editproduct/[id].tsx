@@ -6,6 +6,7 @@ import Alerts from "../../../components/display/errors/Alerts";
 import { useRouter } from "next/router";
 import LoadingButton from "../../../components/display/LoadingButton";
 import { ProductParams } from "../productform";
+import Loading from "../../../components/display/LoadingSmall";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -150,7 +151,7 @@ const EditProductform = () => {
 
   const categories = selectedSubDepartment?.Category;
 
-  if (!product) return <div>Loading.....</div>;
+  if (!product) return <div className=" mt-16 mx-auto w-[300px] h-[300px]"><Loading/></div>;
 
   return (
     <div className="mt-0 mb-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:mt-16 md:text-[16px]">
