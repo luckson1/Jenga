@@ -1,12 +1,13 @@
 import React, { useEffect, useMemo, useState } from "react";
 import * as Yup from "yup";
-import Previews from "../../components/forms/DropZone";
+import Previews from "../../../components/forms/DropZone";
 import { useFormik } from "formik";
-import { api } from "../../utils/api";
-import Alerts from "../../components/display/errors/Alerts";
+import { api } from "../../../utils/api";
+import Alerts from "../../../components/display/errors/Alerts";
 import axios from "axios";
 import { useRouter } from "next/router";
-import LoadingButton from "../../components/display/LoadingButton";
+import LoadingButton from "../../../components/display/LoadingButton";
+import { ProductParams } from "../productform";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -19,7 +20,6 @@ const productSchema = Yup.object().shape({
   description: Yup.string()
     .required("Description is Required")
     .min(50, "Description Too Short"),
-  files: Yup.array(Yup.string()).required("Please upload product Images"),
   price: Yup.number().min(1, "Price is Required"),
 
   location: Yup.string().required(),
@@ -34,90 +34,59 @@ const productSchema = Yup.object().shape({
   variants: Yup.string(),
 });
 
-export interface ProductParams {
-  name: string;
-  departmentId: string;
-  subDepartmentId: string;
-  categoryId: string;
-  description: string;
-  files?: FileList;
-  price: number;
-  location: string;
-  secondHand: boolean;
-  width?: number;
-  length?: number;
-  height?: number;
 
-  productMaterials?: string;
-  variantType?: string;
-  variants?: string;
-      
-  materials? :   string;
-}
+const EditProductform = () => {
 
-const Productform = () => {
-  //TODO: create a product hook
-  const { mutate: addProduct, data: product } = api.product.add.useMutation({
-    onSuccess: () => console.log("Product  created"),
+// get id from params and fetch the product
+const router = useRouter();
+const id = router.query.id as string;
+
+const {data: product, isLoading}= api.product.getOne.useQuery({id})
+
+  //TODO: edit a product hook
+  const { mutate: editProduct, error} = api.product.update.useMutation({
+    onSuccess: () => router.push("/dashboard")
   });
-const [isLoading, setIsloading]=useState(false)
-  // TODO: create image and Upload to s3 bucket
 
-  async function uploadToS3(values: ProductParams, productId?: string) {
-    const files = values.files;
-
-    if (!files) {
-      return null;
-    }
-    // loop through files and create an image then create signed url using image id
-    for (const file of files) {
-      const { data }: { data: { uploadUrl: string; key: string } } =
-        await axios.get(`/api/aws/upload?productId=${productId}`);
-
-      const { uploadUrl } = data;
-
-      await axios.put(uploadUrl, file);
-    }
-  }
-
+  
+console.log(error)
   //handle submission of form values
-  async function handleSubmit(values: ProductParams) {
-    addProduct(values);
+  async function handleSubmit(values: Omit<ProductParams, "files">) {
+    editProduct({id, ...values});
   }
   const productId = product?.id;
 
-  // check if productId is available after submitting and create images with it then navigate to dashboard
-  const router = useRouter();
-  const context = api.useContext();
-  useEffect(() => {
-    if (productId) {
-      setIsloading(true)
-      uploadToS3(formik.values, productId).then(() => {
-        setIsloading(false)
-        context.product.getUserProducts.invalidate();
-        router.push("/dashboard");
-      });
-    }
-  }, [productId]);
+
+ // define types of product variants
+ const sizes = !!product?.sizes?.length 
+ const colors =!!product?.colors?.length
+ const designs =!!product?.designs?.length
+  console.log(sizes, colors, designs)
   const formik = useFormik({
     initialValues: {
-      name: "",
+      name: product?.name?? "",
 
-      departmentId: "",
-      subDepartmentId: "",
-      categoryId: "",
-      description: "",
-      files: undefined,
-      price: 0,
-      location: "",
+      departmentId: product?.departmentId?? "",
+      subDepartmentId: product?.subDepartmentId?? "",
+      categoryId: product?.categoryId?? "",
+      description: product?.description?? "",
 
-      variantType: undefined,
-      secondHand: false,
+      price: product?.price?? 0,
+      location: product?.location?? "",
+     
+      variants:  colors? product?.colors?.toString() : sizes ? product?.sizes?.toString() : designs? product?.designs?.toString() : "",
+
+      variantType: sizes? "sizes": colors? "colors": designs? "designs" : "",
+      secondHand: product?.secondHand?? false,
+      width :   product?.width?? 0,    
+      length:    product?.length?? 0,      
+      height  :    product?.height?? 0,    
+      productMaterials :   product?.materials.toString()?? "",  
     },
     validationSchema: productSchema,
     onSubmit: (values) => handleSubmit(values),
   });
-  console.log(formik.values.price)
+
   // fetch department data
   const { data: departments } = api.departments.getAll.useQuery();
 
@@ -145,13 +114,12 @@ const [isLoading, setIsloading]=useState(false)
   const handleFilesChange = (files: FileList | null) =>
     formik.setFieldValue("files", files);
 
-  // define types of product variants
-  const sizes = formik.values.variantType === "sizes";
-  const colors = formik.values.variantType === "colors";
-  const designs = formik.values.variantType === "designs";
+if( !product) {
+  return <p>Loading....</p>
+}
 
   return (
-    <div className="mt-0 md:mt-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:text-[16px]">
+    <div className="mt-0 md:mt-16 mb-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:text-[16px]">
       <div className="flex w-screen flex-row justify-center">
         <form
           className="my-8 mx-auto flex h-fit w-[370px] flex-col items-start gap-4 rounded-md bg-white py-5 px-4 shadow-md md:w-[60%] md:px-10"
@@ -160,7 +128,7 @@ const [isLoading, setIsloading]=useState(false)
           <section className="flex w-full flex-col gap-3">
             <p className="text-center text-xl">Product Details</p>
             <div className="flex w-full flex-row flex-wrap justify-between md:gap-4">
-              {!formik.values.departmentId && (
+         
                 <div className="form-control w-full max-w-xs">
                   <label className="label">
                     <span className="label-text">Pick a Department</span>
@@ -179,8 +147,8 @@ const [isLoading, setIsloading]=useState(false)
                     ))}
                   </select>
                 </div>
-              )}
-              {formik.values.departmentId && !formik.values.subDepartmentId && (
+          
+          
                 <div className="form-control w-full max-w-xs transition">
                   <label className="label">
                     <span className="label-text">Pick a sub-department</span>
@@ -199,8 +167,8 @@ const [isLoading, setIsloading]=useState(false)
                     ))}
                   </select>
                 </div>
-              )}
-              {formik.values.subDepartmentId && (
+           
+          
                 <div className="form-control w-full max-w-xs">
                   <label className="label flex flex-row ">
                     <span className="label-text">Pick a Category</span>
@@ -228,7 +196,7 @@ const [isLoading, setIsloading]=useState(false)
                     ))}
                   </select>
                 </div>
-              )}
+           
               <div className="my-1 flex flex-col gap-2">
                 <Alerts>
                   {formik.touched.departmentId && formik.errors.departmentId}
@@ -248,6 +216,7 @@ const [isLoading, setIsloading]=useState(false)
                 <input
                   type="text"
                   id="name"
+                  value={formik.values.name}
                   onChange={formik.handleChange("name")}
                   onBlur={formik.handleBlur("name")}
                   placeholder="Name of Product"
@@ -258,17 +227,7 @@ const [isLoading, setIsloading]=useState(false)
               <Alerts>{formik.touched.name && formik.errors.name}</Alerts>
             </div>
           </section>
-          <section className="flex w-full flex-col gap-3">
-            <div className="flex w-full flex-col  gap-2">
-              <p>Upload Product Images</p>
-              <Previews
-                handleBlur={formik.handleBlur("files")}
-                handleChange={handleFilesChange}
-              />
-            </div>
-
-            <Alerts>{formik.touched.files && formik.errors.files}</Alerts>
-          </section>
+       
           <section className="flex w-full flex-col gap-3">
             <div className="flex w-full flex-row flex-wrap justify-between md:gap-4">
               <div className="flex w-full flex-row flex-wrap justify-between ">
@@ -279,6 +238,7 @@ const [isLoading, setIsloading]=useState(false)
                   <input
                     type="text"
                     id="location"
+                    value={formik.values.location}
                     onChange={formik.handleChange("location")}
                     onBlur={formik.handleBlur("location")}
                     placeholder="location of Product"
@@ -294,6 +254,7 @@ const [isLoading, setIsloading]=useState(false)
                   <input
                     type="number"
                     id="price"
+                    value={formik.values.price}
                     onChange={e => {
                       formik.setFieldValue("price", parseInt(e.target.value));
                     }}
@@ -311,6 +272,7 @@ const [isLoading, setIsloading]=useState(false)
                   <textarea
                     className="textarea-bordered textarea-primary textarea h-fit"
                     id="description"
+                    value={formik.values.description}
                     onChange={formik.handleChange("description")}
                     onBlur={formik.handleBlur("description")}
                     placeholder="Product Description"
@@ -333,6 +295,7 @@ const [isLoading, setIsloading]=useState(false)
                     <span className="label-text text-green-600">New</span>
                     <input
                       type="checkbox"
+                      checked={formik.values.secondHand}
                       className="toggle-primary toggle "
                       onBlur={formik.handleBlur("secondHand")}
                       onChange={() =>
@@ -351,9 +314,10 @@ const [isLoading, setIsloading]=useState(false)
                   </label>
                   <input
                     type="text"
-                    id=" productMaterials"
-                    onChange={formik.handleChange(" productMaterials")}
-                    onBlur={formik.handleBlur(" productMaterials")}
+                    id="productMaterials"
+                    value={formik.values.productMaterials}
+                    onChange={formik.handleChange("productMaterials")}
+                    onBlur={formik.handleBlur("productMaterials")}
                     placeholder="Separate by Commas e.g leather, rexin"
                     className="input-bordered input-primary input w-full max-w-xs"
                   />
@@ -373,6 +337,7 @@ const [isLoading, setIsloading]=useState(false)
                         <input
                           type="radio"
                           id="colors"
+                          checked={formik.values.variantType==="colors"}
                           onBlur={formik.handleBlur("variantType")}
                           onChange={() =>
                             formik.setFieldValue("variantType", "colors")
@@ -388,6 +353,8 @@ const [isLoading, setIsloading]=useState(false)
                         <input
                           type="radio"
                           id="sizes"
+                          
+                          checked={formik.values.variantType==="sizes"}
                           onBlur={formik.handleBlur("variantType")}
                           onChange={() =>
                             formik.setFieldValue("variantType", "sizes")
@@ -405,6 +372,7 @@ const [isLoading, setIsloading]=useState(false)
                         <input
                           type="radio"
                           id="desings"
+                          checked={formik.values.variantType==="designs"}
                           onBlur={formik.handleBlur("variantType")}
                           onChange={() =>
                             formik.setFieldValue("variantType", "designs")
@@ -432,6 +400,7 @@ const [isLoading, setIsloading]=useState(false)
                   </label>
                   <input
                     type="text"
+                    value={formik.values.variants}
                     placeholder="Separate by Commas e.g black, red, blue"
                     className="input-bordered input-primary input w-full max-w-xs"
                     id={`${colors ? "colors" : sizes ? "sizes" : "designs"} `}
@@ -509,4 +478,4 @@ const [isLoading, setIsloading]=useState(false)
   );
 };
 
-export default Productform;
+export default EditProductform;

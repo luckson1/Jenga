@@ -3,10 +3,21 @@ import {SlOptionsVertical} from "react-icons/sl"
 import { useRouter } from "next/router";
 import { api } from "../../utils/api";
 import GetThumbNail from "../../components/images/GetThumbNail";
+import { MdDeleteForever, MdEdit, MdOutlineRemoveRedEye } from "react-icons/md";
+import Link from "next/link";
+import { useState } from "react";
 
 const Index = () => {
   const router = useRouter();
   const { data: userProducts } = api.product.getUserProducts.useQuery();
+  const ctx=api.useContext()
+  const {mutate:del}=api.product.delete.useMutation({
+    onSuccess:()=>{ ctx.product.getUserProducts.invalidate(); setIsShowModal(false)}
+  })
+
+  const handleDelete= (selectedId: string)=> {del({id:selectedId});  console.log("deleteting...", selectedId)}
+const [selectedId, setSelectedId]=useState("")
+const [isShowModal, setIsShowModal]=useState(false)
 
   return (
     <div className="mt-0 md:mt-16 w-full rounded-md bg-white p-8">
@@ -118,7 +129,15 @@ const Index = () => {
                       </span>
                     </td>
                     <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
-                      <SlOptionsVertical className="whitespace-no-wrap text-gray-900 cursor-pointer" />
+                    <div className="dropdown dropdown-left z-10">
+  <label tabIndex={0} className="btn m-1 btn-ghost">   <SlOptionsVertical className="whitespace-no-wrap text-gray-900 cursor-pointer" /></label>
+  <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-32">
+  <li> < Link href={{pathname: `/products/categories/product/${p.id}`}}> <MdOutlineRemoveRedEye className="text-xl"/> View</Link></li>
+    <li><Link href={{pathname: `dashboard/editproduct/${p.id}`}}> <MdEdit className="text-xl"/>  Edit</Link></li>
+    <li><button  onClick={()=>{setSelectedId(p.id); setIsShowModal(true)}}><MdDeleteForever className="text-xl"/> Delete</button></li>
+  </ul>
+</div>
+                   
                     </td>
                   </tr>
                 ))}
@@ -141,6 +160,21 @@ const Index = () => {
           </div>
         </div>
       </div>
+   {  isShowModal && <div className="fixed bg-transparent w-screen h-screen top-0 z-100 flex justify-center items-center">
+      <div className="card w-96 h-60 bg-base-100 shadow-xl">
+  <div className="card-body">
+    <h2 className="card-title">Are You Sure?</h2>
+    <p>This will permanently delete the product?</p>
+    <div className="card-actions justify-between">
+    <button className="btn btn-primary" onClick={()=> setIsShowModal(false)}>Cancel</button>
+      <button className="btn btn-error" onClick={()=>handleDelete(selectedId)}>Delete</button>
+      
+    </div>
+  </div>
+</div>
+       
+
+</div>}
     </div>
   );
 };

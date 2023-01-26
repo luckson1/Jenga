@@ -138,17 +138,84 @@ export const productRouter = createTRPCRouter({
         }
       });
     }),
-  // update a departemnt
+  // update a product
   update: publicProcedure
-    .input(z.object({ id: z.string(), name: z.string() }))
-    .query(({ input, ctx }) => {
-      const { id, name } = input;
+  .input(
+    z.object({
+      id: z.string(),
+      name: z.string(),
+      description: z.string(),
+      location: z.string(),
+      price: z.number(),
+      secondHand: z.boolean().optional(),
+      width: z.number().optional(),
+      length: z.number().optional(),
+      height: z.number().optional(),
+      departmentId: z.string(),
+      subDepartmentId: z.string(),
+      categoryId: z.string(),
+      productMaterials: z.string().optional(),
+      variantType: z.string().optional(),
+      variants: z.string().optional(),
+    })
+  )
+    .mutation(({ input, ctx }) => {
+      const {
+        name,
+        description,
+        location,
+id,
+        price,
+        secondHand,
+        width,
+        length,
+        height,
+        categoryId,
+        variantType,
+        variants,
+        productMaterials,
+        departmentId,
+        subDepartmentId,
+      } = input;
+      const colors =
+      variantType === "colors"
+        ? variants?.trim().split(/\s*,\s*/)
+        : undefined;
+    const sizes =
+      variantType === "sizes" ? variants?.trim().split(/\s*,\s*/) : undefined;
+    const designs =
+      variantType === "designs"
+        ? variants?.trim().split(/\s*,\s*/)
+        : undefined;
+    const configurations =
+      variantType === "configurations"
+        ? variants?.trim().split(/\s*,\s*/)
+        : undefined;
+
+    const materials = productMaterials?.trim().split(/\s*,\s*/);
       return ctx.prisma.product.update({
         where: {
           id,
         },
         data: {
           name,
+
+            description,
+            location,
+
+            price,
+            secondHand,
+            width,
+            length,
+            height,
+            categoryId,
+            colors,
+            designs,
+            sizes,
+            configurations,
+            materials,
+            subDepartmentId,
+            departmentId,
         },
       });
     }),
@@ -157,7 +224,7 @@ export const productRouter = createTRPCRouter({
 
   delete: publicProcedure
     .input(z.object({ id: z.string() }))
-    .query(({ input, ctx }) => {
+    .mutation(({ input, ctx }) => {
       const { id } = input;
       return ctx.prisma.product.update({
         where: {
