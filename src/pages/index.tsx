@@ -16,10 +16,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Jenga</title>
         <meta name="description" content="Building your Dreams" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
 
       
@@ -34,10 +34,10 @@ export default function Home() {
               Products for Your Dream Spaces.
             </p>
 
-          { !authenticated && <button className=" w-full text-lg py-1.5 rounded-full hover:bg-violet-400 mt-5  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-200 bg-opacity-70 hover:text-white"
-            onClick={()=> router.push("/auth")}>
-              Sign Up
-            </button>}
+          <button className=" w-96 text-lg py-1.5 rounded-full hover:bg-violet-400 mt-5  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-200 bg-opacity-70 hover:text-white"
+            onClick={()=> router.push("/products")}>
+             Visit Shop
+            </button>
           </div>
 
           <div className="md:flex flex-col items-start gap-3 mx-2 lg:mx-4 hidden">
