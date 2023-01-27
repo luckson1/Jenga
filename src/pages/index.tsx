@@ -34,7 +34,7 @@ export default function Home() {
               Products for Your Dream Spaces.
             </p>
 
-          <button className=" w-96 text-lg py-1.5 rounded-full hover:bg-violet-400 mt-5  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-200 bg-opacity-70 hover:text-white"
+          <button className=" w-80 text-lg py-1.5 rounded-full hover:bg-violet-400 mt-5  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-200 bg-opacity-70 hover:text-white"
             onClick={()=> router.push("/products")}>
              Visit Shop
             </button>
