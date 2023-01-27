@@ -70,8 +70,8 @@ const subDepartments=department?.SubDepartment
   return (
     <>
 
-    <div className=' mt-0 md:mt-16 text-center w-screen bg-gradient-to-r from-white via-white to-violet-50'>
-      <h1>
+    <div className=' mt-0 mb-16 md:mb-10 md:mt-16 text-center w-screen bg-gradient-to-r from-white via-white to-violet-50'>
+      <h1 className='my-5 text-2xl'>
 {     department?.name}
       </h1>
 {isLoading? <div className="w-96 h-96 m-auto"> <Loading /> </div> :subDepartments?.map(subDepartment=> (
