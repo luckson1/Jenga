@@ -11,54 +11,7 @@ import { useRouter } from 'next/router'
 import { GetStaticProps } from 'next'
 import { Department, SubDepartment } from '@prisma/client'
 import Loading from '../../../components/display/LoadingSmall'
-// export async function getStaticPaths() {
-//     return {
-//       paths: [
-//         { params: {id:" 2dc58cdc-58a2-4544-a063-9f4cf591e329" }},
-  
-//   { params: {id: "a9715500-60ae-4a79-880e-23cf7845441b" }},
-  
-//   { params: {id: "679a977d-d9e8-428c-b9d2-0277a2ec53e7" }},
-  
-//   { params: {id: "d7ff4ac1-e48a-40a5-9dff-6889be0e7ef4 "}},
-  
-//   { params: {id: "e9f1b4ab-3d65-48d8-957b-3c8c4e4170d3" }},
-  
-//   { params: {id: "ea687f54-484a-494a-a297-e71932bd1b9d "}},
-//       ],
-//       fallback: false,
-//     }
-//   }
-  
-//   export const getStaticProps: GetStaticProps = (context ) => {
-// //get id from query params
 
-// const params= context.params as unknown
-// console.log(params)
-// const id=params as string
-
-// const {data: department}=api.departments.getOne.useQuery({id})
-
-//     return {
-//       // Passed to the page component as props
-  
-  
-//       props: {
-//         department,
-//        },
-//     }
-//   }
-  
-
-// const DepartmentId  = ({department}: { department:  (Department & {
-//     SubDepartment: (SubDepartment & {
-//         Category: {
-//             id: string;
-//             name: string;
-//             Url: string | null;
-//         }[];
-//     })[];
-// }) | null | undefined }) => {
 
 const DepartmentId  = ()=> {
 
