@@ -4,11 +4,37 @@ import { api } from "../../../../utils/api";
 import Image from "next/image";
 import { BsWhatsapp } from "react-icons/bs";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { PrismaClient } from "@prisma/client";
+import { GetStaticProps } from "next";
 
-const ProductId = () => {
-  const router = useRouter();
+
+const prisma = new PrismaClient();
+
+export async function getStaticPaths() {
+  const products = await prisma.product.findMany({
+    select: {
+      id: true,
+    },
+  });
+  const paths = products.map((product) => ({
+    params: { id: product.id },
+  }));
+
+  return { paths, fallback: false };
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const productId = context?.params?.id as string;
+
+
+  return { props: { productId} };
+};
+
+
+const ProductId = ({productId}: {productId:string}) => {
+
   const [currentImage, setCurrentImage] = useState("/livingRoom.jpeg");
-  const productId = router.query.id as string;
+
 
   const { data: images} = api.image.imagesAndUser.useQuery({
     productId,
