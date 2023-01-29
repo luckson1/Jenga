@@ -1,8 +1,7 @@
 import React from "react";
 
 import SubCategory from "../../../components/display/Category";
-import { api } from "../../../utils/api";
-import { useRouter } from "next/router";
+
 import { GetStaticProps } from "next";
 import Loading from "../../../components/display/LoadingComponent";
 import { Department, PrismaClient } from "@prisma/client";
@@ -61,9 +60,6 @@ const DepartmentId = ({
     name: string;
   };
 }) => {
-  // const router=useRouter()
-  // const id= router.query.id as string
-  // const {data: department, isLoading}=api.departments.getOne.useQuery({id})
   const subDepartments = department?.SubDepartment;
 
   return (
