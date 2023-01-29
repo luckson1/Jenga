@@ -80,7 +80,7 @@ return extendedImages
 
 
     //fetch all images belonging to a product and include user data
-    imagesAndUsers: publicProcedure
+    imagesAndUser: publicProcedure
     .input(z.object({ productId: z.string() }))
     .query(async ({ ctx , input}) => {
       const { productId } = input;

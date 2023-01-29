@@ -4,14 +4,13 @@ import { api } from "../../../../utils/api";
 import Image from "next/image";
 import { BsWhatsapp } from "react-icons/bs";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
-import Loading from "../../../../components/display/LoadingComponent";
 
 const ProductId = () => {
   const router = useRouter();
   const [currentImage, setCurrentImage] = useState("/livingRoom.jpeg");
   const productId = router.query.id as string;
 
-  const { data: images, isLoading } = api.image.imagesAndUsers.useQuery({
+  const { data: images} = api.image.imagesAndUser.useQuery({
     productId,
   }, {
 onSuccess: (images)=> setCurrentImage(images.at(0)?.url ?? "/livingRoom.jpeg")
