@@ -29,10 +29,7 @@ const Category = () => {
             <p className="text-sm flex gap-1"> < RiProductHuntLine className="text-violet-400 text-lg "/> {product.name}</p>
             <p className="font-bold text-sm flex gap-1">  <RiMoneyDollarBoxLine  className="text-violet-400 text-lg"/> Ksh. {product.price}</p>
           </div>
-          <div className="flex flex-row justify-start gap-12 mt-2">
-            <p className="text-sm flex gap-1"><AiOutlineShop className="text-violet-400 text-lg" /> {product.user.name}</p>
-            <p className="text-sm flex gap-1 " > <MdOutlineLocationOn className="text-violet-400 text-lg"/>  {product.location}</p>
-          </div>
+       
           </Link>
         </div>
       ))}
