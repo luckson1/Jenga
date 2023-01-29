@@ -3,8 +3,7 @@ import React from "react";
 import SubCategory from "../../../components/display/Category";
 
 import { GetStaticProps } from "next";
-import Loading from "../../../components/display/LoadingComponent";
-import { Department, PrismaClient } from "@prisma/client";
+import {  PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function getStaticPaths() {
