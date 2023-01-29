@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { productCategories } from '../../components/assets/assets'
 import Nav from '../../components/navigation/Nav'
 import { api } from '../../utils/api'
-import Loading from '../../components/display/LoadingSmall'
+import Loading from '../../components/display/LoadingComponent'
 
 const Products = () => {
   const router= useRouter()

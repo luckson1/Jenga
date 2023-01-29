@@ -10,7 +10,7 @@ import { api } from '../../../utils/api'
 import { useRouter } from 'next/router'
 import { GetStaticProps } from 'next'
 import { Department, SubDepartment } from '@prisma/client'
-import Loading from '../../../components/display/LoadingSmall'
+import Loading from '../../../components/display/LoadingComponent'
 
 
 const DepartmentId  = ()=> {

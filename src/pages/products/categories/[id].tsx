@@ -6,7 +6,7 @@ import Product from "../../../components/display/Product";
 import { MdOutlineLocationOn } from "react-icons/md";
 import {RiMoneyDollarBoxLine, RiProductHuntLine} from "react-icons/ri"
 import { AiOutlineShop } from "react-icons/ai";
-import Loading from "../../../components/display/LoadingSmall";
+import Loading from "../../../components/display/LoadingComponent";
 import Comingsoon from "../../../components/comingsoon";
 import Link from "next/link";
 

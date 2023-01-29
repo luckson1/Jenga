@@ -31,7 +31,8 @@ const router=useRouter()
         {departments?.map((d) => (
           <div key={d.id} className="ml-10 flex flex-row bg-slate-200 cursor-pointer h-12" onClick={()=> router.push(`/admin/departments/${d.id}`)}>
         
-            {d.name}
+            {d.name} : &#123; params: &#123;id: {d.id}&#125;&#125;
+
          
           </div>
         ))}

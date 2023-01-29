@@ -1,7 +1,7 @@
 import React from 'react'
 import { api } from '../../utils/api'
 import GetImage from "./../images/GetImage"
-import Loading from './LoadingSmall'
+import Loading from './LoadingComponent'
 
 const Product = ({id}: {id:string}) => {
     //fetch all images beloging to a prioduct

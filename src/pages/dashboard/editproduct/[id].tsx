@@ -6,7 +6,7 @@ import Alerts from "../../../components/display/errors/Alerts";
 import { useRouter } from "next/router";
 import LoadingButton from "../../../components/display/LoadingButton";
 import { ProductParams } from "../productform";
-import Loading from "../../../components/display/LoadingSmall";
+import Loading from "../../../components/display/LoadingComponent";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -78,36 +78,36 @@ const EditProductform = () => {
   });
 
   //handle submission of form values
-  const handleSubmit = useCallback(
+  const handleSubmit =
     (values: Omit<ProductParams, "files">) => {
       editProduct({ id, ...values });
-    },
-    [id]
-  );
-
+    };
   const formik = useFormik({
     initialValues,
     validationSchema: productSchema,
     onSubmit: (values) => handleSubmit(values),
   });
 
+const setValues=useCallback((field: string, value:any)=> {
+  formik.setFieldValue(field, value)
+}, [formik])
 
   // populate form after loading product data
   useEffect(()=> {
     if (product) {
     
-      formik.setFieldValue("name", product?.name);
+      setValues("name", product?.name);
   
   
-        formik.setFieldValue("departmentId", product?.departmentId);
-      formik.setFieldValue("subDepartmentId", product?.subDepartmentId);
-      formik.setFieldValue("categoryId", product?.categoryId);
-      formik.setFieldValue("description", product?.description);
+        setValues("departmentId", product?.departmentId);
+      setValues("subDepartmentId", product?.subDepartmentId);
+      setValues("categoryId", product?.categoryId);
+      setValues("description", product?.description);
   
-      formik.setFieldValue("price", product?.price);
-      formik.setFieldValue("location", product?.location);
+      setValues("price", product?.price);
+      setValues("location", product?.location);
   
-      formik.setFieldValue(
+      setValues(
         "variants",
         colors
           ? product?.colors?.toString()
@@ -116,15 +116,15 @@ const EditProductform = () => {
           : product?.designs?.toString()
       );
   
-      formik.setFieldValue(
+      setValues(
         "variantType",
         sizes ? "sizes" : colors ? "colors" : designs ? "designs" : ""
       );
-      formik.setFieldValue("secondHand", product?.secondHand ?? false);
-      formik.setFieldValue("width", product?.width ?? 0);
-      formik.setFieldValue("length", product?.length ?? 0);
-      formik.setFieldValue("height", product?.height ?? 0);
-      formik.setFieldValue("productMaterials", product?.materials.toString());
+      setValues("secondHand", product?.secondHand ?? false);
+      setValues("width", product?.width ?? 0);
+      setValues("length", product?.length ?? 0);
+      setValues("height", product?.height ?? 0);
+      setValues("productMaterials", product?.materials.toString());
     }
   }, [product?.id]
   )

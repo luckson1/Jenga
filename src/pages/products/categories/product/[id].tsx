@@ -4,7 +4,7 @@ import { api } from "../../../../utils/api";
 import Image from "next/image";
 import { BsWhatsapp } from "react-icons/bs";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
-import Loading from "../../../../components/display/LoadingSmall";
+import Loading from "../../../../components/display/LoadingComponent";
 
 const ProductId = () => {
   const router = useRouter();
