@@ -6,10 +6,10 @@ import { useRouter } from "next/router";
 import React from "react";
 
 
-const CategoryDisplay = ({ department }: { department: Department & {
-  SubDepartment: (SubDepartment & {
-      Category: Category[];
-  })[];
+const CategoryDisplay = ({ department }: { department: {
+  name: string;
+  id: string;
+  Url: string | null;
 } }
 ) => {
   const router = useRouter();
