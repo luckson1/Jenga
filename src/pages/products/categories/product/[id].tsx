@@ -44,7 +44,7 @@ onSuccess: (images)=> setCurrentImage(images.at(0)?.url ?? "/livingRoom.jpeg")
  
   const product = images?.at(0)?.Product;
   const user = images?.at(0)?.user;
-  console.log(product?.materials);
+
 
   return (
     <div className="my-3 flex flex-col">
@@ -87,7 +87,7 @@ onSuccess: (images)=> setCurrentImage(images.at(0)?.url ?? "/livingRoom.jpeg")
             </div>
           </div>
           <div className="mx-auto flex h-[50%] w-full items-center justify-center md:h-full md:w-[40%] md:items-start lg:w-[50%] lg:items-center">
-            <div className="flex h-[80%] w-[95%] flex-col items-center justify-center rounded-lg bg-violet-50 p-5 shadow-lg shadow-violet-500/50 md:h-[65%] md:w-[90%] md:p-10 lg:w-[80%] lg:h-[90%]">
+            <div className="flex h-[80%] w-[95%] flex-col items-center justify-center rounded-lg bg-slate-50 p-5 shadow-lg shadow-slate-600/100 bg-opacity-10 md:h-[65%] md:w-[90%] md:p-10 lg:w-[80%] lg:h-[90%]">
               <p className="text-2xl tracking-widest text-blue-700">
                 {product?.name}
               </p>
