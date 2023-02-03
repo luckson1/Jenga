@@ -91,7 +91,7 @@ export const productRouter = createTRPCRouter({
 
   // fetch all products products created by a user
 
-  getUserProducts: publicProcedure.query(({ ctx }) => {
+  getUserProducts: protectedProcedure.query(({ ctx }) => {
     const userId = ctx.session?.user?.id;
     return ctx.prisma.product.findMany({
       where: {
