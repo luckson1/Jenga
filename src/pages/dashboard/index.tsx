@@ -6,10 +6,12 @@ import GetThumbNail from "../../components/images/GetThumbNail";
 import { MdDeleteForever, MdEdit, MdOutlineRemoveRedEye } from "react-icons/md";
 import Link from "next/link";
 import { useState } from "react";
+import Loading from "../../components/display/LoadingComponent";
 
 const Index = () => {
   const router = useRouter();
-  const { data: userProducts } = api.product.getUserProducts.useQuery();
+  const { data: userProducts, isError, error , isLoading} = api.product.getUserProducts.useQuery();
+
   const ctx=api.useContext()
   const {mutate:del}=api.product.delete.useMutation({
     onSuccess:()=>{ ctx.product.getUserProducts.invalidate(); setIsShowModal(false)}
@@ -59,9 +61,9 @@ const [isShowModal, setIsShowModal]=useState(false)
       <div>
         <div className="-mx-4 overflow-x-auto px-4 py-4 sm:-mx-8 sm:px-8">
           <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
-            { !userProducts?.length? <p className="text-lg text-center">
+            {!isLoading && !isError && !userProducts?.length? <p className="text-lg text-center">
                   You have Not Listed Any Product. Please Create One
-                </p>:<table className="min-w-full leading-normal">
+                </p>:isError? <p className="text-lg text-center">{error.message}</p>: isLoading? <div className="w-[200px] h-[200px] flex justify-center "><Loading /> </div>:<table className="min-w-full leading-normal">
               <thead>
                 <tr>
                   <th className="border-b-2 border-gray-200 bg-gray-100 px-5 py-3 text-left text-xs font-semibold uppercase tracking-wider text-gray-600">
