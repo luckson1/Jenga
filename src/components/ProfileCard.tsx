@@ -3,8 +3,8 @@ import React from 'react'
 
 const ProfileCard = ({src, alt}: {src: string, alt: string}) => {
   return (
-    <div className='relative h-7 w-7'>
-        <Image fill src={src} alt={alt} sizes='h-7 w-7' className='rounded-full'/>
+    <div className='relative h-5 w-5 md:h-7 md:w-7 '>
+        <Image fill src={src} alt={alt} className='rounded-full'/>
     </div>
   )
 }
