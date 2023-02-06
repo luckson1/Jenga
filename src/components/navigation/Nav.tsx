@@ -5,7 +5,8 @@ import { CgProfile} from 'react-icons/cg'
 import { MdEngineering } from 'react-icons/md'
 import { useRouter } from 'next/router'
 import { signOut, useSession } from 'next-auth/react'
-import ProfileCard from '../ProfileCard'
+import ProfileCard from '../display/ProfileCard'
+
 
 
 function Nav() {
