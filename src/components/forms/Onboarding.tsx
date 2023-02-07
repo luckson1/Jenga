@@ -31,6 +31,7 @@ const Onboarding = () => {
   });
   const { data, status } = useSession();
   // tslint:disable-next-line (for vercel build)
+  //@ts-ignore
   const userRole = data?.user?.role;
   const isAllowed =
      userRole === "SELLER" 
