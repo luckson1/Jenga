@@ -7,6 +7,9 @@ import { useRouter } from "next/router";
 import LoadingButton from "../../../components/display/LoadingButton";
 import { ProductParams } from "../productform";
 import Loading from "../../../components/display/LoadingComponent";
+import { useSession } from "next-auth/react";
+import { LoginCard } from "../../../components/forms/LoginPage";
+import Onboarding from "../../../components/forms/Onboarding";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -34,6 +37,12 @@ const productSchema = Yup.object().shape({
 });
 
 const EditProductform = () => {
+  const {data, status}=useSession()
+  const userRole=data?.user?.role
+  const isAllowed=userRole==="ADMIN" || userRole==="SELLER" || userRole==="EDITOR"
+  const isLoadingStatus=status==="loading"
+  const isUnAthorised=status==="unauthenticated"
+  const isAuthorised=status==="authenticated"
   // get id from params and fetch the product
   const router = useRouter();
   const id = router.query.id as string;
@@ -153,8 +162,10 @@ const setValues=useCallback((field: string, value:any)=> {
   // get the categories of the selected sub-deparment
 
   const categories = selectedSubDepartment?.Category;
+  if (isUnAthorised) return <LoginCard />
+  if (isLoadingStatus || !product) return <div className="w-[300px] h-[300px]"><Loading/></div>
+  if(isAuthorised && !isAllowed) return <Onboarding />
 
-  if (!product) return <div className=" mt-16 mx-auto w-[300px] h-[300px]"><Loading/></div>;
 
   return (
     <div className="mt-0 mb-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:mt-16 md:text-[16px]">

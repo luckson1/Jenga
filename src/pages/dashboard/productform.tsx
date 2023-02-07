@@ -7,6 +7,10 @@ import Alerts from "../../components/display/errors/Alerts";
 import axios from "axios";
 import { useRouter } from "next/router";
 import LoadingButton from "../../components/display/LoadingButton";
+import { useSession } from "next-auth/react";
+import { LoginCard } from "../../components/forms/LoginPage";
+import Loading from "../../components/display/LoadingComponent";
+import Onboarding from "../../components/forms/Onboarding";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -51,16 +55,23 @@ export interface ProductParams {
   productMaterials?: string;
   variantType?: string;
   variants?: string;
-      
-  materials? :   string;
+
+  materials?: string;
 }
 
 const Productform = () => {
+  const { data, status } = useSession();
+  const userRole = data?.user?.role;
+  const isAllowed =
+    userRole === "ADMIN" || userRole === "SELLER" || userRole === "EDITOR";
+  const isLoadingStatus = status === "loading";
+  const isUnAthorised = status === "unauthenticated";
+  const isAuthorised = status === "authenticated";
   //TODO: create a product hook
   const { mutate: addProduct, data: product } = api.product.add.useMutation({
     onSuccess: () => console.log("Product  created"),
   });
-const [isLoading, setIsloading]=useState(false)
+  const [isLoading, setIsloading] = useState(false);
   // TODO: create image and Upload to s3 bucket
 
   async function uploadToS3(values: ProductParams, productId?: string) {
@@ -72,7 +83,7 @@ const [isLoading, setIsloading]=useState(false)
     // loop through files and create an image then create signed url using image id
     for (const file of files) {
       const { data }: { data: { uploadUrl: string; key: string } } =
-        await axios.get(`/api/aws/upload?productId=${productId}`);
+        await axios.get(`/api/aws/uploadImages?productId=${productId}`);
 
       const { uploadUrl } = data;
 
@@ -91,9 +102,9 @@ const [isLoading, setIsloading]=useState(false)
   const context = api.useContext();
   useEffect(() => {
     if (productId) {
-      setIsloading(true)
+      setIsloading(true);
       uploadToS3(formik.values, productId).then(() => {
-        setIsloading(false)
+        setIsloading(false);
         context.product.getUserProducts.invalidate();
         router.push("/dashboard");
       });
@@ -117,7 +128,7 @@ const [isLoading, setIsloading]=useState(false)
     validationSchema: productSchema,
     onSubmit: (values) => handleSubmit(values),
   });
-  console.log(formik.values.price)
+
   // fetch department data
   const { data: departments } = api.departments.getAll.useQuery();
 
@@ -149,9 +160,17 @@ const [isLoading, setIsloading]=useState(false)
   const sizes = formik.values.variantType === "sizes";
   const colors = formik.values.variantType === "colors";
   const designs = formik.values.variantType === "designs";
-
+  
+  if (isUnAthorised) return <LoginCard />;
+  if (isLoadingStatus)
+    return (
+      <div className="h-[300px] w-[300px]">
+        <Loading />
+      </div>
+    );
+  if (isAuthorised && !isAllowed) return <Onboarding />;
   return (
-    <div className="mt-0 md:mt-16 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:text-[16px]">
+    <div className="mt-0 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:mt-16 md:text-[16px]">
       <div className="flex w-screen flex-row justify-center">
         <form
           className="my-8 mx-auto flex h-fit w-[370px] flex-col items-start gap-4 rounded-md bg-white py-5 px-4 shadow-md md:w-[60%] md:px-10"
@@ -294,7 +313,7 @@ const [isLoading, setIsloading]=useState(false)
                   <input
                     type="number"
                     id="price"
-                    onChange={e => {
+                    onChange={(e) => {
                       formik.setFieldValue("price", parseInt(e.target.value));
                     }}
                     onBlur={formik.handleBlur("price")}
@@ -495,14 +514,18 @@ const [isLoading, setIsloading]=useState(false)
               </div>
             </div>
           </section>
-          {isLoading ? <div className="w-[322px]">
-          <LoadingButton />
-        </div>:   <button
-            className="w-[322px] rounded bg-violet-600 bg-opacity-30 p-3 text-violet-700 outline outline-1 outline-violet-600 hover:bg-violet-600 hover:bg-opacity-100 hover:text-white"
-            type="submit"
-          >
-            Submit
-          </button>}
+          {isLoading ? (
+            <div className="w-[322px]">
+              <LoadingButton />
+            </div>
+          ) : (
+            <button
+              className="w-[322px] rounded bg-violet-600 bg-opacity-30 p-3 text-violet-700 outline outline-1 outline-violet-600 hover:bg-violet-600 hover:bg-opacity-100 hover:text-white"
+              type="submit"
+            >
+              Submit
+            </button>
+          )}
         </form>
       </div>
     </div>
