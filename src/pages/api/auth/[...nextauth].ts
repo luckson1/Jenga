@@ -11,14 +11,17 @@ import { env } from "../../../env/server.mjs";
 export const authOptions: NextAuthOptions = {
   // Include user.id on session
   callbacks: {
-      // tslint:disable-next-line (for vercel build)
-  //@ts-ignore
+
     session({ session, user }) {
       if (session.user) {
         session.user.id = user.id;
        
       }
+            // tslint:disable-next-line (for vercel build)
+  //@ts-ignore
       if(session.user && user.role) {
+              // tslint:disable-next-line (for vercel build)
+  //@ts-ignore
         session.user.role = user.role
       }
       return session;
