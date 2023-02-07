@@ -25,7 +25,7 @@ function Nav() {
       <p className='hover:text-sky-500 text-xs font-thin md:text-base'>Home</p>
       </div>
       <div className='flex my-auto flex-row px-4 justify-start md:justify-center lg:justify-end md:px-8 gap-6 md:gap-16  w-[60%]'>
-        <div className='flex  flex-col md:flex-row transition duration-300 ease-in-out transform hover:-translate-x-1 hover:scale-105 align-baseline gap-0.5 md:gap-2  hover:bg-slate-50 hover:shadow cursor-pointer py-0.5 px-1 md:p-2' onClick={()=> router.push("/products")}>
+        <div className='flex  flex-col md:flex-row transition duration-300 ease-in-out transform hover:-translate-x-1 hover:scale-105 align-baseline gap-0.5 md:gap-2  hover:bg-slate-50 hover:shadow cursor-pointer py-0.5 px-1 md:p-2' onClick={()=> router.push("/departments")}>
 <AiOutlineShoppingCart className='text-lg  md:text-2xl text-indigo-700'/>
 <p className='hover:text-sky-500 text-xs font-thin md:text-base'>Shop</p>
         </div>

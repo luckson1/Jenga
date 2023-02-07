@@ -134,7 +134,7 @@ const [isShowModal, setIsShowModal]=useState(false)
                     <div className="dropdown dropdown-left z-10">
   <label tabIndex={0} className="btn m-1 btn-ghost">   <SlOptionsVertical className="whitespace-no-wrap text-gray-900 cursor-pointer" /></label>
   <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-32">
-  <li> < Link href={{pathname: `/products/categories/product/${p.id}`}}> <MdOutlineRemoveRedEye className="text-xl"/> View</Link></li>
+  <li> < Link href={{pathname: `/departments/category/product/${p.id}`}}> <MdOutlineRemoveRedEye className="text-xl"/> View</Link></li>
     <li><Link href={{pathname: `dashboard/editproduct/${p.id}`}}> <MdEdit className="text-xl"/>  Edit</Link></li>
     <li><button  onClick={()=>{setSelectedId(p.id); setIsShowModal(true)}}><MdDeleteForever className="text-xl"/> Delete</button></li>
   </ul>

@@ -25,7 +25,7 @@ const CategoryDisplay = ({ department }: { department: {
         quality={50}
         className="rounded-2xl"
       />
-          <Link href={{pathname: `products/department/${department.id}`}}  >
+          <Link href={{pathname: `departments/${department.id}`}}  >
       <button
         className="z-10 w-40 transform rounded-full bg-violet-400 bg-opacity-70 py-1.5 text-violet-700 font-bold outline outline-violet-700 transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-violet-700 hover:text-slate-100 hover:outline-none"
        

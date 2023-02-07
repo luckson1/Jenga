@@ -1,6 +1,6 @@
 import React from "react";
 
-import SubCategory from "../../../components/display/Category";
+import SubCategory from "../../components/display/Category";
 
 import { GetStaticProps } from "next";
 import {  PrismaClient } from "@prisma/client";

@@ -35,7 +35,7 @@ export default function Home() {
             </p>
 
           <button className=" w-80 text-lg py-1.5 rounded-full hover:bg-violet-400 mt-5  font-light text-violet-700 outline outline-violet-700 hover:outline-none bg-violet-200 bg-opacity-70 hover:text-white"
-            onClick={()=> router.push("/products")}>
+            onClick={()=> router.push("/departments")}>
              Visit Shop
             </button>
           </div>
@@ -63,25 +63,25 @@ export default function Home() {
               <div className="flex flex-row gap-3 align-baseline flex-wrap">
                 <button
                   className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
-                  onClick={() => router.push("/products/department/ea687f54-484a-494a-a297-e71932bd1b9d")}
+                  onClick={() => router.push("/departments/ea687f54-484a-494a-a297-e71932bd1b9d")}
                 >
                   Living & Dining Room
                 </button>
                 <button
                   className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
-                  onClick={() => router.push("/products/department/2dc58cdc-58a2-4544-a063-9f4cf591e329")}
+                  onClick={() => router.push("/departments/2dc58cdc-58a2-4544-a063-9f4cf591e329")}
                 >
                  Kitchen
                 </button>
                 <button
                   className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
-                  onClick={() => router.push("/products/department/d7ff4ac1-e48a-40a5-9dff-6889be0e7ef4")}
+                  onClick={() => router.push("/departments/d7ff4ac1-e48a-40a5-9dff-6889be0e7ef4")}
                 >
                  Home Office
                 </button>
                 <button
                   className="px-3 text-sm py-1 rounded-full bg-inherit bg-opacity-20 font-light text-violet-700 outline outline-violet-700 hover:outline hover:bg-white transition duration-300 ease-in-out transform hover:-translate-y-0.5 hover:scale-105"
-                  onClick={() => router.push("/products")}
+                  onClick={() => router.push("/departments")}
                 >
                   See More
                 </button>
@@ -120,7 +120,7 @@ export default function Home() {
         </p>
         <div className=" w-full md:w-[90%] h-[35%] flex flex-row flex-wrap justify-around mt-5 mx-auto">
           <Link
-            href="/products"
+            href="/departments"
             className="bg-slate-50 h-32 w-32  md:w-[40%] rounded-md flex  flex-col md:flex-row  items-center shadow-md gap-5 md:gap-7 px-3 md:px-5 cursor-pointer"
           >
             <GiSofa className="text-[60px] md:text-[80px] text-sky-400" />
