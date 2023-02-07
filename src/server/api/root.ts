@@ -4,6 +4,8 @@ import { subDepartmentRouter } from "./routers/subdepartments";
 import { categoryRouter } from "./routers/categories";
 import { productRouter } from "./routers/products";
 import { imageRouter } from "./routers/images";
+import { userRouter } from "./routers/user";
+import { logoRouter } from "./routers/logos";
 
 /**
  * This is the primary router for your server.
@@ -15,7 +17,9 @@ departments: departmentRouter,
 subDepartments: subDepartmentRouter,
 category: categoryRouter,
 product: productRouter,
-image: imageRouter
+logo: logoRouter,
+image: imageRouter,
+user: userRouter
 
 });
 

@@ -29,9 +29,9 @@ function Nav() {
 <AiOutlineShoppingCart className='text-lg  md:text-2xl text-indigo-700'/>
 <p className='hover:text-sky-500 text-xs font-thin md:text-base'>Shop</p>
         </div>
-        <div className='flex  flex-col md:flex-row transition duration-300 ease-in-out transform hover:-translate-x-1 hover:scale-105 align-baseline gap-0.5 md:gap-2  hover:bg-slate-50 hover:shadow cursor-pointer py-0.5 px-1 md:p-2' >
+        <div className='flex  flex-col md:flex-row transition duration-300 ease-in-out transform hover:-translate-x-1 hover:scale-105 align-baseline gap-0.5 md:gap-2  hover:bg-slate-50 hover:shadow cursor-pointer py-0.5 px-1 md:p-2' onClick={authenticated? ()=>router.push("/dashboard/onboarding"): ()=> router.push("/vendorAuth")}>
 <MdEngineering className='text-lg md:text-2xl text-indigo-700'/>
-<p className='hover:text-sky-500 text-xs font-thin md:text-base'>Find Pros</p>
+<p className='hover:text-sky-500 text-xs font-thin md:text-base'>Become a Vendor</p>
         </div>
      
 
