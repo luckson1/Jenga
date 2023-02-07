@@ -30,6 +30,7 @@ const Onboarding = () => {
     resolver: zodResolver(sellerSchema),
   });
   const { data, status } = useSession();
+  // tslint:disable-next-line (for vercel build)
   const userRole = data?.user?.role;
   const isAllowed =
      userRole === "SELLER" 
