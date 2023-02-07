@@ -8,9 +8,7 @@ import { MdEngineering } from "react-icons/md";
 
 export default function Home() {
   const router = useRouter();
-  const { status, data } = useSession();
-  const userImage=data?.user?.image ?? " /kitche.jpg"
-  const userName=data?.user?.name ?? "Profile Pic"
+  const { status} = useSession();
   const authenticated = status === "authenticated";
 
   return (
@@ -103,12 +101,11 @@ export default function Home() {
               Join Thousands of Home Professionals for Free
             </p>
             <p className=" text-lg lg:text-xl font-bold text-slate-900 tracking-wider">
-              You will Win Better Clients and Offer Great Customer Experience
-              with Our Marketing and Project Management Tools.
+              You will Win Better Clients and Offer Great Customer Experience.
             </p>
 
            {!authenticated && <button className="w-[60%] text-sm py-2 rounded-lg hover:bg-blue-400  font-light text-blue-700 outline outline-blue-700 hover:outline-none bg-blue-300 bg-opacity-30 hover:text-white"
-           onClick={()=> router.push("/auth")}>
+            onClick={authenticated? ()=>router.push("/dashboard/onboarding"): ()=> router.push("/vendorAuth")}>
               Join
             </button>}
           </div>
