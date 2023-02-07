@@ -1,28 +1,52 @@
-import Image from "next/image";
+
 import {SlOptionsVertical} from "react-icons/sl"
 import { useRouter } from "next/router";
 import { api } from "../../utils/api";
 import GetThumbNail from "../../components/images/GetThumbNail";
 import { MdDeleteForever, MdEdit, MdOutlineRemoveRedEye } from "react-icons/md";
 import Link from "next/link";
-import { useState } from "react";
+import {  useState } from "react";
 import Loading from "../../components/display/LoadingComponent";
+import {  useSession } from "next-auth/react";
 
-const Index = () => {
+import { LoginCard } from "../../components/forms/LoginPage";
+import Onboarding from "../../components/forms/Onboarding";
+
+
+  
+
+const Index =  () => {
+  
   const router = useRouter();
+let isAllowed=false
+const {data, status}=useSession()
+const userRole=data?.user?.role
+isAllowed=userRole==="ADMIN" || userRole==="SELLER" || userRole==="EDITOR"
+const isLoadingStatus=status==="loading"
+const isUnAthorised=status==="unauthenticated"
+const isAuthorised=status==="authenticated"
+
+
+
+
+  //fetch user products
   const { data: userProducts, isError, error , isLoading} = api.product.getUserProducts.useQuery();
 
   const ctx=api.useContext()
+  
   const {mutate:del}=api.product.delete.useMutation({
     onSuccess:()=>{ ctx.product.getUserProducts.invalidate(); setIsShowModal(false)}
   })
 
-  const handleDelete= (selectedId: string)=> {del({id:selectedId});  console.log("deleteting...", selectedId)}
+  const handleDelete= (selectedId: string)=> {del({id:selectedId})}
 const [selectedId, setSelectedId]=useState("")
 const [isShowModal, setIsShowModal]=useState(false)
 
+if (isUnAthorised) return <LoginCard />
+if (isLoadingStatus) return <div className="w-[300px] h-[300px]"><Loading /></div>
+if(isAuthorised && !isAllowed) return <Onboarding />
   return (
-    <div className="mt-0 md:mt-16 w-full rounded-md bg-white p-8">
+    <div className="mt-0 mb-2  md:mt-16 w-full rounded-md bg-white p-8">
       <div className=" flex items-center justify-between pb-6">
         <div>
           <h2 className="font-semibold text-gray-600">Products</h2>
@@ -150,7 +174,8 @@ const [isShowModal, setIsShowModal]=useState(false)
                 Showing 1 to 4 of 50 Entries
               </span>
               <div className="xs:mt-0 mt-2 inline-flex">
-                <button className="rounded-l bg-indigo-600 py-2 px-4 text-sm font-semibold text-indigo-50 transition duration-150 hover:bg-indigo-500">
+                <button className="rounded-l bg-indigo-600 py-2 px-4 text-sm font-semibold text-indigo-50 transition duration-150 hover:bg-indigo-500"
+                onClick={()=>router.push("dashboard/SellerOnboarding")}>
                   Prev
                 </button>
                 &nbsp; &nbsp;
