@@ -6,7 +6,6 @@ import FacebookProvider  from 'next-auth/providers/facebook'
 
 import { prisma } from "../../../server/db";
 import { env } from "../../../env/server.mjs";
-import { Profile } from "next-auth";
 
 
 export const authOptions: NextAuthOptions = {
@@ -30,19 +29,13 @@ export const authOptions: NextAuthOptions = {
       },
   providers: [
     GoogleProvider({
-       // @ts-ignore
-       profile(profile) {
-        return { role: profile.role}
-      },
+   
       clientId: env.CLIENT_ID,
       clientSecret: env.CLIENT_SECRET
     }),
     
     FacebookProvider({
-      // @ts-ignore
-      profile(profile) {
-        return { role: profile.role}
-      },
+  
       clientId: env.APP_ID,
       clientSecret: env.APP_SECRET
     }),
