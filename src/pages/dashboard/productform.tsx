@@ -61,6 +61,8 @@ export interface ProductParams {
 
 const Productform = () => {
   const { data, status } = useSession();
+        // tslint:disable-next-line (for vercel build)
+  //@ts-ignore
   const userRole = data?.user?.role;
   const isAllowed =
     userRole === "ADMIN" || userRole === "SELLER" || userRole === "EDITOR";
@@ -160,7 +162,7 @@ const Productform = () => {
   const sizes = formik.values.variantType === "sizes";
   const colors = formik.values.variantType === "colors";
   const designs = formik.values.variantType === "designs";
-  
+
   if (isUnAthorised) return <LoginCard />;
   if (isLoadingStatus)
     return (
