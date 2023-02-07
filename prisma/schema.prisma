@@ -96,6 +96,15 @@ model Image {
   user      User    @relation(fields: [userId], references: [id])
 }
 
+model Logo {
+  id String @id @default(uuid())
+
+  userId  String
+  deleted Boolean @default(false)
+
+  user User @relation(fields: [userId], references: [id])
+}
+
 model Category {
   id              String        @id @default(uuid())
   name            String
@@ -114,10 +123,16 @@ model User {
   image         String?
   role          Role      @default(USER)
   deleted       Boolean   @default(false)
+  businessName  String?
+  streetAddress String?
+  location      String?
+  website       String?
+  phoneNumber   Int?
   accounts      Account[]
   Image         Image[]
   Product       Product[]
   sessions      Session[]
+  Logo          Logo[]
 }
 
 enum Role {
