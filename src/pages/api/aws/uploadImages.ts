@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import S3 from "aws-sdk/clients/s3";
 import { env } from "../../../env/server.mjs";
 import { PrismaClient } from "@prisma/client";
-import { getServerAuthSession } from "../../../server/auth";
+import { getServerAuthSession } from "../../../server/auth.js";
 const prisma = new PrismaClient()
 
 const s3 = new S3({
