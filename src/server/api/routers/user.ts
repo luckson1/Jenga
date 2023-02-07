@@ -1,8 +1,13 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
-
-export const UserRouter = createTRPCRouter({
+const sellerSchema= z.object({ businessName: z.string().min(1, { message: 'Business Name Required' }),
+    streetAddress :z.string().min(1, { message: ' Street Address Required' }),
+    location      :z.string().min(1, { message: ' Location Required' }),
+    website       :z.string().min(1, { message: 'Website Required' }),
+    phoneNumber   :z.number(),
+logo:  z.custom<FileList>()})
+export const userRouter = createTRPCRouter({
   // add a User
 
   add: publicProcedure
@@ -50,7 +55,23 @@ export const UserRouter = createTRPCRouter({
         },
       });
     }),
-
+// upgrade to seller
+addSeller: protectedProcedure
+.input(sellerSchema)
+.mutation(async ({ctx, input})=> {
+  const id=ctx.session.user.id
+  const {businessName, location, phoneNumber, streetAddress, website}=input
+  const seller= await ctx.prisma.user.update({
+    where: {
+      id,
+     
+    },
+    data: {
+      businessName, website, location, phoneNumber, streetAddress, role: "SELLER"
+    }
+  })
+  return seller
+}),
   //delete a User
 
   delete: publicProcedure
