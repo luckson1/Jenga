@@ -1,11 +1,11 @@
 export const productCategories = [
-    {i:1, name: "Living & Dining", image: "/livingRoom.jpeg", url: "/products/living"},
-    {i:2, name: "Kitchen", image: '/kitchen.jpg' , url: "/products/kitchen"},
-    {i:3, name: "Bathroom", image: '/bathroom.jpg' , url: "/products/bathroom"},
+    {i:1, name: "Living & Dining", image: "/livingRoom.jpeg", },
+    {i:2, name: "Kitchen", image: '/kitchen.jpg'  },
+    {i:3, name: "Bathroom", image: '/bathroom.jpg' },
 
-    {i:4, name: "Bedroom", image: "/bedroom.jpg" , url: "/products/bedroom"},
-    {i:5, name: "Office", image: "/officeFurniture.jpg" , url: "/products/office"},
-    {i:6, name: "Outdoors", image: "/outdoors.jpg" , url: "/products/outdoors"},
+    {i:4, name: "Bedroom", image: "/bedroom.jpg"},
+    {i:5, name: "Office", image: "/officeFurniture.jpg" },
+    {i:6, name: "Outdoors", image: "/outdoors.jpg"},
 
 ]
 
