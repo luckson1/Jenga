@@ -13,14 +13,14 @@ export const LoginCard = () => {
 
         <>
           <button
-            onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
+            onClick={() => signIn("google")}
             className=" mb-5 flex h-10 w-72 flex-row items-center justify-between rounded border-2 border-slate-700 px-7"
           >
             <p className="tracking-[5px] text-slate-700">Google </p>
             <FcGoogle size={"30px"} />
           </button>
           <button
-            onClick={() => signIn("facebook", { callbackUrl: "/dashboard" })}
+            onClick={() => signIn("facebook")}
             className=" flex h-10 w-72 flex-row items-center justify-between rounded border-2 border-slate-700 px-7"
           >
             <p className="tracking-[5px] text-slate-700">Facebook</p>
