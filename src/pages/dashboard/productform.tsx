@@ -61,7 +61,7 @@ export interface ProductParams {
 
 const Productform = () => {
   const { data, status } = useSession();
-        // tslint:disable-next-line (for vercel build)
+  // tslint:disable-next-line (for vercel build)
   //@ts-ignore
   const userRole = data?.user?.role;
   const isAllowed =
@@ -99,19 +99,23 @@ const Productform = () => {
   }
   const productId = product?.id;
 
+
   // check if productId is available after submitting and create images with it then navigate to dashboard
   const router = useRouter();
   const context = api.useContext();
-  useEffect(() => {
+    //invalidate products data
+    const invalidate=context.product.getUserProducts.invalidate()
+  useEffect( () => {
     if (productId) {
       setIsloading(true);
       uploadToS3(formik.values, productId).then(() => {
         setIsloading(false);
-        context.product.getUserProducts.invalidate();
+        invalidate
+        ;
         router.push("/dashboard");
       });
     }
-  }, [productId]);
+  }, [productId, invalidate, router]);
   const formik = useFormik({
     initialValues: {
       name: "",
