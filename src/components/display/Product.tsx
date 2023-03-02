@@ -1,7 +1,7 @@
 import React from 'react'
 import { api } from '../../utils/api'
 import GetImage from "./../images/GetImage"
-import Loading from './LoadingComponent'
+import ImageSkeleton from './imageSkeleton'
 
 const Product = ({id}: {id:string}) => {
     //fetch all images beloging to a prioduct
@@ -10,9 +10,9 @@ const Product = ({id}: {id:string}) => {
 
   return (
     
-    <div className="carousel w-full">
+    <div className="carousel w-full h-full">
 
-    {isLoading? <div className='w-48 h-48'> <Loading />  </div>: images?.map(image=> (
+    {isLoading?<ImageSkeleton />  : images?.map(image=> (
     // set id of the carousel to the id of image for scrolling
          <div id={`${image.id}`} className="carousel-item relative w-full h-full shadow" key={image.id}>
        <GetImage url={image.url}/>
