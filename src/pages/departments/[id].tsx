@@ -74,10 +74,10 @@ const DepartmentId = ({
               {" "}
               {subDepartment.name}
             </p>
-            <div className="md:x-7 mx-3 flex h-fit w-screen flex-row flex-wrap justify-center gap-5  py-5 md:justify-start md:gap-10 md:px-7 md:py-10 ">
+            <div className="md:x-7  h-fit w-screen grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center gap-5  py-5  md:px-7 md:py-10 mx-8 ">
               {subDepartment.Category.map((c) => (
                 <div key={c.id}>
-                  <SubCategory category={c} />{" "}
+                  <SubCategory category={c} />
                 </div>
               ))}
             </div>

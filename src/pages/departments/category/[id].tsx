@@ -56,14 +56,14 @@ const Category = ({
   const products = category?.Product;
 
   return (
-    <div className="mb-20 mt-10 flex h-fit  w-screen flex-row flex-wrap justify-center gap-6 rounded-lg md:my-20 md:mb-10 md:gap-10 ">
+    <div className="grid h-fit w-screen grid-cols-1 gap-7 px-3 py-5 mx-12 md:grid-cols-2 md:gap-10 md:px-7 md:py-32 lg:grid-cols-3">
       {!products?.length ? (
         <Comingsoon />
       ) : (
         products?.map((product) => (
-          <div key={product.id} className="flex h-80 w-80 flex-col bg-white">
+          <Link href={{ pathname: `product/${product.id}` }} key={product.id} className="flex h-80 w-80 flex-col bg-white">
             <Product id={product.id} />
-            <Link href={{ pathname: `product/${product.id}` }}>
+         
               <div className="my-2 flex flex-row justify-start gap-12">
                 <p className="flex gap-1 text-sm">
                   {" "}
@@ -76,8 +76,8 @@ const Category = ({
                   Ksh. {product.price}
                 </p>
               </div>
-            </Link>
-          </div>
+         
+              </Link>
         ))
       )}
     </div>
