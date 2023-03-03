@@ -17,10 +17,11 @@ const sellerSchema = z.object({
   location: z.string().min(1, { message: " Location Required" }),
   website: z.string().min(1, { message: "Website Required" }),
   phoneNumber: z.number(),
-  logo: z.custom<FileList>().refine((val) => val.length > 0, "File is required"),
- 
+  logo: z
+    .custom<FileList>()
+    .refine((val) => val.length > 0, "File is required"),
 });
-type Values=z.infer<typeof sellerSchema>
+type Values = z.infer<typeof sellerSchema>;
 const Onboarding = () => {
   const {
     register,
@@ -33,38 +34,39 @@ const Onboarding = () => {
   // tslint:disable-next-line (for vercel build)
   //@ts-ignore
   const userRole = data?.user?.role;
-  const isAllowed =
-     userRole === "SELLER" 
+  const isOnboarded = userRole === "SELLER";
   const isLoadingStatus = status === "loading";
   const isUnAthorised = status === "unauthenticated";
   const isAuthorised = status === "authenticated";
-const router=useRouter()
-useEffect(()=> {
-  if(isAllowed) router.push("/dashboard")
-}, [isAllowed, router])
-// if a user is seller, route them to dashboard
+  const router = useRouter();
+  useEffect(() => {
+    if (isOnboarded) router.push("/dashboard");
+  }, [isOnboarded, router]);
+  // if a user is seller, route them to dashboard
   //upload Logo to s3 bucket
   async function uploadToS3(files: FileList) {
-    console.log(files)
+    console.log(files);
     if (!files) {
       return null;
     }
- // upload the image contained in the file list to s3
- for (const file of files) {
-  const { data }: { data: { uploadUrl: string; key: string } } =
-  await axios.get(`/api/aws/uploadLogo`);
+    // upload the image contained in the file list to s3
+    for (const file of files) {
+      const { data }: { data: { uploadUrl: string; key: string } } =
+        await axios.get(`/api/aws/uploadLogo`);
 
-  const { uploadUrl } = data;
+      const { uploadUrl } = data;
 
-  await axios.put(uploadUrl, file);
-}
-   
+      await axios.put(uploadUrl, file);
+    }
   }
 
-  const { mutate: addSeller , isLoading} = api.user.addSeller.useMutation({onSuccess: ()=> router.push("/dashboard")});
-  const onSubmit= handleSubmit(async(data) => {
-    await uploadToS3(data.logo);  addSeller(data)
-  })
+  const { mutate: addSeller, isLoading } = api.user.addSeller.useMutation({
+    onSuccess: () => router.push("/dashboard"),
+  });
+  const onSubmit = handleSubmit(async (data) => {
+    await uploadToS3(data.logo);
+    addSeller(data);
+  });
   if (isUnAthorised) return <LoginCard />;
   if (isLoadingStatus)
     return (
@@ -80,7 +82,7 @@ useEffect(()=> {
         </p>
         <form
           className="flex h-fit w-full flex-row flex-wrap justify-around rounded-md py-10 px-5 md:py-16 md:px-10"
-        onSubmit={onSubmit}
+          onSubmit={onSubmit}
         >
           <div className="form-control  w-full max-w-xs">
             <label className="label">
@@ -157,14 +159,18 @@ useEffect(()=> {
             <ErrorMessage errors={errors} name="logo" as="h5" />
           </div>
 
-         {isLoading? <LoadingButton/ > : <div className="form-control  w-full max-w-xs">
-            <button
-              type="submit"
-              className="btn-primary btn my-5 w-full max-w-xs"
-            >
-              Submit
-            </button>
-          </div>}
+          {isLoading ? (
+            <LoadingButton />
+          ) : (
+            <div className="form-control  w-full max-w-xs">
+              <button
+                type="submit"
+                className="btn-primary btn my-5 w-full max-w-xs"
+              >
+                Submit
+              </button>
+            </div>
+          )}
         </form>
       </div>
     </div>

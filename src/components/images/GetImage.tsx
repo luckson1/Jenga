@@ -3,9 +3,15 @@ import Image from 'next/image'
 
 function GetImage({url}: {url?: string}) {
 
-   if(url){
-
-    const imageUrl=url ?? "/furniture.jpg"
+   if(!url) return (   <>
+	<Image
+							 className="w-full h-full rounded-lg"
+							 width={320}
+							 height={256}
+							 src= "/furniture.jpg"
+							 alt="Product Image"
+						   />
+	</>)
 
   
 
@@ -15,17 +21,7 @@ function GetImage({url}: {url?: string}) {
 							className="w-full h-full rounded-lg "
 							width={320}
 							height={256}
-							src={imageUrl}
-							alt="Product Image"
-						  />
-   </>
-  )} return (
-    <>
-   <Image
-							className="w-full h-full rounded-lg"
-							width={320}
-							height={256}
-							src= "/furniture.jpg"
+							src={url}
 							alt="Product Image"
 						  />
    </>
