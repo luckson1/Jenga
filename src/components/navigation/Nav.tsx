@@ -19,7 +19,7 @@ function Nav() {
     signOut();
   };
   return (
-    <nav className=" fixed bottom-1 shadow-slate-500/100 md:top-0 z-30 md:mx-0  flex h-12 md:h-16   w-screen flex-row justify-between  bg-slate-50  px-3 ">
+    <nav className=" fixed bottom-1 shadow-slate-500/100 md:top-0 z-30 md:mx-0  flex h-12 md:h-16   w-full flex-row justify-between  bg-base-200 px-3 ">
      <div className='flex  my-auto h-10 md:h-12 flex-col md:flex-row transition duration-300 ease-in-out transform hover:-translate-x-1 hover:scale-105 align-baseline gap-0.5 md:gap-2  hover:bg-slate-50 hover:shadow cursor-pointer  px-1 md:p-2' onClick={()=> router.push("/")}>
       <FaHouseUser className='text-lg  md:text-2xl   cursor-pointer  text-indigo-700' onClick={()=> router.push("/")}/>
       <p className='hover:text-sky-500 text-xs font-thin md:text-base'>Home</p>
