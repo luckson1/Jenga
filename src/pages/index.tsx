@@ -99,8 +99,8 @@ export default function Home({
           </div>
         </div>
       </div>
-      <div className="flex min-h-full h-fit w-full flex-col  bg-white">
-      <div className="mb-16 bg-white text-center md:mb-10 md:mt-16 w-full">
+      <div className="flex min-h-full h-fit w-full flex-col  bg-base-100">
+      <div className="mb-16 bg-base-100 text-center md:mb-10 md:mt-16 w-full">
         <h1 className="my-5 text-2xl">Shop by a Department</h1>
         <div className="grid h-fit w-full grid-cols-1 gap-7  py-5 ml-12 md:grid-cols-2 md:gap-10 md:px-7 md:py-10 lg:grid-cols-3">
           {departments?.map((d) => (
@@ -111,25 +111,26 @@ export default function Home({
         </div>
         </div>
  
-        <div className=" my-16 mx-auto  mb-10 flex h-[60%] w-[90%] flex-col gap-7 rounded-3xl bg-[#1B2430] py-16 md:flex-row">
-          <div className="flex w-full flex-col items-center justify-center md:w-[60%] h-96">
-            <p className=" ml-4 text-xl tracking-widest text-slate-100 md:ml-16 md:text-3xl">
+        <div className=" my-16 mx-auto  mb-10 flex h-[60%] w-[90%] flex-col gap-7 rounded-3xl bg-[#1B2430] py-16 md:flex-row card  glass shadow-accent shadow-lg">
+          <div className="flex w-full flex-col items-center justify-center md:w-[60%] h-96 ">
+          <div className="card-body">
+            <p className="  text-xl tracking-widest text-slate-100 md:ml-16 md:text-3xl">
               In the House Improvement Journey, You Wont Walk Alone
             </p>
-            <p className="text-large ml-4 mt-4 text-start tracking-wider text-white">
+            <p className="text-large  mt-4 text-start tracking-wider text-white">
               Find inspiration, products and the pros to make it happen — all in
               one place
             </p>
           </div>
           <div className="flex w-full flex-col items-center justify-center align-baseline md:w-[40%]">
-            <p className="md:mx-15 mx-5 my-7  text-xl text-slate-100">
+            <p className="my-7  text-xl text-slate-100">
               {" "}
               Become a Member
             </p>
             {!authenticated && (
               <button
                 type="button"
-                className="inline-flex w-full max-w-xs items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                className="inline-flex  w-full max-w-xs items-center justify-center gap-2 rounded-md border border-transparent bg-blue-500 py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800"
                 onClick={
                   authenticated
                     ? () => router.push("/dashboard/onboarding")
@@ -140,9 +141,10 @@ export default function Home({
               </button>
             )}
           </div>
+          </div>
         </div>
       </div>
-      <div className="h-fit w-full">
+      <div className="h-fit w-full mt-10">
       <svg
         className="wave-top   mt-0 bg-gradient-to-r from-violet-200 via-purple-200 to-violet-200"
         viewBox="0 0 1439 147"
@@ -152,7 +154,7 @@ export default function Home({
       >
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
           <g transform="translate(-1.000000, -14.000000)" fillRule="nonzero">
-            <g className="wave" fill="white">
+            <g className="wave" fill='hsl(var(--b1)'>
               <path d="M1440,84 C1383.555,64.3 1342.555,51.3 1317,45 C1259.5,30.824 1206.707,25.526 1169,22 C1129.711,18.326 1044.426,18.475 980,22 C954.25,23.409 922.25,26.742 884,32 C845.122,37.787 818.455,42.121 804,45 C776.833,50.41 728.136,61.77 713,65 C660.023,76.309 621.544,87.729 584,94 C517.525,105.104 484.525,106.438 429,108 C379.49,106.484 342.823,104.484 319,102 C278.571,97.783 231.737,88.736 205,84 C154.629,75.076 86.296,57.743 0,32 L0,0 L1440,0 L1440,84 Z"></path>
             </g>
             <g transform="translate(1.000000, 15.000000)" fill="#FFFFFF">
