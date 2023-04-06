@@ -16,19 +16,20 @@ const CategoryDisplay = ({ department }: { department: {
 
   return (
    
-      <div className="relative flex h-64 w-80  items-center justify-center rounded-md   bg-cover  bg-center md:w-64 lg:h-72 lg:w-72" key={department?.id}>
+      <div className="flex items-center justify-center rounded-md   bg-cover  bg-center w-fit h-fit" >
       <Image
         alt={department?.name}
         src={department?.Url ?? "https://res.cloudinary.com/dhciks96e/image/upload/v1674435518/warmKitchen_gkirjj.jpg"}
-        fill
+        height={256}
+        width={320}
         sizes="(max-width: 288px) 288px,(max-height: 288px) 288px "
         quality={50}
-        className="rounded-2xl"
+        className="rounded-2xl h-64 w-80 md:w-64 lg:h-72 lg:w-72"
       />
           <Link href={{pathname: `departments/${department.id}`}}  >
       <button
-        className="z-10 w-40 transform rounded-full bg-violet-400 bg-opacity-70 py-1.5 text-violet-700 font-bold outline outline-violet-700 transition duration-500 ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-violet-700 hover:text-slate-100 hover:outline-none"
-       
+
+        className=" -ml-80 md:-ml-64 lg:-ml-72 w-36 py-2 z-10 transform  px-2 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800 duration-500 ease-in-out hover:-translate-y-1 hover:scale-105"
       >
         {department?.name}
       </button>
