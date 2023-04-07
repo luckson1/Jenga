@@ -31,7 +31,7 @@ const Products = ({
 }) => {
   return (
     <>
-      <div className="mb-16 bg-white text-center md:mb-10 md:mt-16 w-screen">
+      <div className="mb-16 bg-white text-center mt-16 w-screen">
         <h1 className="my-5 text-2xl">Shop by Department</h1>
         <div className="grid h-fit w-full grid-cols-1 gap-7 px-3 py-5 ml-12 md:grid-cols-2 md:gap-10 md:px-7 md:py-10 lg:grid-cols-3">
           {departments?.map((d) => (
