@@ -30,7 +30,7 @@ context.subDepartments.getOne.invalidate()
         },
       });
   return (
-    <div className=" fixed top-20 left-5 h-72 w-80 bg-white shadow-md md:left-32 md:w-[600px] lg:left-96">
+    <div className=" fixed top-20 left-5 h-72 w-80 bg-base-100 shadow-md md:left-32 md:w-[600px] lg:left-96">
     <p>{error?.message}</p>
     <form
       className="mx-auto my-10 flex  h-fit w-[80%] flex-row flex-wrap items-center"

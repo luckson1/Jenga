@@ -18,8 +18,8 @@ const Product = ({id}: {id:string}) => {
        <GetImage url={image.url}/>
          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             {/* provide logic of displaying the carousel images */}
-           <a onClick={e=>e.stopPropagation()} href={`${images.indexOf(image)===0 ? `#${images[images?.length-1]?.id}`: `#${images[images.indexOf(image)-1]?.id}`}`} className="btn btn-circle bg-white text-xl text-slate-900 bg-opacity-30">❮</a> 
-           <a onClick={e=>e.stopPropagation()} href={`${images?.indexOf(image)===images.length-1 ? `#${images[0]?.id}`: `#${images[images.indexOf(image)+1]?.id}`}`} className="btn btn-circle bg-white text-xl text-slate-900 bg-opacity-30">❯</a>
+           <a onClick={e=>e.stopPropagation()} href={`${images.indexOf(image)===0 ? `#${images[images?.length-1]?.id}`: `#${images[images.indexOf(image)-1]?.id}`}`} className="btn btn-circle bg-base-100 text-xl text-slate-900 bg-opacity-30">❮</a> 
+           <a onClick={e=>e.stopPropagation()} href={`${images?.indexOf(image)===images.length-1 ? `#${images[0]?.id}`: `#${images[images.indexOf(image)+1]?.id}`}`} className="btn btn-circle bg-base-100 text-xl text-slate-900 bg-opacity-30">❯</a>
          </div>
        </div>  
     ))} 

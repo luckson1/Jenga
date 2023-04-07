@@ -179,7 +179,7 @@ const Productform = () => {
     <div className="mt-0 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:mt-16 md:text-[16px]">
       <div className="flex w-screen flex-row justify-center">
         <form
-          className="my-8 mx-auto flex h-fit w-[370px] flex-col items-start gap-4 rounded-md bg-white py-5 px-4 shadow-md md:w-[60%] md:px-10"
+          className="my-8 mx-auto flex h-fit w-[370px] flex-col items-start gap-4 rounded-md bg-base-100 py-5 px-4 shadow-md md:w-[60%] md:px-10"
           onSubmit={formik.handleSubmit}
         >
           <section className="flex w-full flex-col gap-3">
@@ -211,7 +211,7 @@ const Productform = () => {
                     <span className="label-text">Pick a sub-department</span>
                   </label>
                   <select
-                    className="select-bordered select-primary select bg-white"
+                    className="select-bordered select-primary select bg-base-100"
                     onChange={formik.handleChange("subDepartmentId")}
                     onBlur={formik.handleBlur("subDepartmentId")}
                     value={formik.values.subDepartmentId}

@@ -48,7 +48,7 @@ if (isUnAthorised) return <LoginCard />
 if (isLoadingStatus) return <div className="w-[300px] h-[300px]"><Loading /></div>
 if(isAuthorised && !isAllowed) return <Onboarding />
   return (
-    <div className="mt-0 mb-2  md:mt-16 w-full rounded-md bg-white p-8">
+    <div className="mt-0 mb-2  md:mt-16 w-full rounded-md bg-base-100 p-8">
       <div className=" flex items-center justify-between pb-6">
         <div>
           <h2 className="font-semibold text-gray-600">Products</h2>
@@ -117,7 +117,7 @@ if(isAuthorised && !isAllowed) return <Onboarding />
               <tbody>
                 { userProducts?.map((p) => (
                   <tr key={p.id}>
-                    <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                    <td className="border-b border-gray-200 bg-base-100 px-5 py-5 text-sm">
                       <div className="flex items-center">
                         <div className="h-10 w-10 flex-shrink-0">
                           <GetThumbNail id={p.Image?.at(0)?.id} />
@@ -129,23 +129,23 @@ if(isAuthorised && !isAllowed) return <Onboarding />
                         </div>
                       </div>
                     </td>
-                    <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                    <td className="border-b border-gray-200 bg-base-100 px-5 py-5 text-sm">
                       <p className="whitespace-no-wrap text-gray-900">
                         {p.price}
                       </p>
                     </td>
-                    <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                    <td className="border-b border-gray-200 bg-base-100 px-5 py-5 text-sm">
                       <p className="whitespace-no-wrap text-gray-900">
                         {p.department.name}
                       </p>
                     </td>
-                    <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                    <td className="border-b border-gray-200 bg-base-100 px-5 py-5 text-sm">
                       <p className="whitespace-no-wrap text-gray-900">
                         {p.subDepartment.name}
                       </p>
                     </td>
 
-                    <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                    <td className="border-b border-gray-200 bg-base-100 px-5 py-5 text-sm">
                       <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-green-900">
                         <span
                           aria-hidden
@@ -156,7 +156,7 @@ if(isAuthorised && !isAllowed) return <Onboarding />
                         </span>
                       </span>
                     </td>
-                    <td className="border-b border-gray-200 bg-white px-5 py-5 text-sm">
+                    <td className="border-b border-gray-200 bg-base-100 px-5 py-5 text-sm">
                     <div className="dropdown dropdown-left z-10">
   <label tabIndex={0} className="btn m-1 btn-ghost">   <SlOptionsVertical className="whitespace-no-wrap text-gray-900 cursor-pointer" /></label>
   <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-32">
@@ -171,7 +171,7 @@ if(isAuthorised && !isAllowed) return <Onboarding />
                 ))}
               </tbody>
             </table>}
-            <div className="xs:flex-row xs:justify-between flex flex-col items-center border-t bg-white px-5 py-5          ">
+            <div className="xs:flex-row xs:justify-between flex flex-col items-center border-t bg-base-100 px-5 py-5          ">
               <span className="xs:text-sm text-xs text-gray-900">
                 Showing 1 to 4 of 50 Entries
               </span>

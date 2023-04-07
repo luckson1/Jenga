@@ -35,7 +35,7 @@ const SubDepartment = ({ handleClose }: { handleClose: () => void }) => {
   });
 
   return (
-    <div className=" fixed top-20 left-5 h-fit w-80 bg-white py-7 shadow-md md:left-32 md:w-[600px] lg:left-96">
+    <div className=" fixed top-20 left-5 h-fit w-80 bg-base-100 py-7 shadow-md md:left-32 md:w-[600px] lg:left-96">
       <p>{error?.message}</p>
       <form
         className="mx-auto my-10 flex  h-fit w-[80%] flex-col  items-start"

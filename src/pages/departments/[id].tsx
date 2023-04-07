@@ -63,7 +63,7 @@ const DepartmentId = ({
 
   return (
     <>
-      <div className=" mt-0 mb-16 w-screen bg-gradient-to-r from-white via-white to-violet-50 text-center md:mb-10 md:mt-16">
+      <div className="  mb-16 w-screen bg-base-100 text-center mt-16">
         <h1 className="my-5 text-2xl">{department?.name}</h1>
         {subDepartments?.map((subDepartment) => (
           <section

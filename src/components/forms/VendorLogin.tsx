@@ -5,7 +5,7 @@ import { BsFacebook} from "react-icons/bs";
 
 export const VendorLogin = () => {
   return (
-    <div className="items-centerpx-10 absolute left-0 right-0 top-20 ml-auto mr-auto flex h-fit w-11/12  flex-row justify-center   rounded-lg bg-white pb-7 pt-5 shadow-2xl  sm:top-28 md:w-6/12 md:gap-5 ">
+    <div className="items-centerpx-10 absolute left-0 right-0 top-20 ml-auto mr-auto flex h-fit w-11/12  flex-row justify-center   rounded-lg bg-base-100 pb-7 pt-5 shadow-2xl  sm:top-28 md:w-6/12 md:gap-5 ">
       <section className=" w-10/11 flex flex-col items-center justify-center">
         <div className="mb-5 flex w-72 flex-row gap-3">
           <p className="mb-3 tracking-wider text-violet-500">Login With:</p>

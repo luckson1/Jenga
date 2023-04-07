@@ -75,7 +75,7 @@ const Onboarding = () => {
       </div>
     );
   return (
-    <div className="mt-0 mb-2  flex w-full items-center justify-center rounded-md bg-white p-8 md:mt-16">
+    <div className="mt-0 mb-2  flex w-full items-center justify-center rounded-md bg-base-100 p-8 md:mt-16">
       <div className="my-10 flex h-fit w-[95%] flex-col rounded-md bg-slate-50 bg-opacity-40 shadow-lg shadow-slate-500/100 md:my-20 md:w-[95%] lg:w-[70%]">
         <p className="mt-4 text-center text-2xl tracking-wider">
           Register Your Business

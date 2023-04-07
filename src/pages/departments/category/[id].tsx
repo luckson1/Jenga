@@ -61,7 +61,7 @@ const Category = ({
         <Comingsoon />
       ) : (
         products?.map((product) => (
-          <Link href={{ pathname: `product/${product.id}` }} key={product.id} className="flex h-80 w-80 flex-col bg-white">
+          <Link href={{ pathname: `product/${product.id}` }} key={product.id} className="flex h-80 w-80 flex-col bg-base-100">
             <Product id={product.id} />
          
               <div className="my-2 flex flex-row justify-start gap-12">

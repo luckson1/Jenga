@@ -21,7 +21,7 @@ function Nav() {
       <div className="h-full w-fit items-center justify-center text-sm capitalize sm:hidden md:flex">
         {" "}
         <button
-          className="inline-flex items-center h-full justify-center gap-2 rounded-md border border-transparent py-2 px-3 text-sm font-semibold text-base-content transition-all hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          className="inline-flex items-center  justify-center gap-2 rounded-md border border-transparent py-2 px-3 text-sm font-semibold text-base-content transition-all hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           onClick={() => router.push("/")}
         >
           {" "}
