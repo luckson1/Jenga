@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import Department from "../../../components/forms/Deparment";
-import { api } from "../../../utils/api";
 import SubDepartment from "../../../components/forms/SubDepartments";
 
 const Index = () => {
@@ -8,7 +7,7 @@ const Index = () => {
     const handleForm= useCallback(()=> {
 setIsShowModal(!isShowModal)
     }, [isShowModal])
-    const {data:subdepartments}=api.subDepartments.getAll.useQuery()
+
 
   return (
     <div className="mt-0 md:mt-16 flex h-screen w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50">
