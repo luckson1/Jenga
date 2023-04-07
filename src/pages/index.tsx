@@ -111,7 +111,7 @@ export default function Home({
         </div>
         </div>
  
-        <div className=" my-16 mx-auto  mb-10 flex h-[60%] w-[90%] flex-col gap-7 rounded-3xl bg-[#1B2430] py-16 md:flex-row card  glass shadow-accent shadow-lg">
+        <div className=" my-16 mx-auto  mb-10 flex h-[60%] w-[90%] flex-col gap-7 rounded-3xl bg-[#1B2430] hover:bg-[#1B2430] py-16 md:flex-row card  glass shadow-accent shadow-lg">
           <div className="flex w-full flex-col items-center justify-center md:w-[60%] h-96 ">
           <div className="card-body">
             <p className="  text-xl tracking-widest text-slate-100 md:ml-16 md:text-3xl">
