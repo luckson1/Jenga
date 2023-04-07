@@ -153,9 +153,9 @@ export  function NavMenu() {
                      <ListItem
                      key={department.id}
                      title={department.name}
-                   
+              
                    >
-{department.SubDepartment.map(sub=>(<Link href={"/"} key={sub.id} className="cursor-pointer w-fit hover:underline"><li>{sub.name}</li></Link>))}
+{department.SubDepartment.map(sub=>(<Link href={{pathname: `/subdepartment/${sub.id}`}} key={sub.id} className="cursor-pointer w-fit hover:underline"><li>{sub.name}</li></Link>))}
                    </ListItem>
               ))}
             </ul>
@@ -183,7 +183,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div className="text-sm font-medium leading-none">{title}</div>
-          <div className="line-clamp-2 text-sm leading-snug text-base-content  flex flex-col gap-1 font-light">
+          <div className="line-clamp-2 text-sm leading-snug text-base-content  flex flex-col gap-2 font-light">
             {children}
           </div>
         </a>
