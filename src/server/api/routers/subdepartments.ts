@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import { TRPCError } from "@trpc/server";
 
 export const subDepartmentRouter = createTRPCRouter({
   // add a subDepartment
@@ -16,12 +17,23 @@ export const subDepartmentRouter = createTRPCRouter({
 
   // fetch all subDepartments
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.subDepartment.findMany({
+  getAll: publicProcedure.query(async({ ctx }) => {
+     const subs= await ctx.prisma.subDepartment.findMany({
       where: {
         deleted: false
+      },
+      select: {
+        name:true,
+        id:true,
+        department: {
+          select: {
+            name: true
+          }
+        }
       }
     });
+    if(!subs) throw new TRPCError({code: "NOT_FOUND"})
+    return subs
   }),
 
   // fetch one departemnt

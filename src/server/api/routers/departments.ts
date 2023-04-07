@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import { TRPCError } from "@trpc/server";
 
 export const departmentRouter = createTRPCRouter({
   // add a department
@@ -16,8 +17,8 @@ export const departmentRouter = createTRPCRouter({
 
   // fetch all departments
 
-  getAll: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.department.findMany({
+  getAll: publicProcedure.query(async({ ctx }) => {
+    const departments= await ctx.prisma.department.findMany({
       where: {
         deleted: false,
       },
@@ -35,8 +36,10 @@ export const departmentRouter = createTRPCRouter({
           },
         },
       },
-      
+  
     });
+    if(!departments) throw new TRPCError({code: "NOT_FOUND"})
+    return departments
   }),
 // departments where user has created products
 
