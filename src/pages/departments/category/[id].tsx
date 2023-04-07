@@ -56,28 +56,31 @@ const Category = ({
   const products = category?.Product;
 
   return (
-    <div className="grid h-fit w-screen grid-cols-1 gap-7 px-3 py-5 mx-12 md:grid-cols-2 md:gap-10 md:px-7 md:py-32 lg:grid-cols-3">
+    <div className="mx-12 my-16 grid h-fit w-screen grid-cols-1  gap-7 px-3 py-16 md:grid-cols-2 md:gap-10 md:px-7 lg:grid-cols-3">
       {!products?.length ? (
         <Comingsoon />
       ) : (
         products?.map((product) => (
-          <Link href={{ pathname: `product/${product.id}` }} key={product.id} className="flex h-80 w-80 flex-col bg-base-100">
+          <Link
+            href={{ pathname: `product/${product.id}` }}
+            key={product.id}
+            className="flex h-80 w-80 flex-col bg-base-100"
+          >
             <Product id={product.id} />
-         
-              <div className="my-2 flex flex-row justify-start gap-12">
-                <p className="flex gap-1 text-sm">
-                  {" "}
-                  <RiProductHuntLine className="text-lg text-violet-400 " />{" "}
-                  {product.name}
-                </p>
-                <p className="flex gap-1 text-sm font-bold">
-                  {" "}
-                  <RiMoneyDollarBoxLine className="text-lg text-violet-400" />{" "}
-                  Ksh. {product.price}
-                </p>
-              </div>
-         
-              </Link>
+
+            <div className="my-2 flex flex-row justify-start gap-12">
+              <p className="flex gap-1 text-sm">
+                {" "}
+                <RiProductHuntLine className="text-lg text-violet-400 " />{" "}
+                {product.name}
+              </p>
+              <p className="flex gap-1 text-sm font-bold">
+                {" "}
+                <RiMoneyDollarBoxLine className="text-lg text-violet-400" />{" "}
+                Ksh. {product.price}
+              </p>
+            </div>
+          </Link>
         ))
       )}
     </div>

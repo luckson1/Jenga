@@ -47,8 +47,8 @@ onSuccess: (images)=> setCurrentImage(images.at(0)?.url ?? "/livingRoom.jpeg")
 
 
   return (
-    <div className="my-3 flex flex-col">
-      <div className="flex h-[75vh] w-screen flex-col md:mt-16">
+    <div className=" flex flex-col my-16">
+      <div className="flex h-[75vh] w-screen flex-col ">
         <div className=" flex h-full  w-full flex-col justify-center md:h-[90%]  md:flex-row  ">
           <div className="flex h-[50%] w-full flex-col-reverse items-start justify-around md:h-[70%] md:w-[60%] md:flex-row lg:h-full lg:w-[50%]">
             <div className="relative mx-5 flex h-fit w-screen flex-row gap-2 p-1 md:ml-8 md:h-screen md:w-fit md:flex-col">
