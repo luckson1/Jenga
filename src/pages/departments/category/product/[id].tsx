@@ -6,6 +6,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { PrismaClient } from "@prisma/client";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 
 
 const prisma = new PrismaClient();
@@ -25,19 +26,31 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const productId = context?.params?.id as string;
+  const p= await prisma.product.findUniqueOrThrow({
+    where: {
+      id: productId
+    },
+    select: {
+      name: true,
+      id: true
+    }
+  })
 
 
-  return { props: { productId} };
+  return { props: { p} };
 };
 
 
-const ProductId = ({productId}: {productId:string}) => {
+const ProductId = ({p}: {p: {
+  id: string;
+  name: string;
+}}) => {
 
   const [currentImage, setCurrentImage] = useState("/livingRoom.jpeg");
 
 
   const { data: images} = api.image.imagesAndUser.useQuery({
-    productId,
+  productId:p.id
   }, {
 onSuccess: (images)=> setCurrentImage(images.at(0)?.url ?? "/livingRoom.jpeg")
   });
@@ -47,6 +60,14 @@ onSuccess: (images)=> setCurrentImage(images.at(0)?.url ?? "/livingRoom.jpeg")
 
 
   return (
+    <>
+    
+    <Head>
+        <title>Jenga</title>
+        <meta name="description" content={p.name} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
     <div className=" flex flex-col my-16">
       <div className="flex h-[75vh] w-screen flex-col ">
         <div className=" flex h-full  w-full flex-col justify-center md:h-[90%]  md:flex-row  ">
@@ -199,6 +220,7 @@ onSuccess: (images)=> setCurrentImage(images.at(0)?.url ?? "/livingRoom.jpeg")
         </div>
       </div>
     </div>
+    </>
   );
 };
 

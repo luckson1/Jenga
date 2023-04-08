@@ -11,6 +11,7 @@ import {  useSession } from "next-auth/react";
 
 import { LoginCard } from "../../components/forms/LoginPage";
 import Onboarding from "../../components/forms/Onboarding";
+import Head from "next/head";
 
 
   
@@ -48,6 +49,13 @@ if (isUnAthorised) return <LoginCard />
 if (isLoadingStatus) return <div className="w-[300px] h-[300px]"><Loading /></div>
 if(isAuthorised && !isAllowed) return <Onboarding />
   return (
+    <>
+     <Head>
+        <title>Jenga</title>
+        <meta name="description" content="Build your Dream Spaces" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
     <div className="mt-0 mb-2  md:mt-16 w-full rounded-md bg-base-100 p-8">
       <div className=" flex items-center justify-between pb-6">
         <div>
@@ -205,6 +213,7 @@ if(isAuthorised && !isAllowed) return <Onboarding />
 
 </div>}
     </div>
+    </>
   );
 };
 

@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import Department from "../../../components/forms/Deparment";
 import { api } from "../../../utils/api";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Index = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -14,6 +15,13 @@ const Index = () => {
 //navigation
 const router=useRouter()
   return (
+    <>
+     <Head>
+        <title>Jenga</title>
+        <meta name="description" content="Build your Dream Spaces" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
     <div className="mt-0 md:mt-16 flex h-screen w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50">
       <div className="flex h-16 w-full  flex-row items-center justify-around ">
         <div className="w-[60%]">.</div>
@@ -38,6 +46,7 @@ const router=useRouter()
         ))}
       </div>
     </div>
+    </>
   );
 };
 

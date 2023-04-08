@@ -11,6 +11,7 @@ import { useSession } from "next-auth/react";
 import { LoginCard } from "../../components/forms/LoginPage";
 import Loading from "../../components/display/LoadingComponent";
 import Onboarding from "../../components/forms/Onboarding";
+import Head from "next/head";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -176,6 +177,13 @@ const Productform = () => {
     );
   if (isAuthorised && !isAllowed) return <Onboarding />;
   return (
+    <>
+     <Head>
+        <title>Jenga</title>
+        <meta name="description" content="Build your Dream Spaces" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
     <div className="mt-0 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:mt-16 md:text-[16px]">
       <div className="flex w-screen flex-row justify-center">
         <form
@@ -535,6 +543,7 @@ const Productform = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

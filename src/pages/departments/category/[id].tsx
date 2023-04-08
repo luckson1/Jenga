@@ -5,6 +5,7 @@ import Comingsoon from "../../../components/comingsoon";
 import Link from "next/link";
 import { PrismaClient } from "@prisma/client";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 
 const prisma = new PrismaClient();
 
@@ -26,6 +27,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const category = await prisma.category.findUniqueOrThrow({
     where: { id },
     select: {
+      name: true,
       Product: {
         where: {
           deleted: false,
@@ -51,12 +53,21 @@ const Category = ({
       name: string;
       price: number;
     }[];
+    name:string
   };
 }) => {
   const products = category?.Product;
 
   return (
-    <div className="mx-12 my-16 grid h-fit w-screen grid-cols-1  gap-7 px-3 py-16 md:grid-cols-2 md:gap-10 md:px-7 lg:grid-cols-3">
+    <>
+    
+    <Head>
+        <title>Jenga</title>
+        <meta name="description" content={category.name} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      <div className="mx-12 my-16 grid h-fit w-screen grid-cols-1  gap-7 px-3 py-16 md:grid-cols-2 md:gap-10 md:px-7 lg:grid-cols-3">
       {!products?.length ? (
         <Comingsoon />
       ) : (
@@ -84,6 +95,8 @@ const Category = ({
         ))
       )}
     </div>
+    </>
+ 
   );
 };
 

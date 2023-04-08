@@ -42,7 +42,7 @@ export default function Home({
     <>
       <Head>
         <title>Jenga</title>
-        <meta name="description" content="Building your Dreams" />
+        <meta name="description" content="Build your Dream Spaces" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>

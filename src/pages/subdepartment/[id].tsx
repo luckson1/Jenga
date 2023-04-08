@@ -4,6 +4,7 @@ import SubCategory from "../../components/display/Category";
 
 import { GetStaticProps } from "next";
 import {  PrismaClient } from "@prisma/client";
+import Head from "next/head";
 const prisma = new PrismaClient();
 
 export async function getStaticPaths() {
@@ -54,6 +55,12 @@ const SubId = ({
 
   return (
     <>
+       <Head>
+        <title>Jenga</title>
+        <meta name="description" content={subDepartment.name}/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
       <div className="  mb-16 w-screen bg-base-100 text-center mt-16">
  
 

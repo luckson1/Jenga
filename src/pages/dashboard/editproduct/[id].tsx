@@ -10,6 +10,7 @@ import Loading from "../../../components/display/LoadingComponent";
 import { useSession } from "next-auth/react";
 import { LoginCard } from "../../../components/forms/LoginPage";
 import Onboarding from "../../../components/forms/Onboarding";
+import Head from "next/head";
 
 const productSchema = Yup.object().shape({
   name: Yup.string()
@@ -170,6 +171,14 @@ const setValues=useCallback((field: string, value:any)=> {
 
 
   return (
+    <>
+     <Head>
+        <title>Jenga</title>
+        <meta name="description" content="Build your Dream Spaces" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+   
     <div className="mt-0 mb-16 flex h-fit w-screen flex-col  bg-base-100 text-sm md:mt-16 md:text-[16px]">
       <div className="flex w-screen flex-row justify-center">
         <form
@@ -526,6 +535,7 @@ const setValues=useCallback((field: string, value:any)=> {
         </form>
       </div>
     </div>
+    </>
   );
 };
 
