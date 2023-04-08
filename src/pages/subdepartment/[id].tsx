@@ -58,16 +58,16 @@ const SubId = ({
  
 
           <section
-            className="flex h-fit w-screen flex-col mt-16"
+            className="flex h-fit w-[85%] max-w-6xl flex-col mt-16 justify-center items-center mx-auto"
          
           >
-            <p className="mx-2 text-center text-xl text-black">
+          <p className=" text-center text-xl text-base-content font-semibold my-12">
               {" "}
               {subDepartment.name}
             </p>
-            <div className="md:x-7  h-fit w-screen grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center gap-5  py-5  md:px-7 md:py-10 mx-8 ">
+            <div className="mx-auto  h-fit w-fit grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 justify-center gap-5  py-5   ">
               {subDepartment.Category.map((c) => (
-                <div key={c.id}>
+                <div key={c.id} className="w-fit h-fit">
                   <SubCategory category={c} />
                 </div>
               ))}
