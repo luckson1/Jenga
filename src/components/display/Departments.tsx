@@ -20,8 +20,8 @@ const CategoryDisplay = ({ department }: { department: {
       <Image
         alt={department?.name}
         src={department?.Url ?? "https://res.cloudinary.com/dhciks96e/image/upload/v1674435518/warmKitchen_gkirjj.jpg"}
-        height={256}
-        width={320}
+        height={150}
+        width={150}
         sizes="(max-width: 288px) 288px,(max-height: 288px) 288px "
         quality={50}
         className="rounded-2xl h-64 w-80 md:w-64 lg:h-72 lg:w-72"
