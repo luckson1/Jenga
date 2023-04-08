@@ -18,18 +18,28 @@ function Nav() {
   };
   return (
     <nav className=" fixed  top-0 z-30 flex h-12  w-full flex-row justify-between   bg-base-200 px-3 shadow-slate-500/100 md:mx-0  md:h-16 md:px-12 ">
-      <div className="h-full w-fit items-center justify-center text-sm capitalize sm:hidden md:flex">
+      <div className="h-full w-fit items-center justify-center text-sm capitalize hidden sm:flex">
         {" "}
         <button
           className="inline-flex items-center  justify-center gap-2 rounded-md border border-transparent py-2 px-3 text-sm font-semibold text-base-content transition-all hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           onClick={() => router.push("/")}
         >
           {" "}
-          <FaHouseUser className="h-4 w-4" /> <p className="hidden md:inline-block">Home</p>
+          <FaHouseUser className="h-4 w-4" /> Home
         </button>
       </div>
       <div className="md:w-[40%]flex-row my-auto flex w-[20%] justify-start gap-3 md:justify-center md:gap-6   lg:justify-end">
         <NavMenu />
+      </div>
+      <div className="h-full w-fit items-center justify-center text-sm capitalize sm:hidden flex">
+        {" "}
+        <button
+          className="inline-flex items-center  justify-center gap-2 rounded-md border border-transparent py-2 px-3 text-sm font-semibold text-base-content transition-all hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+          onClick={() => router.push("/")}
+        >
+          {" "}
+          <FaHouseUser className="h-4 w-4" /> Home
+        </button>
       </div>
       <div className="my-auto flex w-[50%] flex-row justify-center  gap-4 pr-5 md:w-[30%]">
         <button

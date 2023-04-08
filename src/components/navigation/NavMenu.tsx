@@ -21,7 +21,7 @@ const NavigationMenu = React.forwardRef<
   <NavigationMenuPrimitive.Root
     ref={ref}
     className={cn(
-      "relative z-10 flex flex-1 items-center justify-center -ml-20 md:ml-0 ",
+      "relative z-10 flex flex-1 items-center justify-center",
       className
     )}
     {...props}
@@ -148,7 +148,7 @@ export  function NavMenu() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[380px]  gap-3 p-2 md:w-[500px] grid-cols-2 lg:w-[600px] overflow-scroll text-xs md:text-sm">
+            <ul className="grid w-[360px] sm:w-[400px] gap-3 p-2 md:w-[500px] grid-cols-2 lg:w-[600px] overflow-scroll text-xs md:text-sm">
               {departments && departments.map(department=> (
                      <ListItem
                      key={department.id}
