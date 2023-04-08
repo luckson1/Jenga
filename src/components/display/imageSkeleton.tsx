@@ -2,9 +2,9 @@ import React from 'react'
 
 const ImageSkeleton = () => {
   return (
-    <div className="flex items-center justify-center h-full w-full mb-4 bg-gray-300 rounded dark:bg-gray-700 animate-pulse">
+    <div className="flex items-center justify-center h-full w-full mb-4 bg-base-300 rounded animate-pulse">
   <svg
-    className="w-12 h-12 text-gray-200 dark:text-gray-600"
+    className="w-12 h-12 text-base-content"
     xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
     fill="currentColor"
