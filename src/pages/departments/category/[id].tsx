@@ -1,6 +1,5 @@
 import React from "react";
 import Product from "../../../components/display/Product";
-import { RiMoneyDollarBoxLine, RiProductHuntLine } from "react-icons/ri";
 import Comingsoon from "../../../components/comingsoon";
 import Link from "next/link";
 import { PrismaClient } from "@prisma/client";
@@ -53,50 +52,44 @@ const Category = ({
       name: string;
       price: number;
     }[];
-    name:string
+    name: string;
   };
 }) => {
   const products = category?.Product;
 
   return (
     <>
-    
-    <Head>
+      <Head>
         <title>Jenga</title>
         <meta name="description" content={category.name} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>
-      <div className="mx-12 my-16 grid h-fit w-screen grid-cols-1  gap-7 px-3 py-16 md:grid-cols-2 md:gap-10 md:px-7 lg:grid-cols-3">
-      {!products?.length ? (
-        <Comingsoon />
-      ) : (
-        products?.map((product) => (
-          <Link
-            href={{ pathname: `product/${product.id}` }}
-            key={product.id}
-            className="flex h-80 w-80 flex-col bg-base-100"
-          >
-            <Product id={product.id} />
+      <div className="flex h-fit w-screen flex-col my-8"></div>
+      <div className=" my-16 mx-auto grid h-fit w-[95%] grid-cols-2 gap-3    md:grid-cols-3 xl:grid-cols-4 2xl:grind-cols-6">
+        {!products?.length ? (
+          <Comingsoon />
+        ) : (
+          products?.map((product) => (
+            <Link
+              href={{ pathname: `product/${product.id}` }}
+              key={product.id}
+              className="flex h-48 w-44 flex-col bg-base-100 md:h-72 md:w-64 shadow-lg shadow-base-contenttransition duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
+            >
+              <Product id={product.id} />
 
-            <div className="my-2 flex flex-row justify-start gap-12">
-              <p className="flex gap-1 text-sm">
-                {" "}
-                <RiProductHuntLine className="text-lg text-violet-400 " />{" "}
-                {product.name}
-              </p>
-              <p className="flex gap-1 text-sm font-bold">
-                {" "}
-                <RiMoneyDollarBoxLine className="text-lg text-violet-400" />{" "}
-                Ksh. {product.price}
-              </p>
-            </div>
-          </Link>
-        ))
-      )}
-    </div>
+              <div className="my-2 flex flex-col px-6">
+                <p className="flex gap-2 text-sm"> {product.name}</p>
+                <p className="flex gap-1 text-sm font-bold">
+                  {" "}
+                  Ksh. {product.price}
+                </p>
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
     </>
- 
   );
 };
 
