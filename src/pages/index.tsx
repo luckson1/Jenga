@@ -47,7 +47,7 @@ export default function Home({
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <div className="mt-0 flex h-[calc(100vh-4rem)] w-full flex-col md:mt-16 md:flex-row ">
+      <div className="mt-16 flex h-[calc(100vh-4rem)] w-full flex-col  md:flex-row ">
         <div className=" flex h-[50%] w-full flex-col justify-around bg-base-200 px-5 py-10 md:h-full md:w-[50%] lg:w-[60%] md:px-10">
           <div className="mx-auto flex w-[95%] flex-col gap-10 md:mx-6 md:w-[60%] ">
             <p className="bg-gradient-to-r from-violet-500 via-teal-500 to-pink-400 bg-clip-text text-3xl font-bold tracking-widest text-transparent">
