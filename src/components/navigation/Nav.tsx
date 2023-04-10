@@ -17,7 +17,7 @@ function Nav() {
     signOut();
   };
   return (
-    <nav className=" fixed  top-0 z-30 flex h-12  w-full flex-row justify-between   bg-base-200 px-3 shadow-slate-500/100 md:mx-0  md:h-16 md:px-12 ">
+    <nav className=" fixed  top-0 z-30 flex h-16  w-full flex-row justify-between   bg-base-200 px-3 shadow-slate-500/100 md:mx-0  md:h-16 md:px-12 ">
       <div className="h-full w-fit items-center justify-center text-sm capitalize hidden sm:flex">
         {" "}
         <button
