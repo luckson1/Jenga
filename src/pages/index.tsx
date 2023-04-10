@@ -102,7 +102,7 @@ export default function Home({
       <div className="flex min-h-full h-fit w-full flex-col  bg-base-100">
       <div className="mb-16 bg-base-100 text-center my-16 w-full">
         <h1 className="my-5 text-2xl">Shop by a Department</h1>
-        <div className="grid h-fit w-full grid-cols-1 gap-7  py-5 ml-12 md:grid-cols-2 md:gap-10 md:px-7 md:py-10 lg:grid-cols-3">
+        <div className=" flex flex-col justify-center w-full md:w-[90%]  items-center md:grid h-fit  gap-7  py-5  md:grid-cols-2 md:gap-10 md:py-10 lg:grid-cols-3 mx-auto">
           {departments?.map((d) => (
             <div key={d.id}>
               <CategoryDisplay department={d} />
