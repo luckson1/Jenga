@@ -16,7 +16,7 @@ const Product = ({id}: {id:string}) => {
     // set id of the carousel to the id of image for scrolling
          <div id={`${image.id}`} className="carousel-item relative w-full h-full shadow" key={image.id}>
        <GetImage url={image.url}/>
-         <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+         <div className="absolute justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 hidden md:flex">
             {/* provide logic of displaying the carousel images */}
            <a onClick={e=>e.stopPropagation()} href={`${images.indexOf(image)===0 ? `#${images[images?.length-1]?.id}`: `#${images[images.indexOf(image)-1]?.id}`}`} className="btn btn-circle bg-base-100 text-xl text-slate-900 bg-opacity-30">❮</a> 
            <a onClick={e=>e.stopPropagation()} href={`${images?.indexOf(image)===images.length-1 ? `#${images[0]?.id}`: `#${images[images.indexOf(image)+1]?.id}`}`} className="btn btn-circle bg-base-100 text-xl text-slate-900 bg-opacity-30">❯</a>
