@@ -93,7 +93,7 @@ export default function Home({
                     : () => router.push("/vendorAuth")
                 }
               >
-                Join
+                Join & Sell
               </button>
             )}
           </div>
