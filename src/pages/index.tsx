@@ -5,8 +5,7 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { GiSofa } from "react-icons/gi";
-import { MdEngineering } from "react-icons/md";
+
 import CategoryDisplay from "../components/display/Departments";
 
 const prisma = new PrismaClient();
