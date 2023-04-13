@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { api } from "../../../../utils/api";
 import Image from "next/image";
 import { BsWhatsapp } from "react-icons/bs";
-import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { AiOutlinePhone } from "react-icons/ai";
 import { PrismaClient, Product, User } from "@prisma/client";
 import { GetStaticProps } from "next";
 import Head from "next/head";
@@ -289,7 +289,7 @@ const ProductId = ({
                  
                   </div>}
 
-                  {display === DisplayTypes.delivery &&   <div className=" flex flex-col gap-5">
+                  {display === DisplayTypes['delivery'] &&   <div className=" flex flex-col gap-5">
                 <div className="flex flex-row gap-5">
                       <p className=" font-bold">Delivery Information:</p>
 
