@@ -54,7 +54,7 @@ export default function Home({
               Make Your Dream House Come True
             </p>
             <p className=" text-lg tracking-wider lg:text-xl">
-              Jenga Helps You Discover Home Improvement Products for Your Dream
+              Discover Quality Home Improvement Products for Your Dream
               Spaces.
             </p>
 
@@ -80,7 +80,7 @@ export default function Home({
               Join Hundreds of Retailers for Free
             </p>
             <p className=" text-lg font-bold tracking-wider text-slate-900 lg:text-xl">
-              You will Win Better Customers and Offer Great Customer Experience.
+              Win Better Customers and Offer Great Customer Experience.
             </p>
 
             {!authenticated && (
