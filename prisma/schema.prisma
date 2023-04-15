@@ -127,7 +127,7 @@ model User {
   streetAddress String?
   location      String?
   website       String?
-  phoneNumber   Int?
+  phoneNumber   Int?  @unique
   accounts      Account[]
   Image         Image[]
   Product       Product[]
