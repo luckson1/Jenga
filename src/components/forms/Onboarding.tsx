@@ -20,7 +20,7 @@ const sellerSchema = z.object({
   phoneNumber: z.number(),
   logo: z
     .custom<FileList>()
-    .refine((val) => val.length > 0, "File is required"),
+   ,
 });
 type Values = z.infer<typeof sellerSchema>;
 const Onboarding = () => {
