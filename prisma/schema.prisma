@@ -128,7 +128,7 @@ model User {
   location      String?
   website       String?
   phoneNumber   Int?  @unique
-  accounts      Account[]
+  account      Account[]
   Image         Image[]
   Product       Product[]
   sessions      Session[]

@@ -11,12 +11,13 @@ export const userRouter = createTRPCRouter({
   // add a User
 
   add: publicProcedure
-    .input(z.object({ name: z.string(), email: z.string() }))
+    .input(z.object({ phoneNumber: z.number(),  businessName :z.string(),  streetAddress: z.string(),  location:z.string(),  website: z.string() }))
     .mutation(({ input, ctx }) => {
-      const { name, email } = input;
-      return ctx.prisma.user.create({
-        data: { name, email },
+      const {  phoneNumber,  businessName  , streetAddress,  location,  website  } = input;
+      const user= ctx.prisma.user.create({
+        data: {  phoneNumber,  businessName ,  streetAddress,  location,  website   },
       });
+   return user
     }),
 
   // fetch all Users

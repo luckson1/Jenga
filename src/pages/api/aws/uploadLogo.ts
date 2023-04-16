@@ -20,7 +20,8 @@ export default async function handler(
 
 try {
   const session= await getServerAuthSession({req, res}) 
-  const userId= session?.user?.id
+  const isAdmin=session?.user?.role==="ADMIN"
+  const userId= isAdmin? (req.query.userId as string): session?.user?.id
 
     // make entries to logo table for the product logos
    
