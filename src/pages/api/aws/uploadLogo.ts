@@ -20,6 +20,8 @@ export default async function handler(
 
 try {
   const session= await getServerAuthSession({req, res}) 
+    // tslint:disable-next-line (for vercel build)
+  //@ts-ignore
   const isAdmin=session?.user?.role==="ADMIN"
   const userId= isAdmin? (req.query.userId as string): session?.user?.id
 
