@@ -73,7 +73,7 @@ const Productform = () => {
   const isUnAthorised = status === "unauthenticated";
   const isAuthorised = status === "authenticated";
 
-  const { mutate: addProduct, data: product } =
+  const { mutate: addProduct, data: product, isLoading:isProductLoading } =
     api.product.addProduct.useMutation({
       onSuccess: () => toast.success("Product created successfully"),
       onError: (data)=> toast.error(`An Error Occured: ${data.message}`)
@@ -200,7 +200,7 @@ const Productform = () => {
             <section className="flex w-full flex-col gap-3">
               <p className="text-center text-xl">Product Details</p>
               <div className="flex w-full flex-row flex-wrap justify-between md:gap-4">
-                {!formik.values.departmentId && (
+              
                   <div className="form-control w-full max-w-xs">
                     <label className="label">
                       <span className="label-text">Pick a Department</span>
@@ -219,9 +219,8 @@ const Productform = () => {
                       ))}
                     </select>
                   </div>
-                )}
-                {formik.values.departmentId &&
-                  !formik.values.subDepartmentId && (
+              
+            
                     <div className="form-control w-full max-w-xs transition">
                       <label className="label">
                         <span className="label-text">
@@ -242,8 +241,8 @@ const Productform = () => {
                         ))}
                       </select>
                     </div>
-                  )}
-                {formik.values.subDepartmentId && (
+               
+         
                   <div className="form-control w-full max-w-xs">
                     <label className="label flex flex-row ">
                       <span className="label-text">Pick a Category</span>
@@ -271,7 +270,7 @@ const Productform = () => {
                       ))}
                     </select>
                   </div>
-                )}
+           
                 <div className="my-1 flex flex-col gap-2">
                   <Alerts>
                     {formik.touched.departmentId && formik.errors.departmentId}
@@ -543,13 +542,13 @@ const Productform = () => {
                 </div>
               </div>
             </section>
-            {isLoading ? (
-              <div className="w-[322px]">
+            {isLoading || isProductLoading ? (
+              <div className="w-full max-w-xs">
                 <LoadingButton />
               </div>
             ) : (
               <button
-                className="w-[322px] rounded bg-violet-600 bg-opacity-30 p-3 text-violet-700 outline outline-1 outline-violet-600 hover:bg-violet-600 hover:bg-opacity-100 hover:text-white"
+                className="w-full max-w-xs rounded bg-violet-600 bg-opacity-30 p-3 text-violet-700 outline outline-1 outline-violet-600 hover:bg-violet-600 hover:bg-opacity-100 hover:text-white"
                 type="submit"
               >
                 Submit

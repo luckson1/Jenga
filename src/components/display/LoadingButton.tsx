@@ -4,7 +4,7 @@ const LoadingButton = () => {
   return (
     <div className="flex items-center justify-center m-auto w-full">
     <button type="button"
-        className="inline-flex w-full items-center px-4 py-1 text-sm font-semibold leading-6 text-violet-600 transition duration-150 ease-in-out border-[1px] border-violet-600 rounded-md shadow cursor-not-allowed"
+        className=" btn inline-flex w-full items-center px-4 py-1 text-sm font-semibold leading-6 text-violet-600 transition duration-150 ease-in-out border-[1px] border-violet-600 rounded-md shadow cursor-not-allowed"
         disabled>
         <svg className="w-5 h-5 mr-3 -ml-1 text-violet-600 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24">
