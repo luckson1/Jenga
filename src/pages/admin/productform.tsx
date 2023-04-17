@@ -116,10 +116,11 @@ const Productform = () => {
     if (productId) {
       setIsloading(true);
       uploadToS3(formik.values, productId).then(() => {
-        setIsloading(false);
+     
         invalidate();
         toast.success("Files Uploaded Successfully");
         router.push(`/departments/category/product/${productId}`)
+     
       });
     }
   }, [productId, invalidate]);
