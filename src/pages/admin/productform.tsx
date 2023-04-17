@@ -76,6 +76,7 @@ const Productform = () => {
   const { mutate: addProduct, data: product } =
     api.product.addProduct.useMutation({
       onSuccess: () => toast.success("Product created successfully"),
+      onError: (data)=> toast.error(`An Error Occured: ${data.message}`)
     });
   const [isLoading, setIsloading] = useState(false);
   // TODO: create image and Upload to s3 bucket
@@ -118,6 +119,7 @@ const Productform = () => {
         setIsloading(false);
         invalidate();
         toast.success("Files Uploaded Successfully");
+        router.push(`/departments/category/product/${productId}`)
       });
     }
   }, [productId, invalidate]);
