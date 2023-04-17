@@ -89,6 +89,100 @@ export const productRouter = createTRPCRouter({
       }
     }),
 
+    // add product as admin or editor
+    // add a product
+
+  addProduct: protectedProcedure
+  .input(
+    z.object({
+      name: z.string(),
+      description: z.string(),
+      location: z.string(),
+      price: z.number(),
+     whatsappNumber: z.string(),
+      width: z.number().optional(),
+      length: z.number().optional(),
+      height: z.number().optional(),
+      departmentId: z.string(),
+      subDepartmentId: z.string(),
+      categoryId: z.string(),
+      productMaterials: z.string().optional(),
+      variantType: z.string().optional(),
+      variants: z.string().optional(),
+    })
+  )
+  .mutation(async ({ input, ctx }) => {
+    const {
+      name,
+      description,
+      location,
+
+      price,
+   whatsappNumber,
+      width,
+      length,
+      height,
+      categoryId,
+      variantType,
+      variants,
+      productMaterials,
+      departmentId,
+      subDepartmentId,
+    } = input;
+
+    const colors =
+      variantType === "colors"
+        ? variants?.trim().split(/\s*,\s*/)
+        : undefined;
+    const sizes =
+      variantType === "sizes" ? variants?.trim().split(/\s*,\s*/) : undefined;
+    const designs =
+      variantType === "designs"
+        ? variants?.trim().split(/\s*,\s*/)
+        : undefined;
+    const configurations =
+      variantType === "configurations"
+        ? variants?.trim().split(/\s*,\s*/)
+        : undefined;
+
+    const materials = productMaterials?.trim().split(/\s*,\s*/);
+const phoneNumber=parseInt(whatsappNumber)
+const user = await ctx.prisma.user.findFirstOrThrow({
+  where: {
+    phoneNumber
+  },
+  select: {
+    id: true
+  }
+})
+
+      // create product
+      const product = await ctx.prisma.product.create({
+        data: {
+          name,
+          description,
+          location,
+          userId:user.id,
+          price,
+          width,
+          length,
+          height,
+          categoryId,
+          colors,
+          designs,
+          sizes,
+          configurations,
+          materials,
+          subDepartmentId,
+          departmentId,
+        },
+      });
+
+      return product;
+    
+  }),
+
+
   // fetch all products products created by a user
 
   getUserProducts: protectedProcedure.query(({ ctx }) => {
