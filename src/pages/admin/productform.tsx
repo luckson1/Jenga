@@ -73,9 +73,10 @@ const Productform = () => {
   const isUnAthorised = status === "unauthenticated";
   const isAuthorised = status === "authenticated";
 
-  const { mutate: addProduct, data: product } = api.product.addProduct.useMutation({
-    onSuccess: () => toast.success("Product created successfully"),
-  });
+  const { mutate: addProduct, data: product } =
+    api.product.addProduct.useMutation({
+      onSuccess: () => toast.success("Product created successfully"),
+    });
   const [isLoading, setIsloading] = useState(false);
   // TODO: create image and Upload to s3 bucket
 
@@ -106,19 +107,18 @@ const Productform = () => {
   const router = useRouter();
   const context = api.useContext();
   //invalidate products data
-  const invalidate = useCallback(()=> {
-    context.product.getUserProducts.invalidate()
+  const invalidate = useCallback(() => {
+    context.product.getUserProducts.invalidate();
   }, []);
+
   useEffect(() => {
     if (productId) {
       setIsloading(true);
       uploadToS3(formik.values, productId).then(() => {
         setIsloading(false);
-     
-       toast.success("Files Uploaded Successfully");
- router.push(`/departments/category/product/${productId}`)
+        invalidate();
+        toast.success("Files Uploaded Successfully");
       });
-      formik.resetForm()
     }
   }, [productId, invalidate]);
   const formik = useFormik({
@@ -189,13 +189,10 @@ const Productform = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <div className="mt-0 flex h-fit w-screen flex-col bg-gradient-to-tr from-white via-white to-violet-50 text-sm md:mt-16 md:text-[16px]">
-      <Toaster
-  position="top-right"
-  reverseOrder={false}
-/>
-        <div className="flex w-screen flex-row justify-center">
+        <Toaster position="top-right" reverseOrder={false} />
+        <div className="flex w-full flex-row justify-center">
           <form
-            className="my-8 mx-auto flex h-fit w-[370px] flex-col items-start gap-4 rounded-md bg-base-100 py-5 px-4 shadow-md md:w-[60%] md:px-10"
+            className="my-8 mx-auto flex h-fit w-[90%] flex-col items-start gap-4 rounded-md bg-base-100 py-5 px-4 shadow-md max-w-3xl"
             onSubmit={formik.handleSubmit}
           >
             <section className="flex w-full flex-col gap-3">
@@ -387,7 +384,8 @@ const Productform = () => {
                     />
                   </div>
                   <Alerts>
-                    {formik.touched.whatsappNumber && formik.errors.whatsappNumber}
+                    {formik.touched.whatsappNumber &&
+                      formik.errors.whatsappNumber}
                   </Alerts>
                   <div className="form-control w-full max-w-xs">
                     <label className="label">
