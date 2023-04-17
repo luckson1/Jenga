@@ -60,8 +60,9 @@ const ProductId = ({
     productId: string;
     userId: string;
     deleted: boolean;
-    user: User;
-    Product: Product;
+    Product: Product & {
+        user: User;
+    };
   };
   const [currentImage, setCurrentImage] = useState<Images>();
   enum DisplayTypes {
@@ -71,7 +72,7 @@ const ProductId = ({
   }
   const [display, setDisplay] = useState<DisplayTypes>(DisplayTypes.product);
   const product = images?.at(0)?.Product;
-  const user = images?.at(0)?.user;
+  const user = images?.at(0)?.Product.user;
 
   return (
     <>
@@ -293,7 +294,7 @@ const ProductId = ({
                 <div className="flex flex-row gap-5">
                       <p className=" font-bold">Delivery Information:</p>
 
-                      <p>  Latest delivery information available on the retailer website <a  href={user?.website ?? "/"}
+                      <p>  Latest delivery information available on the retailer website <a  href={`https://${user?.website ?? "/"}`}
             target="_blank"
             rel="noreferrer nofollow" className="underline text-sky-500">here</a></p>
                     </div>
