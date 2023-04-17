@@ -90,8 +90,11 @@ return extendedImages
           deleted: false
         },
         include: {
-          user: true,
-          Product: true
+          Product: {
+            include: {
+              user: true
+            }
+          }
         }
       });
 
