@@ -61,7 +61,7 @@ const ProductId = ({
     userId: string;
     deleted: boolean;
     Product: Product & {
-        user: User;
+      user: User;
     };
   };
   const [currentImage, setCurrentImage] = useState<Images>();
@@ -83,15 +83,15 @@ const ProductId = ({
         <link rel="icon" href="/favicon.png" />
       </Head>
       <div className=" my-16 flex flex-col gap-10">
-        <div className="flex h-screen w-screen flex-col md:h-[75vh] ">
-          <div className=" flex h-full  w-full flex-col justify-center md:h-[90%]  md:flex-row  ">
-            <div className="flex h-[50%] w-full flex-col-reverse items-start justify-around  md:h-full md:w-[50%] md:flex-row">
-              <div className="relative mx-5 flex h-[20%] w-full flex-row items-center justify-center gap-2 p-1 md:ml-8 md:h-full md:w-[20%] md:flex-col">
+        <div className="flex w-screen flex-col h-fit gap-10 min-h-[50vh] ">
+          <div className=" flex h-full  w-full flex-col justify-center lg:h-[90%]  lg:flex-row gap-5 lg:pt-10 ">
+            <div className="flex h-[50%] w-full flex-col-reverse items-start gap-3 justify-end  lg:h-full lg:w-[50%] lg:flex-row">
+              <div className="relative mx-5 flex h-16 w-full flex-row items-center justify-center gap-2 p-1 lg:ml-8 lg:h-full lg:w-16 lg:flex-col">
                 {images &&
                   images?.map((image) => (
                     <div
                       key={image.id}
-                      className={`relative flex h-12 w-12 cursor-pointer items-center justify-center overflow-scroll rounded-lg md:h-16 md:w-16 ${
+                      className={`relative flex h-12 w-12 cursor-pointer items-center justify-center overflow-scroll rounded-lg lg:h-16 lg:w-16 ${
                         currentImage?.id === image.id
                           ? "outline outline-2 outline-primary"
                           : ""
@@ -106,22 +106,23 @@ const ProductId = ({
                         sizes="(max-width: 768px) 40px,
               (max-width: 1200px) 50px,
               50px"
-                        className="rounded-lg"
+                        className="rounded-lg mx-auto my-auto"
                       />
                     </div>
                   ))}
               </div>
-              <div className=" relative mx-auto  flex  h-[80%]  w-full max-w-xl rounded-lg  md:shadow-lg shadow-base-content md:my-auto md:w-[80%]">
+              <div className=" card   mx-auto    flex w-full max-w-3xl   rounded-lg shadow-base-content lg:my-auto  lg:shadow-lg">
                 <div className="relative  h-full w-full">
                   <Image
                     src={currentImage?.url ?? "/livingRoom.jpeg"}
                     alt={product?.name ?? " Product"}
                     quality={100}
-                    fill
+                    width={200}
+                    height={150}
                     sizes="(max-width: 768px) 80vw,
               (max-width: 1200px) 80vw,
               80vw"
-                    className="rounded-b-lg sm:rounded-lg"
+                    className="h-full w-full rounded-b-lg sm:rounded-lg"
                   />
                 </div>
                 {currentImage && images && (
@@ -155,14 +156,14 @@ const ProductId = ({
                 )}
               </div>
             </div>
-            <div className="mx-auto flex h-[50%] w-full items-center justify-center md:h-full md:w-[50%] md:items-start lg:w-[50%] lg:items-center">
-              <div className="card mx-auto my-auto h-full   w-full max-w-xl rounded-lg bg-base-100 md:shadow-lg shadow-base-content md:h-[80%] md:w-[80%] ">
-                <div className="card-body h-full w-full">
-                  <p className="text-2xl tracking-widest text-blue-700">
+            <div className="flex h-[50%] w-full flex-col items-start justify-around  lg:h-full lg:w-[50%]">
+              <div className=" card mx-auto my-auto   w-full max-w-2xl rounded-lg bg-base-100 shadow-base-content lg:shadow-lg ">
+                <div className="card-body w-full gap-5">
+                  <p className="text-xl tracking-widest text-blue-700">
                     {product?.name}
                   </p>
                   <p className="text-xl font-bold tracking-widest">
-                    Ksh. {product?.price}
+                    Ksh. {product?.price.toLocaleString()}
                   </p>
                   <p className="text-xl tracking-widest ">
                     Condition: {product?.secondHand ? "Ex-UK" : "New"}
@@ -192,7 +193,7 @@ const ProductId = ({
                 display === DisplayTypes.product ? "tab-active" : ""
               }`}
             >
-              Product 
+              Product
             </button>
             <button
               onClick={() => setDisplay(DisplayTypes.seller)}
@@ -208,7 +209,7 @@ const ProductId = ({
                 display === DisplayTypes.delivery ? "tab-active" : ""
               }`}
             >
-              Delivery 
+              Delivery
             </button>
           </div>
           {display === DisplayTypes.product && (
@@ -269,41 +270,46 @@ const ProductId = ({
               )}
             </div>
           )}
-                {display === DisplayTypes.seller &&   <div className=" flex flex-col gap-5">
-                <div className="flex flex-row gap-5">
-                      <p className=" font-bold">Business Name:</p>
+          {display === DisplayTypes.seller && (
+            <div className=" flex flex-col gap-5">
+              <div className="flex flex-row gap-5">
+                <p className=" font-bold">Business Name:</p>
 
-                      <p>   {user?.businessName}</p>
-                    </div>
-                    <div className="flex flex-row gap-5">
-                      <p className=" font-bold">Business Location:</p>
+                <p> {user?.businessName}</p>
+              </div>
+              <div className="flex flex-row gap-5">
+                <p className=" font-bold">Business Location:</p>
 
-                      <p>    {user?.location}</p>
-                    </div>
-                    <div className="flex flex-row gap-5">
-                      <p className=" font-bold">Business Email:</p>
+                <p> {user?.location}</p>
+              </div>
+              <div className="flex flex-row gap-5">
+                <p className=" font-bold">Business Email:</p>
 
-                      <p>    {user?.website}</p>
-                    </div>
-                
-                 
-                 
-                  </div>}
+                <p> {user?.website}</p>
+              </div>
+            </div>
+          )}
 
-                  {display === DisplayTypes['delivery'] &&   <div className=" flex flex-col gap-5">
-                <div className="flex flex-row gap-5">
-                      <p className=" font-bold">Delivery Information:</p>
+          {display === DisplayTypes["delivery"] && (
+            <div className=" flex flex-col gap-5">
+              <div className="flex flex-row gap-5">
+                <p className=" font-bold">Delivery Information:</p>
 
-                      <p>  Latest delivery information available on the retailer website <a  href={`https://${user?.website ?? "/"}`}
-            target="_blank"
-            rel="noreferrer nofollow" className="underline text-sky-500">here</a></p>
-                    </div>
-                 
-                   
-                
-                 
-                 
-                  </div>}
+                <p>
+                  {" "}
+                  Latest delivery information available on the retailer website{" "}
+                  <a
+                    href={`https://${user?.website ?? "/"}`}
+                    target="_blank"
+                    rel="noreferrer nofollow"
+                    className="text-sky-500 underline"
+                  >
+                    here
+                  </a>
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </>
