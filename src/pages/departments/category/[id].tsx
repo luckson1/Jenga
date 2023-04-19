@@ -74,13 +74,13 @@ const Category = ({
             <Link
               href={{ pathname: `product/${product.id}` }}
               key={product.id}
-              className="flex rounded-xl w-48 flex-col bg-base-100 h-fit shadow-lg md:w-64  duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
+              className="flex card  w-48 h-52 flex-col bg-base-100 md:h-72 shadow-lg md:w-64  duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
             >
               <Product id={product.id} />
 
               <div className="my-2 flex flex-col px-6">
                 <p className="flex gap-2 text-xs md:text-sm  text-sky-500 underline"> {product.name}</p>
-                <p className="flex gap-1 text-xs md:text-sm font-bold">
+                <p className="flex gap-1 text-xs md:text-sm font-semibold">
                   {" "}
                   Ksh. {product.price.toLocaleString()}
                 </p>
