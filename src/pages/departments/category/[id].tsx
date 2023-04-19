@@ -74,7 +74,7 @@ const Category = ({
             <Link
               href={{ pathname: `product/${product.id}` }}
               key={product.id}
-              className="flex rounded-xl w-48 flex-col bg-base-100 md:h-72 md:w-64  shadow-base-content transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
+              className="flex rounded-xl w-48 flex-col bg-base-100 h-fit shadow-lg md:w-64  duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
             >
               <Product id={product.id} />
 
