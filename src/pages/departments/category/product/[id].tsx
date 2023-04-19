@@ -84,8 +84,8 @@ const ProductId = ({
       </Head>
       <div className=" my-16 flex flex-col gap-10">
         <div className="flex w-screen flex-col h-fit gap-10 min-h-[50vh] ">
-          <div className=" flex h-full  w-full flex-col justify-center lg:h-[90%]  lg:flex-row gap-5 lg:pt-10 ">
-            <div className="flex h-[50%] w-full flex-col-reverse items-start gap-3 justify-end  lg:h-full lg:w-[50%] lg:flex-row">
+          <div className=" flex h-full  w-full flex-col justify-center lg:h-[90%]  lg:flex-row gap-10 lg:pt-10 ">
+            <div className="flex h-[50%] w-full flex-col-reverse items-center gap-3 justify-end ld:justify-center lg:h-full lg:w-[60%] lg:flex-row ">
               <div className="relative mx-5 flex h-16 w-full flex-row items-center justify-center gap-2 p-1 lg:ml-8 lg:h-full lg:w-16 lg:flex-col">
                 {images &&
                   images?.map((image) => (
@@ -156,8 +156,8 @@ const ProductId = ({
                 )}
               </div>
             </div>
-            <div className="flex h-[50%] w-full flex-col items-start justify-around  lg:h-full lg:w-[50%]">
-              <div className=" card mx-auto my-auto   w-full max-w-2xl rounded-lg bg-base-100 shadow-base-content lg:shadow-lg ">
+            <div className="flex h-[50%] w-full flex-col items-center justify-around  lg:h-full lg:w-[35%]">
+              <div className=" card mx-auto my-auto   w-full max-w-xl rounded-lg bg-base-100 shadow-base-content lg:shadow-lg ">
                 <div className="card-body w-full gap-5">
                   <p className="text-xl tracking-widest text-blue-700">
                     {product?.name}

@@ -10,11 +10,11 @@ const Product = ({id}: {id:string}) => {
 
   return (
     
-    <div className="carousel w-full h-fit shadow-md rounded-2xl">
+    <div className="carousel w-full h-fit  ro">
 
     {isLoading?<ImageSkeleton />  : images?.map(image=> (
     // set id of the carousel to the id of image for scrolling
-         <div id={`${image.id}`} className="carousel-item relative w-full h-fit " key={image.id}>
+         <div id={`${image.id}`} className="carousel-item relative w-full h-full " key={image.id}>
        <GetImage url={image.url}/>
          <div className="absolute justify-between transform -translate-y-1/2 left-5 right-5 top-1/2 hidden md:flex">
             {/* provide logic of displaying the carousel images */}
