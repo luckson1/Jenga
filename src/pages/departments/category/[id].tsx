@@ -74,7 +74,7 @@ const Category = ({
             <Link
               href={{ pathname: `product/${product.id}` }}
               key={product.id}
-              className="flex card w-48 flex-col bg-base-100 md:h-72 md:w-64 shadow-lg shadow-base-contenttransition duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
+              className="flex rounded-xl w-48 flex-col bg-base-100 md:h-72 md:w-64  shadow-base-content transition duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:shadow-xl"
             >
               <Product id={product.id} />
 
@@ -82,7 +82,7 @@ const Category = ({
                 <p className="flex gap-2 text-xs md:text-sm  text-sky-500 underline"> {product.name}</p>
                 <p className="flex gap-1 text-xs md:text-sm font-bold">
                   {" "}
-                  Ksh. {product.price}
+                  Ksh. {product.price.toLocaleString()}
                 </p>
               </div>
             </Link>
