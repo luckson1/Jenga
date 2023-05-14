@@ -5,7 +5,7 @@ function GetImage({url}: {url?: string}) {
 
    if(!url) return (   <>
 	<Image
-							 className="w-full h-full rounded-t-lg"
+							 className="w-full h-full rounded-t-2xl object-contain"
 							 width={320}
 							 height={256}
 							 src= "/furniture.jpg"
@@ -18,7 +18,7 @@ function GetImage({url}: {url?: string}) {
   return (
    <>
    <Image
-							className="w-full h-full rounded-t-lg "
+							className="w-full h-full rounded-t-2xl object-contain shadow-xl"
 							width={320}
 							height={256}
 							src={url}

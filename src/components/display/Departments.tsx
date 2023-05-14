@@ -24,12 +24,12 @@ const CategoryDisplay = ({ department }: { department: {
         width={150}
         sizes="(max-width: 288px) 288px,(max-height: 288px) 288px "
         quality={50}
-        className="rounded-2xl h-64 w-80 md:w-64 lg:h-72 lg:w-72"
+        className="rounded-2xl h-80 w-80 lg:h-96 lg:w-96"
       />
           <Link href={{pathname: `departments/${department.id}`}}  >
       <button
 
-        className=" -ml-80 md:-ml-64 lg:-ml-72 w-36 py-2 z-10 transform  px-2 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800 duration-500 ease-in-out hover:-translate-y-1 hover:scale-105"
+        className=" -ml-80 md:-ml-80 lg:-ml-96 w-36 py-2 z-10 transform  px-2 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800 duration-500 ease-in-out hover:-translate-y-1 hover:scale-105"
       >
         {department?.name}
       </button>

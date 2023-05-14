@@ -101,7 +101,7 @@ export default function Home({
       <div className="flex min-h-full h-fit w-full flex-col  bg-base-100">
       <div className="mb-16 bg-base-100 text-center my-16 w-full">
         <h1 className="my-5 text-2xl">Shop by a Department</h1>
-        <div className=" flex flex-col justify-center w-full md:w-[90%]  items-center md:grid h-fit  gap-7  py-5  md:grid-cols-2 md:gap-10 md:py-10 lg:grid-cols-3 mx-auto">
+        <div className=" flex flex-col justify-center w-full md:w-[90%]  items-center md:grid h-fit  gap-7  py-5  md:grid-cols-2  md:py-10 lg:grid-cols-3 mx-auto">
           {departments?.map((d) => (
             <div key={d.id}>
               <CategoryDisplay department={d} />
@@ -110,10 +110,10 @@ export default function Home({
         </div>
         </div>
  
-        <div className=" my-16 mx-auto  mb-10 flex h-[60%] w-[90%] flex-col gap-7 rounded-3xl bg-[#1B2430] hover:bg-[#1B2430] py-16 md:flex-row card  glass shadow-accent shadow-lg">
-          <div className="flex w-full flex-col items-center justify-center md:w-[60%] h-96 ">
-          <div className="card-body">
-            <p className="  text-xl tracking-widest text-slate-100 md:ml-16 md:text-3xl">
+        <div className=" my-16 mx-auto flex w-full max-w-7xl h-[28rem] md:h-96 flex-col gap-7 rounded-3xl bg-[#1B2430] hover:bg-[#1B2430] py-16  card  glass shadow-accent shadow-lg">
+          <div className="flex flex-col md:flex-row items-center justify-center  w-full">
+          <div className="card-body w-full md:w-1/2">
+            <p className="  text-xl tracking-widest text-slate-100 md:text-3xl">
               In the House Improvement Journey, You Wont Walk Alone
             </p>
             <p className="text-large  mt-4 text-start tracking-wider text-white">
@@ -121,7 +121,7 @@ export default function Home({
               one place
             </p>
           </div>
-          <div className="flex w-full flex-col items-center justify-center align-baseline md:w-[40%]">
+          <div className="flex w-full flex-col items-center justify-center align-baseline md:w-1/2">
             <p className="my-7  text-xl text-slate-100">
               {" "}
               Become a Member
